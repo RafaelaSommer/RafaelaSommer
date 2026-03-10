@@ -10,8 +10,10 @@
 
 <br>
 
+---
+
 <img
-  src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&width=520&lines=Cursando+Engenharia+da+Computação+na+FHO;Transformando+ideias+em+projetos;Localizada+em+Araras+-+SP"
+  src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&width=620&lines=Cursando+Engenharia+da+Computação+na+FHO+•+Construindo+projetos+reais+com+tecnologia+•+Localizada+em+Araras+-+SP"
   alt="Typing SVG"
 />
 

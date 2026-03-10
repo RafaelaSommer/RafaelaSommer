@@ -10,8 +10,10 @@
 
 <br>
 
+---
+
 <img
-  src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&width=520&lines=Cursando+Engenharia+da+Computação+na+FHO;Transformando+ideias+em+projetos;Localizada+em+Araras+-+SP"
+  src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&width=620&lines=Cursando+Engenharia+da+Computação+na+FHO+•+Construindo+projetos+reais+com+tecnologia+•+Localizada+em+Araras+-+SP"
   alt="Typing SVG"
 />
 
@@ -114,10 +116,10 @@ Trabalho com foco em performance, organização de código e boas práticas de a
 ## 🔄 Atualização Automática
 
 🕒 Última atualização:  
-10/03/2026 16:42:08 (Horário de Brasília)
+10/03/2026 16:54:01 (Horário de Brasília)
 
 🔁 Próxima atualização automática:  
-10/03/2026 17:02:08 (Horário de Brasília)
+10/03/2026 17:14:01 (Horário de Brasília)
 
 ---
 
@@ -146,4 +148,4 @@ Trabalho com foco em performance, organização de código e boas práticas de a
 <p align="center">
 ⭐ Se esse conteúdo te ajudou, deixe uma estrela no repositório! ⭐
 </p>
-<!-- 1773171731341 -->
+<!-- 1773172443010 -->
