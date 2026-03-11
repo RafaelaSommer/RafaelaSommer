@@ -1,5 +1,5 @@
 {
-  "lastFetch": 1773255157162,
+  "lastFetch": 1773256026493,
   "data": {
     "followers": 335,
     "repositories": {
@@ -138,7 +138,7 @@
           "languages": {
             "edges": [
               {
-                "size": 9790,
+                "size": 14355,
                 "node": {
                   "name": "JavaScript"
                 }

@@ -53,13 +53,13 @@
         fill="#FF6B6B">
         <animate attributeName="width"
                  from="0"
-                 to="293.5"
+                 to="295"
                  dur="1.2s"
                  fill="freeze"/>
       </rect>
 
       <text x="730" y="200" fill="#8B949E" font-size="12">
-        58.7%
+        59.0%
       </text>
     
       <text x="60" y="240" fill="#E6EDF3" font-size="14">
@@ -75,13 +75,13 @@
         fill="#6BCB77">
         <animate attributeName="width"
                  from="0"
-                 to="179.5"
+                 to="178"
                  dur="1.2s"
                  fill="freeze"/>
       </rect>
 
       <text x="730" y="240" fill="#8B949E" font-size="12">
-        35.9%
+        35.6%
       </text>
     
       <text x="60" y="280" fill="#E6EDF3" font-size="14">
@@ -97,13 +97,13 @@
         fill="#4D96FF">
         <animate attributeName="width"
                  from="0"
-                 to="12.5"
+                 to="12"
                  dur="1.2s"
                  fill="freeze"/>
       </rect>
 
       <text x="730" y="280" fill="#8B949E" font-size="12">
-        2.5%
+        2.4%
       </text>
     
       <text x="60" y="320" fill="#E6EDF3" font-size="14">
@@ -119,13 +119,13 @@
         fill="#FFD93D">
         <animate attributeName="width"
                  from="0"
-                 to="9"
+                 to="8.5"
                  dur="1.2s"
                  fill="freeze"/>
       </rect>
 
       <text x="730" y="320" fill="#8B949E" font-size="12">
-        1.8%
+        1.7%
       </text>
     
       <text x="60" y="360" fill="#E6EDF3" font-size="14">
