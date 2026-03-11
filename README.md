@@ -12,11 +12,13 @@
 
 ⚡💻 <b>Desenvolvedora Backend • Estudante de Engenharia da Computação • Arquitetura de Sistemas & Integração de APIs</b> ⚡  
 
-<br>
+---
 
-<img  
-src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&width=650&lines=Cursando+Engenharia+da+Computação+na+FHO;Desenvolvendo+APIs+e+automações;Construindo+projetos+reais+com+tecnologia;Buscando+oportunidade+de+estágio+em+Backend"
-/>
+<p align="center">
+  <img 
+  src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&width=650&lines=Cursando+Engenharia+da+Computação+na+FHO;Transformando+ideias+em+projetos+reais;Localizada+em+Araras+-+SP"
+  />
+</p>
 
 </div>
 
@@ -141,10 +143,10 @@ Trabalho sempre priorizando:
 # 🔄 Atualização Automática
 
 🕒 Última atualização:  
-11/03/2026 15:04:41 (Horário de Brasília)
+11/03/2026 15:11:30 (Horário de Brasília)
 
 🔁 Próxima atualização automática:  
-11/03/2026 15:24:41 (Horário de Brasília)
+11/03/2026 15:31:30 (Horário de Brasília)
 
 ---
 
@@ -175,4 +177,4 @@ Trabalho sempre priorizando:
 <p align="center">
 ⭐ Se esse conteúdo te ajudou, deixe uma estrela no repositório!
 </p>
-<!-- 1773252283951 -->
+<!-- 1773252692798 -->
