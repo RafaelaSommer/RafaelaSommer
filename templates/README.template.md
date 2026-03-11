@@ -113,7 +113,11 @@ Trabalho sempre priorizando:
 
 ---
 
-# 🚀 Projetos em Destaque
+<h1 align="center" style="color:#C77DFF;">
+  🚀 <span style="color:white;">Projetos em Destaque</span>
+</h1>
+
+<p align="center">
 
 <a href="https://github.com/RafaelaSommer/Gerador-de-pastas-e-Excel">
 <img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=Gerador-de-pastas-e-Excel&theme=dracula&hide_border=true"/>
@@ -122,6 +126,8 @@ Trabalho sempre priorizando:
 <a href="https://github.com/RafaelaSommer/GitHub-Profile-Auto-Updater">
 <img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=GitHub-Profile-Auto-Updater&theme=dracula&hide_border=true"/>
 </a>
+
+</p>
 
 ---
 
