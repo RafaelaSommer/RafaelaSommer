@@ -1,6 +1,6 @@
-<p align="center">  
-  <img src="./assets/Banner.jpeg" alt="Banner — Rafaela Sommer" width="100%">  
-</p>  
+<p align="center">
+  <img src="./assets/Banner.jpeg" width="100%" alt="Banner - Rafaela Sommer" />
+</p>
 
 <h1 align="center">🌟 Rafaela Sommer Gonçalves 🌟</h1>
 
@@ -16,7 +16,8 @@
 
 <p align="center">
   <img 
-  src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&width=650&lines=Cursando+Engenharia+da+Computação+na+FHO;Transformando+ideias+em+projetos+reais;Localizada+em+Araras+-+SP"
+    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&center=true&vCenter=true&width=600&lines=Cursando+Engenharia+da+Computação+na+FHO;Transformando+ideias+em+projetos+reais;Localizada+em+Araras+-+SP"
+    style="max-width:100%; height:auto;"
   />
 </p>
 
