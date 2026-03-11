@@ -120,11 +120,11 @@ Trabalho sempre priorizando:
 <p align="center">
 
 <a href="https://github.com/RafaelaSommer/Gerador-de-pastas-e-Excel">
-<img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=Gerador-de-pastas-e-Excel&theme=dracula&hide_border=true"/>
+<img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=Gerador-de-pastas-e-Excel&title_color=9D4EDD&hide_border=true"/>
 </a>
 
 <a href="https://github.com/RafaelaSommer/GitHub-Profile-Auto-Updater">
-<img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=GitHub-Profile-Auto-Updater&theme=dracula&hide_border=true"/>
+<img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=GitHub-Profile-Auto-Updater&title_color=9D4EDD&hide_border=true"/>
 </a>
 
 </p>
@@ -150,10 +150,10 @@ Trabalho sempre priorizando:
 # 🔄 Atualização Automática
 
 🕒 Última atualização:  
-11/03/2026 15:25:01 (Horário de Brasília)
+11/03/2026 15:27:52 (Horário de Brasília)
 
 🔁 Próxima atualização automática:  
-11/03/2026 15:45:01 (Horário de Brasília)
+11/03/2026 15:47:52 (Horário de Brasília)
 
 ---
 
@@ -184,4 +184,4 @@ Trabalho sempre priorizando:
 <p align="center">
 ⭐ Se esse conteúdo te ajudou, deixe uma estrela no repositório!
 </p>
-<!-- 1773253505013 -->
+<!-- 1773253674047 -->

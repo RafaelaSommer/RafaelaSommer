@@ -120,11 +120,11 @@ Trabalho sempre priorizando:
 <p align="center">
 
 <a href="https://github.com/RafaelaSommer/Gerador-de-pastas-e-Excel">
-<img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=Gerador-de-pastas-e-Excel&theme=dracula&hide_border=true"/>
+<img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=Gerador-de-pastas-e-Excel&title_color=9D4EDD&hide_border=true"/>
 </a>
 
 <a href="https://github.com/RafaelaSommer/GitHub-Profile-Auto-Updater">
-<img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=GitHub-Profile-Auto-Updater&theme=dracula&hide_border=true"/>
+<img src="https://github-readme-stats-rafaela.vercel.app/api/pin/?username=RafaelaSommer&repo=GitHub-Profile-Auto-Updater&title_color=9D4EDD&hide_border=true"/>
 </a>
 
 </p>
