@@ -7,6 +7,8 @@ echo =====================================
 
 cd /d %~dp0
 
+set REPO_CORRETO=https://github.com/RafaelaSommer/RafaelaSommer.git
+
 echo.
 echo Verificando repositorio...
 
@@ -18,16 +20,18 @@ echo Repositorio atual:
 echo %REPO%
 echo.
 
-echo %REPO% | find "RafaelaSommer" >nul
+echo %REPO% | find "RafaelaSommer/RafaelaSommer" >nul
 
 if errorlevel 1 (
-    echo ❌ ERRO: Repositorio incorreto!
-    echo O bot foi bloqueado para evitar push errado.
-    pause
-    exit
-)
+    echo ⚠️ Repositorio incorreto detectado
+    echo Corrigindo automaticamente...
 
-echo ✅ Repositorio correto.
+    git remote set-url origin %REPO_CORRETO%
+
+    echo.
+    echo ✅ Repositorio corrigido para:
+    echo %REPO_CORRETO%
+)
 
 echo.
 echo Instalando dependencias...

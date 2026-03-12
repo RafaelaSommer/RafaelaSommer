@@ -35,7 +35,7 @@ function configureGit(){
     execSync(`git config user.email "${SETTINGS.gitEmail}"`,{cwd:ROOT})
 
     const repo =
-      `https://${TOKEN}@github.com/${USER}/GitHub-Profile-Auto-Updater.git`
+      `https://${TOKEN}@github.com/${USER}/${USER}.git`
 
     execSync(`git remote set-url origin ${repo}`,{cwd:ROOT})
 
