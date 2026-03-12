@@ -174,6 +174,9 @@ async function main(){
   const now =
     DateTime.now().setZone(TIMEZONE)
 
+  const nextUpdate =
+    now.plus({minutes: INTERVAL})
+
   const user =
     await fetchGitHub()
 
@@ -186,21 +189,36 @@ async function main(){
   const stars =
     repos.reduce((a,r)=>a+r.stargazerCount,0)
 
+  const languages = {}
+
+  repos.forEach(r=>{
+    const lang = r.primaryLanguage?.name
+    if(!lang) return
+
+    if(!languages[lang]) languages[lang] = 0
+    languages[lang]++
+  })
+
   generateDashboard({
     followers,
     totalProjects: repos.length,
-    stars
+    stars,
+    languages,
+    repos: repos.map(r=>({
+      name: r.name,
+      language: r.primaryLanguage?.name,
+      stars: r.stargazerCount
+    }))
   })
 
   const dynamicContent = `
-📊 **Followers:** ${followers}
-
 📦 **Projetos:** ${repos.length}
 
-⭐ **Stars:** ${stars}
-
-🕒 Última atualização:  
+🕒 **Última atualização:**  
 ${now.toFormat("dd/MM/yyyy HH:mm:ss")}
+
+⏭ **Próxima atualização:**  
+${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
 `
 
   updateReadme(dynamicContent)

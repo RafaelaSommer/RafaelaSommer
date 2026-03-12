@@ -75,14 +75,8 @@ function generateDashboard(data){
   let repoList = "";
 
   repos
-    .sort((a,b)=>{
-      const starsA = a.stars ?? a.stargazerCount ?? 0
-      const starsB = b.stars ?? b.stargazerCount ?? 0
-      return starsB - starsA
-    })
+    .sort((a,b)=>b.stars - a.stars)
     .forEach(repo=>{
-
-      const repoStars = repo.stars ?? repo.stargazerCount ?? 0
 
       repoList += `
         <text x="${cardPadding}" y="${y}"
@@ -94,7 +88,7 @@ function generateDashboard(data){
         <text x="${cardPadding+350}" y="${y}"
           fill="#FFD93D"
           font-size="14">
-          ⭐ ${repoStars}
+          ⭐ ${repo.stars}
         </text>
 
         <text x="${cardPadding+450}" y="${y}"
@@ -103,10 +97,11 @@ function generateDashboard(data){
           ${repo.language || "—"}
         </text>
       `;
+
       y += 28;
     });
 
-  const height = y + 80;
+  const height = y + 120;
 
   const svg = `
   <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
