@@ -147,13 +147,9 @@ Trabalho sempre priorizando:
 
 ---
 
-# 🔄 Atualização Automática
+<!--START_SECTION:dynamic-->
 
-🕒 Última atualização:  
-{last_update} (Horário de Brasília)
-
-🔁 Próxima atualização automática:  
-{next_update} (Horário de Brasília)
+<!--END_SECTION:dynamic-->
 
 ---
 

@@ -1,31 +1,42 @@
 const fs = require("fs")
 const path = require("path")
 
-const cacheFile = path.join(__dirname, "..", ".github", "cache.json")
+const cacheFile =
+  path.join(__dirname,"..",".github","cache.json")
 
-function readCache() {
-  try {
-    if (!fs.existsSync(cacheFile)) {
+function readCache(){
+
+  try{
+
+    if(!fs.existsSync(cacheFile)){
       return {}
     }
 
-    const data = fs.readFileSync(cacheFile, "utf8")
-    return JSON.parse(data)
+    return JSON.parse(
+      fs.readFileSync(cacheFile,"utf8")
+    )
 
-  } catch {
+  }catch{
+
     return {}
+
   }
+
 }
 
-function writeCache(data) {
+function writeCache(data){
 
   const dir = path.dirname(cacheFile)
 
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true })
+  if(!fs.existsSync(dir)){
+    fs.mkdirSync(dir,{recursive:true})
   }
 
-  fs.writeFileSync(cacheFile, JSON.stringify(data, null, 2))
+  fs.writeFileSync(
+    cacheFile,
+    JSON.stringify(data,null,2)
+  )
+
 }
 
 module.exports = { readCache, writeCache }
