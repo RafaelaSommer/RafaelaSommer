@@ -146,7 +146,8 @@ Trabalho sempre priorizando:
 ![Dashboard](./assets/dashboard.svg)
 
 ---
-## 🔥 Status Automático do Perfil
+<!-- Bloco dinâmico do GitHub -->
+## 🤖 Atualização Automática do Perfil
 <!--START_SECTION:dynamic-->
 
 <!--END_SECTION:dynamic-->

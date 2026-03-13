@@ -146,21 +146,17 @@ Trabalho sempre priorizando:
 ![Dashboard](./assets/dashboard.svg)
 
 ---
-## 🔥 Status Automático do Perfil
+<!-- Bloco dinâmico do GitHub -->
+## 🤖 Atualização Automática do Perfil
 <!--START_SECTION:dynamic-->
 
-✨ **Status do Perfil**
-
-🕒 **Última atualização:** 13/03/2026 14:33:18
-⏭ **Próxima atualização:** 13/03/2026 14:38:18
-
 ⭐ **Total de Estrelas:** 7
-👥 **Seguidores:** 335
 
-💻 **Linguagens utilizadas:**  
-`Jupyter Notebook` (1), `Python` (1), `C#` (3), `JavaScript` (3), `TSQL` (1)
+🕒 **Última atualização (Horário de Brasília):**  
+13/03/2026 14:42:55
 
-🚀 Fique ligado para mais novidades!
+⏭ **Próxima atualização (Horário de Brasília):**  
+13/03/2026 14:47:55
 
 <!--END_SECTION:dynamic-->
 
