@@ -143,20 +143,21 @@ Trabalho sempre priorizando:
 
 # 📊 Dashboard
 
+<!-- Dashboard será atualizado automaticamente pelo generate-dashboard.js -->
 ![Dashboard](./assets/dashboard.svg)
 
 ---
-<!-- Bloco dinâmico do GitHub -->
+
 ## 🤖 Atualização Automática do Perfil
 <!--START_SECTION:dynamic-->
 
 ⭐ **Total de Estrelas:** 7
 
 🕒 **Última atualização (Horário de Brasília):**  
-13/03/2026 15:14:10
+13/03/2026 15:26:30
 
 ⏭ **Próxima atualização (Horário de Brasília):**  
-13/03/2026 15:19:10
+13/03/2026 15:31:30
 
 <!--END_SECTION:dynamic-->
 
