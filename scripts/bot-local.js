@@ -3,9 +3,9 @@ require("dotenv").config();
 
 const { spawn } = require("child_process");
 const { DateTime } = require("luxon");
+const { readCache } = require("./cache");
 const fs = require("fs");
 const path = require("path");
-const { readCache, writeCache } = require("./cache");
 
 const ROOT = path.join(__dirname, "..");
 const SETTINGS = JSON.parse(fs.readFileSync(path.join(ROOT, ".github/settings.json")));

@@ -11,11 +11,9 @@ const { readCache, writeCache } = require("./cache");
 
 const ROOT = path.join(__dirname, "..");
 const SETTINGS = JSON.parse(fs.readFileSync(path.join(ROOT, ".github/settings.json"), "utf8"));
-
 const USER = SETTINGS.github_user;
 const TIMEZONE = SETTINGS.timezone;
 const INTERVAL = SETTINGS.interval_minutes * 60000;
-
 const TOKEN = process.env.GITHUB_TOKEN;
 
 if (!TOKEN) {
@@ -29,7 +27,7 @@ function configureGit() {
     execSync(`git config user.email "${SETTINGS.gitEmail}"`, { cwd: ROOT });
     const repo = `https://${TOKEN}@github.com/${USER}/${USER}.git`;
     execSync(`git remote set-url origin ${repo}`, { cwd: ROOT });
-  } catch (e) {
+  } catch {
     console.log("git já configurado");
   }
 }
@@ -47,9 +45,7 @@ async function fetchGitHub() {
   const query = `
     query {
       user(login:"${USER}") {
-        repositories(first:100) {
-          nodes { stargazerCount }
-        }
+        repositories(first:100) { nodes { stargazerCount } }
       }
     }`;
   const res = await axios.post("https://api.github.com/graphql", { query }, {
@@ -62,7 +58,7 @@ function commit() {
   try {
     execSync("git add .", { cwd: ROOT });
     const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
-    if (!status) return false; // retorna false se não houver mudanças
+    if (!status) return false;
     const msg = `🤖 Auto Update ${DateTime.now().toFormat("HH:mm:ss")}`;
     execSync(`git commit -m "${msg}"`, { cwd: ROOT, stdio: "inherit" });
     execSync("git push origin HEAD", { cwd: ROOT, stdio: "inherit" });
@@ -105,17 +101,11 @@ ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
 `;
 
   updateReadme(dynamicContent);
-
-  // Sempre mostra mensagem no console
   console.log("📝 Bloco dinâmico do README atualizado localmente.");
 
   const didCommit = commit();
-
-  if (didCommit) {
-    console.log("✅ README atualizado com sucesso e enviado ao GitHub!");
-  } else {
-    console.log("ℹ️ Nenhuma alteração para enviar, mas o bloco local foi atualizado.");
-  }
+  if (didCommit) console.log("✅ README atualizado com sucesso e enviado ao GitHub!");
+  else console.log("ℹ️ Nenhuma alteração para enviar, mas o bloco local foi atualizado.");
 }
 
 main();
