@@ -146,7 +146,7 @@ Trabalho sempre priorizando:
 ![Dashboard](./assets/dashboard.svg)
 
 ---
-
+## Atualização Automatica
 <!--START_SECTION:dynamic-->
 
 <!--END_SECTION:dynamic-->
