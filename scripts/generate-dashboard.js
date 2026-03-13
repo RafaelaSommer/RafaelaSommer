@@ -20,7 +20,7 @@ function generateDashboard(data){
   let langBars = "";
   let i = 0;
 
-  // Barras de linguagens
+  // Linguagens mais utilizadas
   const totalLang = Object.values(languages).reduce((a,b)=>a+b,0);
   const sortedLang = Object.entries(languages).sort((a,b)=>b[1]-a[1]).slice(0,6);
 
@@ -39,11 +39,13 @@ function generateDashboard(data){
     i++;
   });
 
-  // Título e lista de repositórios
-  const reposTitleY = y + 40;
-  let repoList = "";
+  // Espaço antes dos repositórios
+  y += 60;
+  const reposTitleY = y;
   let repoY = reposTitleY + 28;
 
+  // Lista de todos os repositórios
+  let repoList = "";
   repos.sort((a,b)=>b.stargazerCount - a.stargazerCount).forEach(r=>{
     repoList += `
       <text x="${cardPadding}" y="${repoY}" fill="#58A6FF" font-size="14">📦 ${r.name}</text>
@@ -66,7 +68,7 @@ function generateDashboard(data){
 
   ${langBars}
 
-  <line x1="${cardPadding}" y1="${reposTitleY-10}" x2="${width-cardPadding}" y2="${reposTitleY-10}" stroke="#30363D"/>
+  <line x1="${cardPadding}" y1="${reposTitleY-20}" x2="${width-cardPadding}" y2="${reposTitleY-20}" stroke="#30363D"/>
 
   <text x="${cardPadding}" y="${reposTitleY}" fill="#8B949E" font-size="18" font-weight="bold">
     📂 Todos os Repositórios (${repos.length})

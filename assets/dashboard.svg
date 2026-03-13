@@ -1,7 +1,7 @@
 
-<svg width="1000" height="760" xmlns="http://www.w3.org/2000/svg">
+<svg width="1000" height="780" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#0D1117"/>
-  <rect x="20" y="20" width="960" height="720" rx="25" fill="#161B22" stroke="#30363D"/>
+  <rect x="20" y="20" width="960" height="740" rx="25" fill="#161B22" stroke="#30363D"/>
 
   <text x="60" y="80" fill="#58A6FF" font-size="28" font-weight="bold">📊 Dashboard de Repositórios</text>
   <text x="60" y="130" fill="#E6EDF3" font-size="16">📦 9 Repositórios</text>
@@ -40,38 +40,38 @@
       </rect>
       <text x="730" y="360" fill="#8B949E" font-size="12">11.1%</text>
 
-  <line x1="60" y1="430" x2="940" y2="430" stroke="#30363D"/>
+  <line x1="60" y1="440" x2="940" y2="440" stroke="#30363D"/>
 
-  <text x="60" y="440" fill="#8B949E" font-size="18" font-weight="bold">
+  <text x="60" y="460" fill="#8B949E" font-size="18" font-weight="bold">
     📂 Todos os Repositórios (9)
   </text>
 
   
-      <text x="60" y="468" fill="#58A6FF" font-size="14">📦 Gerador-de-pastas-e-Excel</text>
-      <text x="460" y="468" fill="#FFD93D" font-size="14">⭐ 4</text>
-      <text x="560" y="468" fill="#8B949E" font-size="12">Python</text>
-      <text x="60" y="496" fill="#58A6FF" font-size="14">📦 dio-lab-open-source</text>
-      <text x="460" y="496" fill="#FFD93D" font-size="14">⭐ 3</text>
-      <text x="560" y="496" fill="#8B949E" font-size="12">Jupyter Notebook</text>
-      <text x="60" y="524" fill="#58A6FF" font-size="14">📦 trilha-net-fundamentos-desafio</text>
-      <text x="460" y="524" fill="#FFD93D" font-size="14">⭐ 0</text>
-      <text x="560" y="524" fill="#8B949E" font-size="12">C#</text>
-      <text x="60" y="552" fill="#58A6FF" font-size="14">📦 github-readme-stats</text>
-      <text x="460" y="552" fill="#FFD93D" font-size="14">⭐ 0</text>
-      <text x="560" y="552" fill="#8B949E" font-size="12">JavaScript</text>
-      <text x="60" y="580" fill="#58A6FF" font-size="14">📦 trilha-net-explorando-desafio</text>
-      <text x="460" y="580" fill="#FFD93D" font-size="14">⭐ 0</text>
-      <text x="560" y="580" fill="#8B949E" font-size="12">C#</text>
-      <text x="60" y="608" fill="#58A6FF" font-size="14">📦 trilha-net-poo-desafio</text>
-      <text x="460" y="608" fill="#FFD93D" font-size="14">⭐ 0</text>
-      <text x="560" y="608" fill="#8B949E" font-size="12">C#</text>
-      <text x="60" y="636" fill="#58A6FF" font-size="14">📦 trilha-net-banco-de-dados-desafio</text>
-      <text x="460" y="636" fill="#FFD93D" font-size="14">⭐ 0</text>
-      <text x="560" y="636" fill="#8B949E" font-size="12">TSQL</text>
-      <text x="60" y="664" fill="#58A6FF" font-size="14">📦 GitHub-Profile-Auto-Updater</text>
-      <text x="460" y="664" fill="#FFD93D" font-size="14">⭐ 0</text>
-      <text x="560" y="664" fill="#8B949E" font-size="12">JavaScript</text>
-      <text x="60" y="692" fill="#58A6FF" font-size="14">📦 RafaelaSommer</text>
-      <text x="460" y="692" fill="#FFD93D" font-size="14">⭐ 0</text>
-      <text x="560" y="692" fill="#8B949E" font-size="12">JavaScript</text>
+      <text x="60" y="488" fill="#58A6FF" font-size="14">📦 Gerador-de-pastas-e-Excel</text>
+      <text x="460" y="488" fill="#FFD93D" font-size="14">⭐ 4</text>
+      <text x="560" y="488" fill="#8B949E" font-size="12">Python</text>
+      <text x="60" y="516" fill="#58A6FF" font-size="14">📦 dio-lab-open-source</text>
+      <text x="460" y="516" fill="#FFD93D" font-size="14">⭐ 3</text>
+      <text x="560" y="516" fill="#8B949E" font-size="12">Jupyter Notebook</text>
+      <text x="60" y="544" fill="#58A6FF" font-size="14">📦 trilha-net-fundamentos-desafio</text>
+      <text x="460" y="544" fill="#FFD93D" font-size="14">⭐ 0</text>
+      <text x="560" y="544" fill="#8B949E" font-size="12">C#</text>
+      <text x="60" y="572" fill="#58A6FF" font-size="14">📦 github-readme-stats</text>
+      <text x="460" y="572" fill="#FFD93D" font-size="14">⭐ 0</text>
+      <text x="560" y="572" fill="#8B949E" font-size="12">JavaScript</text>
+      <text x="60" y="600" fill="#58A6FF" font-size="14">📦 trilha-net-explorando-desafio</text>
+      <text x="460" y="600" fill="#FFD93D" font-size="14">⭐ 0</text>
+      <text x="560" y="600" fill="#8B949E" font-size="12">C#</text>
+      <text x="60" y="628" fill="#58A6FF" font-size="14">📦 trilha-net-poo-desafio</text>
+      <text x="460" y="628" fill="#FFD93D" font-size="14">⭐ 0</text>
+      <text x="560" y="628" fill="#8B949E" font-size="12">C#</text>
+      <text x="60" y="656" fill="#58A6FF" font-size="14">📦 trilha-net-banco-de-dados-desafio</text>
+      <text x="460" y="656" fill="#FFD93D" font-size="14">⭐ 0</text>
+      <text x="560" y="656" fill="#8B949E" font-size="12">TSQL</text>
+      <text x="60" y="684" fill="#58A6FF" font-size="14">📦 GitHub-Profile-Auto-Updater</text>
+      <text x="460" y="684" fill="#FFD93D" font-size="14">⭐ 0</text>
+      <text x="560" y="684" fill="#8B949E" font-size="12">JavaScript</text>
+      <text x="60" y="712" fill="#58A6FF" font-size="14">📦 RafaelaSommer</text>
+      <text x="460" y="712" fill="#FFD93D" font-size="14">⭐ 0</text>
+      <text x="560" y="712" fill="#8B949E" font-size="12">JavaScript</text>
 </svg>

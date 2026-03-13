@@ -57,11 +57,9 @@ async function fetchGitHub() {
         }
       }
     }`;
-  const res = await axios.post(
-    "https://api.github.com/graphql",
-    { query },
-    { headers: { Authorization: `Bearer ${TOKEN}` } }
-  );
+  const res = await axios.post("https://api.github.com/graphql", { query }, {
+    headers: { Authorization: `Bearer ${TOKEN}` }
+  });
   return res.data.data.user;
 }
 
@@ -71,7 +69,6 @@ function commit() {
     execSync("git add .", { cwd: ROOT });
     const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
     if (!status) return false;
-
     const msg = `🤖 README atualizado ${DateTime.now().toFormat("HH:mm:ss")}`;
     execSync(`git commit -m "${msg}"`, { cwd: ROOT, stdio: "inherit" });
     execSync("git push origin HEAD", { cwd: ROOT, stdio: "inherit" });
@@ -85,20 +82,25 @@ function commit() {
 // Atualiza o bloco dinâmico no README
 function updateReadme(dynamicContent) {
   const templatePath = path.join(ROOT, "templates/README.template.md");
-  const template = fs.readFileSync(templatePath, "utf8");
+  let template = fs.readFileSync(templatePath, "utf8");
+
+  // Insere dashboard SVG acima do bloco dinâmico
+  const dashboardMarkdown = "\n# 📊 Dashboard\n\n![Dashboard](./assets/dashboard.svg)\n";
+  if (!template.includes(dashboardMarkdown)) {
+    template = dashboardMarkdown + template;
+  }
+
   const start = "<!--START_SECTION:dynamic-->";
   const end = "<!--END_SECTION:dynamic-->";
   const newBlock = `${start}\n${dynamicContent}\n${end}`;
-  
-  // Substitui apenas o bloco dinâmico
   const updated = template.replace(new RegExp(`${start}[\\s\\S]*${end}`), newBlock);
+
   fs.writeFileSync(path.join(ROOT, "README.md"), updated);
 }
 
 // Main
 async function main() {
   configureGit();
-  
   if (!checkInterval()) {
     console.log("⏱ Intervalo mínimo ainda não atingido. Atualização ignorada.");
     return;
@@ -129,7 +131,8 @@ async function main() {
   });
 
   // Bloco dinâmico do README
-  const dynamicContent = `⭐ **Total de Estrelas:** ${stars}
+  const dynamicContent = `
+⭐ **Total de Estrelas:** ${stars}
 
 🕒 **Última atualização (Horário de Brasília):**  
 ${now.toFormat("dd/MM/yyyy HH:mm:ss")}
