@@ -49,7 +49,7 @@ async function fetchGitHub() {
     query {
       user(login:"${USER}") {
         repositories(first:100) {
-          nodes {
+          nodes { 
             name
             stargazerCount
             primaryLanguage { name }
@@ -69,7 +69,7 @@ function commit() {
     execSync("git add .", { cwd: ROOT });
     const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
     if (!status) return false;
-    const msg = `🤖 Auto Update ${DateTime.now().toFormat("HH:mm:ss")}`;
+    const msg = `🤖 README atualizado ${DateTime.now().toFormat("HH:mm:ss")}`;
     execSync(`git commit -m "${msg}"`, { cwd: ROOT, stdio: "inherit" });
     execSync("git push origin HEAD", { cwd: ROOT, stdio: "inherit" });
     return true;
@@ -93,29 +93,28 @@ function updateReadme(dynamicContent) {
 // Main
 async function main() {
   configureGit();
-  if (!checkInterval()) return;
+  if (!checkInterval()) {
+    console.log("⏱ Intervalo mínimo ainda não atingido. Atualização ignorada.");
+    return;
+  }
 
   const now = DateTime.now().setZone(TIMEZONE);
   const nextUpdate = now.plus({ minutes: SETTINGS.interval_minutes });
 
   const user = await fetchGitHub();
+  const repos = user.repositories.nodes;
 
-  // Calcula estrelas e linguagens
-  const stars = user.repositories.nodes.reduce((a, r) => a + r.stargazerCount, 0);
+  // Calcula total de estrelas e linguagens
+  const stars = repos.reduce((a, r) => a + r.stargazerCount, 0);
   const languages = {};
-  user.repositories.nodes.forEach(r => {
+  repos.forEach(r => {
     const lang = r.primaryLanguage?.name;
     if (!lang) return;
-    languages[lang] = (languages[lang] || 0) + 1;
+    if (!languages[lang]) languages[lang] = 0;
+    languages[lang]++;
   });
 
-  // Prepara dados para o dashboard
-  const repos = user.repositories.nodes.map(r => ({
-    name: r.name,
-    stars: r.stargazerCount,
-    language: r.primaryLanguage?.name || "—"
-  }));
-
+  // Gera dashboard SVG completo
   generateDashboard({
     stars,
     totalProjects: repos.length,
@@ -123,7 +122,7 @@ async function main() {
     repos
   });
 
-  // Bloco dinâmico
+  // Bloco dinâmico do README
   const dynamicContent = `
 ⭐ **Total de Estrelas:** ${stars}
 
@@ -138,8 +137,8 @@ ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
   console.log("📝 Bloco dinâmico do README atualizado localmente.");
 
   const didCommit = commit();
-  if (didCommit) console.log("✅ README atualizado com sucesso! 🎉");
+  if (didCommit) console.log("✅ README atualizado com sucesso e enviado ao GitHub! 🎉");
   else console.log("ℹ️ Nenhuma alteração para enviar, mas o bloco local foi atualizado.");
 }
 
-main();s
+main();
