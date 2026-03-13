@@ -57,9 +57,11 @@ async function fetchGitHub() {
         }
       }
     }`;
-  const res = await axios.post("https://api.github.com/graphql", { query }, {
-    headers: { Authorization: `Bearer ${TOKEN}` }
-  });
+  const res = await axios.post(
+    "https://api.github.com/graphql",
+    { query },
+    { headers: { Authorization: `Bearer ${TOKEN}` } }
+  );
   return res.data.data.user;
 }
 
@@ -69,6 +71,7 @@ function commit() {
     execSync("git add .", { cwd: ROOT });
     const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
     if (!status) return false;
+
     const msg = `🤖 README atualizado ${DateTime.now().toFormat("HH:mm:ss")}`;
     execSync(`git commit -m "${msg}"`, { cwd: ROOT, stdio: "inherit" });
     execSync("git push origin HEAD", { cwd: ROOT, stdio: "inherit" });
@@ -86,6 +89,8 @@ function updateReadme(dynamicContent) {
   const start = "<!--START_SECTION:dynamic-->";
   const end = "<!--END_SECTION:dynamic-->";
   const newBlock = `${start}\n${dynamicContent}\n${end}`;
+  
+  // Substitui apenas o bloco dinâmico
   const updated = template.replace(new RegExp(`${start}[\\s\\S]*${end}`), newBlock);
   fs.writeFileSync(path.join(ROOT, "README.md"), updated);
 }
@@ -93,6 +98,7 @@ function updateReadme(dynamicContent) {
 // Main
 async function main() {
   configureGit();
+  
   if (!checkInterval()) {
     console.log("⏱ Intervalo mínimo ainda não atingido. Atualização ignorada.");
     return;
@@ -123,8 +129,7 @@ async function main() {
   });
 
   // Bloco dinâmico do README
-  const dynamicContent = `
-⭐ **Total de Estrelas:** ${stars}
+  const dynamicContent = `⭐ **Total de Estrelas:** ${stars}
 
 🕒 **Última atualização (Horário de Brasília):**  
 ${now.toFormat("dd/MM/yyyy HH:mm:ss")}
