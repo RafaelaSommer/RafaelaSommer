@@ -143,7 +143,7 @@ Trabalho sempre priorizando:
 
 # 📊 Dashboard
 
-<!-- Dashboard e bloco dinâmico -->
+<<!-- Dashboard gerado automaticamente -->
 ![Dashboard](./assets/dashboard.svg)
 
 ---
