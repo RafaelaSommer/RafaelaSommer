@@ -1,3 +1,7 @@
+
+# 📊 Dashboard
+
+![Dashboard](./assets/dashboard.svg)
 <p align="center">
   <img src="./assets/Banner.jpeg" width="100%" alt="Banner - Rafaela Sommer" />
 </p>
@@ -143,7 +147,7 @@ Trabalho sempre priorizando:
 
 # 📊 Dashboard
 
-<!-- Dashboard gerado automaticamente -->
+<!-- Dashboard e bloco dinâmico -->
 ![Dashboard](./assets/dashboard.svg)
 
 ---
@@ -154,10 +158,10 @@ Trabalho sempre priorizando:
 ⭐ **Total de Estrelas:** 7
 
 🕒 **Última atualização (Horário de Brasília):**  
-13/03/2026 16:08:36
+13/03/2026 16:14:08
 
 ⏭ **Próxima atualização (Horário de Brasília):**  
-13/03/2026 16:13:36
+13/03/2026 16:19:08
 
 <!--END_SECTION:dynamic-->
 
