@@ -143,10 +143,11 @@ Trabalho sempre priorizando:
 
 # 📊 Dashboard
 
+<!-- Dashboard será atualizado automaticamente pelo generate-dashboard.js -->
 ![Dashboard](./assets/dashboard.svg)
 
 ---
-<!-- Bloco dinâmico do GitHub -->
+
 ## 🤖 Atualização Automática do Perfil
 <!--START_SECTION:dynamic-->
 
