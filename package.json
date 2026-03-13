@@ -1,7 +1,7 @@
 {
-  "name": "github-profile-auto-updater",
+  "name": "RafaelaSommer",
   "version": "1.0.0",
-  "description": "Automated GitHub profile README updater using Node.js and GitHub Actions.",
+  "description": "Automated GitHub profile README updater for Rafaela Sommer's GitHub profile.",
   "main": "scripts/update_readme.js",
   "type": "commonjs",
   "private": false,
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/RafaelaSommer/GitHub-Profile-Auto-Updater.git"
+    "url": "https://github.com/RafaelaSommer/RafaelaSommer.git"
   },
   "author": "Rafaela Sommer",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/RafaelaSommer/GitHub-Profile-Auto-Updater/issues"
+    "url": "https://github.com/RafaelaSommer/RafaelaSommer/issues"
   },
-  "homepage": "https://github.com/RafaelaSommer/GitHub-Profile-Auto-Updater#readme",
+  "homepage": "https://github.com/RafaelaSommer/RafaelaSommer#readme",
   "engines": {
     "node": ">=18"
   },
