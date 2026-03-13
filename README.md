@@ -149,13 +149,18 @@ Trabalho sempre priorizando:
 ## Atualização Automatica
 <!--START_SECTION:dynamic-->
 
-📦 **Projetos:** 9
+✨ **Status do Perfil**
 
-🕒 **Última atualização:**  
-13/03/2026 14:22:54
+🕒 **Última atualização:** 13/03/2026 14:28:04
+⏭ **Próxima atualização:** 13/03/2026 14:33:04
 
-⏭ **Próxima atualização:**  
-13/03/2026 14:27:54
+⭐ **Total de Estrelas:** 7
+👥 **Seguidores:** 335
+
+💻 **Linguagens utilizadas:**  
+`Jupyter Notebook` (1), `Python` (1), `C#` (3), `JavaScript` (3), `TSQL` (1)
+
+🚀 Fique ligado para mais novidades!
 
 <!--END_SECTION:dynamic-->
 
