@@ -3,19 +3,21 @@ require("dotenv").config();
 
 const { spawn } = require("child_process");
 const { DateTime } = require("luxon");
-const { readCache } = require("./cache");
 const fs = require("fs");
 const path = require("path");
+const { readCache, writeCache } = require("./cache");
 
 const ROOT = path.join(__dirname, "..");
 const SETTINGS = JSON.parse(fs.readFileSync(path.join(ROOT, ".github/settings.json")));
 const INTERVAL = SETTINGS.interval_minutes * 60000;
 const TZ = SETTINGS.timezone;
 
+// Função de delay
 function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
+// Executa um script Node.js
 function run(script) {
   return new Promise(resolve => {
     const scriptPath = path.join(ROOT, "scripts", script);
@@ -29,31 +31,32 @@ function run(script) {
   });
 }
 
+// Loop principal
 async function loop() {
-  console.log("🤖 Bot Local Iniciado ✅");
+  console.log("🤖 Bot Local Iniciado");
 
   while (true) {
     const now = DateTime.now().setZone(TZ);
-    console.log(`⏱ ${now.toFormat("dd/MM/yyyy HH:mm:ss")} - Checando atualizações...`);
 
-    // update_readme.js respeitando intervalo
+    // Atualiza README se o intervalo passou
     const cache = readCache();
     if (Date.now() - (cache.lastUpdate || 0) >= INTERVAL) {
       await run("update_readme.js");
     } else {
-      console.log(`🕒 Intervalo mínimo ainda não atingido para update_readme.js`);
+      console.log("⏱ Intervalo mínimo ainda não atingido para update_readme.js");
     }
 
-    // activity.js aleatório respeitando intervalo de 3 min
+    // Executa activity.js com chance aleatória e respeitando intervalo de 3 minutos
     const activityCache = readCache();
-    if (Math.random() > 0.6 && Date.now() - (activityCache.lastActivity || 0) >= 3 * 60 * 1000) {
+    const minActivityInterval = 3 * 60 * 1000; // 3 minutos
+    if (Math.random() > 0.6 && (Date.now() - (activityCache.lastActivity || 0) >= minActivityInterval)) {
       await run("activity.js");
-    } else {
-      console.log("⚡ Nenhuma atividade gerada neste ciclo.");
+      // Atualiza cache de atividade
+      activityCache.lastActivity = Date.now();
+      writeCache(activityCache);
     }
 
-    console.log(`💤 Aguardando ${SETTINGS.interval_minutes} minutos até a próxima checagem...\n`);
-    await sleep(INTERVAL);
+    await sleep(INTERVAL); // Espera o intervalo antes da próxima execução
   }
 }
 

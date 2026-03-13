@@ -21,6 +21,7 @@ if (!TOKEN) {
   process.exit(1);
 }
 
+// Configura Git local
 function configureGit() {
   try {
     execSync(`git config user.name "${SETTINGS.gitUser}"`, { cwd: ROOT });
@@ -32,6 +33,7 @@ function configureGit() {
   }
 }
 
+// Checa se o intervalo mínimo passou
 function checkInterval() {
   const cache = readCache();
   const last = cache.lastUpdate || 0;
@@ -41,6 +43,7 @@ function checkInterval() {
   return true;
 }
 
+// Busca dados do GitHub
 async function fetchGitHub() {
   const query = `
     query {
@@ -54,6 +57,7 @@ async function fetchGitHub() {
   return res.data.data.user;
 }
 
+// Commit e push
 function commit() {
   try {
     execSync("git add .", { cwd: ROOT });
@@ -69,8 +73,10 @@ function commit() {
   }
 }
 
+// Atualiza o bloco dinâmico no README
 function updateReadme(dynamicContent) {
-  const template = fs.readFileSync(path.join(ROOT, "templates/README.template.md"), "utf8");
+  const templatePath = path.join(ROOT, "templates/README.template.md");
+  const template = fs.readFileSync(templatePath, "utf8");
   const start = "<!--START_SECTION:dynamic-->";
   const end = "<!--END_SECTION:dynamic-->";
   const newBlock = `${start}\n${dynamicContent}\n${end}`;
@@ -78,6 +84,7 @@ function updateReadme(dynamicContent) {
   fs.writeFileSync(path.join(ROOT, "README.md"), updated);
 }
 
+// Main
 async function main() {
   configureGit();
   if (!checkInterval()) return;
@@ -88,8 +95,10 @@ async function main() {
   const user = await fetchGitHub();
   const stars = user.repositories.nodes.reduce((a, r) => a + r.stargazerCount, 0);
 
+  // Gera dashboard (SVG)
   generateDashboard({ stars });
 
+  // Bloco dinâmico
   const dynamicContent = `
 ⭐ **Total de Estrelas:** ${stars}
 
