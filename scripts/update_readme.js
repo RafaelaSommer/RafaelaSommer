@@ -62,12 +62,14 @@ function commit() {
   try {
     execSync("git add .", { cwd: ROOT });
     const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
-    if (!status) return;
+    if (!status) return false; // retorna false se não houver mudanças
     const msg = `🤖 Auto Update ${DateTime.now().toFormat("HH:mm:ss")}`;
     execSync(`git commit -m "${msg}"`, { cwd: ROOT, stdio: "inherit" });
     execSync("git push origin HEAD", { cwd: ROOT, stdio: "inherit" });
+    return true;
   } catch (e) {
     console.error("erro git:", e.message);
+    return false;
   }
 }
 
@@ -103,7 +105,13 @@ ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
 `;
 
   updateReadme(dynamicContent);
-  commit();
+  const didCommit = commit();
+
+  if (didCommit) {
+    console.log("✅ README atualizado com sucesso!");
+  } else {
+    console.log("ℹ️ Nenhuma alteração para atualizar.");
+  }
 }
 
 main();

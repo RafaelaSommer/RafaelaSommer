@@ -1,5 +1,5 @@
 {
-  "name": "RafaelaSommer",
+  "name": "rafaelasommer",
   "version": "1.0.0",
   "description": "Automated GitHub profile README updater for Rafaela Sommer's GitHub profile.",
   "main": "scripts/update_readme.js",
