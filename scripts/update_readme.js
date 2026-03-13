@@ -45,8 +45,7 @@ function checkInterval() {
   const diff = now - last;
 
   if (diff < INTERVAL) {
-    console.log("⏳ Intervalo mínimo ainda não atingido");
-    process.exit(0);
+    process.exit(0); // apenas sai silenciosamente se o intervalo não passou
   }
 
   cache.lastUpdate = now;
@@ -57,12 +56,9 @@ async function fetchGitHub() {
   const query = `
     query {
       user(login:"${USER}") {
-        followers { totalCount }
         repositories(first:100) {
           nodes {
-            name
             stargazerCount
-            primaryLanguage { name }
           }
         }
       }
@@ -82,15 +78,11 @@ function commit() {
     execSync("git add .", { cwd: ROOT });
     const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
 
-    if (!status) {
-      console.log("📭 Nenhuma mudança");
-      return;
-    }
+    if (!status) return;
 
     const msg = `🤖 Auto Update ${DateTime.now().toFormat("HH:mm:ss")}`;
     execSync(`git commit -m "${msg}"`, { cwd: ROOT, stdio: "inherit" });
     execSync("git push origin HEAD", { cwd: ROOT, stdio: "inherit" });
-    console.log("🚀 Push realizado");
   } catch (e) {
     console.error("erro git:", e.message);
   }
@@ -110,7 +102,6 @@ ${dynamicContent}
 ${end}`;
 
   const updated = template.replace(new RegExp(`${start}[\\s\\S]*${end}`), newBlock);
-
   fs.writeFileSync(path.join(ROOT, "README.md"), updated);
 }
 
@@ -122,46 +113,19 @@ async function main() {
   const nextUpdate = now.plus({ minutes: SETTINGS.interval_minutes });
 
   const user = await fetchGitHub();
-  const repos = user.repositories.nodes;
-  const followers = user.followers.totalCount;
-  const stars = repos.reduce((a, r) => a + r.stargazerCount, 0);
+  const stars = user.repositories.nodes.reduce((a, r) => a + r.stargazerCount, 0);
 
-  const languages = {};
-  repos.forEach(r => {
-    const lang = r.primaryLanguage?.name;
-    if (!lang) return;
-    if (!languages[lang]) languages[lang] = 0;
-    languages[lang]++;
-  });
-
-  generateDashboard({
-    followers,
-    totalProjects: repos.length,
-    stars,
-    languages,
-    repos: repos.map(r => ({
-      name: r.name,
-      language: r.primaryLanguage?.name,
-      stars: r.stargazerCount
-    }))
-  });
+  generateDashboard({ stars }); // mantendo funcionalidade do dashboard
 
   // 🔥 Bloco chamativo atualizado
   const dynamicContent = `
-✨ **Status do Perfil**
-
-🕒 **Última atualização:** ${now.toFormat("dd/MM/yyyy HH:mm:ss")}
-⏭ **Próxima atualização:** ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
-
 ⭐ **Total de Estrelas:** ${stars}
-👥 **Seguidores:** ${followers}
 
-💻 **Linguagens utilizadas:**  
-${Object.entries(languages)
-    .map(([lang, count]) => `\`${lang}\` (${count})`)
-    .join(", ")}
+🕒 **Última atualização (Horário de Brasília):**  
+${now.toFormat("dd/MM/yyyy HH:mm:ss")}
 
-🚀 Fique ligado para mais novidades!
+⏭ **Próxima atualização (Horário de Brasília):**  
+${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
 `;
 
   updateReadme(dynamicContent);

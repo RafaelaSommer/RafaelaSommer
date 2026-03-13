@@ -9,47 +9,39 @@ const { readCache, writeCache } = require("./cache");
 
 const ROOT = path.join(__dirname, "..");
 const SETTINGS = JSON.parse(fs.readFileSync(path.join(ROOT, ".github/settings.json")));
-const INTERVAL = SETTINGS.interval_minutes * 60000;
+const INTERVAL = SETTINGS.interval_minutes * 60000; // intervalo do update_readme.js
+const ACTIVITY_INTERVAL = 3 * 60 * 1000; // intervalo para activity.js
 const TZ = SETTINGS.timezone;
 
-function sleep(ms) {
-  return new Promise(r => setTimeout(r, ms));
-}
-
+// Função para rodar scripts sem travar
 function run(script) {
-  return new Promise(resolve => {
-    const scriptPath = path.join(ROOT, "scripts", script);
-    if (!fs.existsSync(scriptPath)) {
-      console.log(`⚠️ ${script} não encontrado`);
-      return resolve();
-    }
-    console.log(`🚀 Executando ${script}`);
-    const child = spawn("node", [scriptPath], { stdio: "inherit" });
-    child.on("close", resolve);
-  });
+  const scriptPath = path.join(ROOT, "scripts", script);
+  if (!fs.existsSync(scriptPath)) return;
+  const child = spawn("node", [scriptPath], { stdio: "inherit" });
+  child.on("error", err => console.log(`⚠️ Erro ao executar ${script}:`, err.message));
 }
 
+// Loop rápido do bot, sem travar
 async function loop() {
   console.log("🤖 Bot Local Iniciado");
 
   while (true) {
     const now = DateTime.now().setZone(TZ);
-
-    // Executa update_readme.js apenas se o intervalo passou
     const cache = readCache();
-    if (Date.now() - (cache.lastUpdate || 0) >= INTERVAL) {
-      await run("update_readme.js");
+    const nowMs = Date.now();
+
+    // Atualiza README se intervalo passou
+    if (nowMs - (cache.lastUpdate || 0) >= INTERVAL) {
+      run("update_readme.js"); // não await, roda em background
     }
 
-    // Executa activity.js com chance aleatória, respeitando intervalo
-    if (Math.random() > 0.6) {
-      const activityCache = readCache();
-      if (Date.now() - (activityCache.lastActivity || 0) >= 3 * 60 * 1000) {
-        await run("activity.js");
-      }
+    // Cria activity.js com chance aleatória e intervalo respeitado
+    if (Math.random() > 0.6 && nowMs - (cache.lastActivity || 0) >= ACTIVITY_INTERVAL) {
+      run("activity.js"); // não await, roda em background
     }
 
-    await sleep(INTERVAL);
+    // Loop rápido: verifica novamente a cada 5 segundos
+    await new Promise(r => setTimeout(r, 5000));
   }
 }
 
