@@ -1,7 +1,3 @@
-
-# 📊 Dashboard
-
-![Dashboard](./assets/dashboard.svg)
 <p align="center">
   <img src="./assets/Banner.jpeg" width="100%" alt="Banner - Rafaela Sommer" />
 </p>
