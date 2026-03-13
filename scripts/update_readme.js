@@ -105,12 +105,16 @@ ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
 `;
 
   updateReadme(dynamicContent);
+
+  // Sempre mostra mensagem no console
+  console.log("📝 Bloco dinâmico do README atualizado localmente.");
+
   const didCommit = commit();
 
   if (didCommit) {
-    console.log("✅ README atualizado com sucesso!");
+    console.log("✅ README atualizado com sucesso e enviado ao GitHub!");
   } else {
-    console.log("ℹ️ Nenhuma alteração para atualizar.");
+    console.log("ℹ️ Nenhuma alteração para enviar, mas o bloco local foi atualizado.");
   }
 }
 
