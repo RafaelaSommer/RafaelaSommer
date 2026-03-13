@@ -1,4 +1,5 @@
-<img src="./assets/Banner.jpeg" width="100%" alt="Banner - Rafaela Sommer" />
+<p align="center">
+  <img src="./assets/Banner.jpeg" width="100%" alt="Banner - Rafaela Sommer" />
 </p>
 
 <h1 align="center">🌟 Rafaela Sommer Gonçalves 🌟</h1>
@@ -142,7 +143,7 @@ Trabalho sempre priorizando:
 
 # 📊 Dashboard
 
-<!-- Dashboard e bloco dinâmico -->
+<<!-- Dashboard gerado automaticamente -->
 ![Dashboard](./assets/dashboard.svg)
 
 ---
@@ -153,10 +154,10 @@ Trabalho sempre priorizando:
 ⭐ **Total de Estrelas:** 7
 
 🕒 **Última atualização (Horário de Brasília):**  
-13/03/2026 16:25:15
+13/03/2026 16:30:40
 
 ⏭ **Próxima atualização (Horário de Brasília):**  
-13/03/2026 16:30:15
+13/03/2026 16:35:40
 
 <!--END_SECTION:dynamic-->
 

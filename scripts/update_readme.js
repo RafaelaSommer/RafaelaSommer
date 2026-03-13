@@ -79,28 +79,20 @@ function commit() {
   }
 }
 
-// Atualiza apenas o bloco dinâmico do README
+// Atualiza o bloco dinâmico no README
 function updateReadme(dynamicContent) {
-  const readmePath = path.join(ROOT, "README.md");
   const templatePath = path.join(ROOT, "templates/README.template.md");
-
-  // Se README.md não existir, cria a partir do template
-  if (!fs.existsSync(readmePath)) {
-    fs.copyFileSync(templatePath, readmePath);
-  }
-
-  const readme = fs.readFileSync(readmePath, "utf8");
+  const template = fs.readFileSync(templatePath, "utf8");
   const start = "<!--START_SECTION:dynamic-->";
   const end = "<!--END_SECTION:dynamic-->";
   const newBlock = `${start}\n${dynamicContent}\n${end}`;
-  const updated = readme.replace(new RegExp(`${start}[\\s\\S]*${end}`), newBlock);
-  fs.writeFileSync(readmePath, updated);
+  const updated = template.replace(new RegExp(`${start}[\\s\\S]*${end}`), newBlock);
+  fs.writeFileSync(path.join(ROOT, "README.md"), updated);
 }
 
 // Main
 async function main() {
   configureGit();
-
   if (!checkInterval()) {
     console.log("⏱ Intervalo mínimo ainda não atingido. Atualização ignorada.");
     return;
