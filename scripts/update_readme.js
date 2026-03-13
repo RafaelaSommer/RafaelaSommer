@@ -48,7 +48,13 @@ async function fetchGitHub() {
   const query = `
     query {
       user(login:"${USER}") {
-        repositories(first:100) { nodes { stargazerCount } }
+        repositories(first:100) {
+          nodes {
+            name
+            stargazerCount
+            primaryLanguage { name }
+          }
+        }
       }
     }`;
   const res = await axios.post("https://api.github.com/graphql", { query }, {
@@ -93,10 +99,29 @@ async function main() {
   const nextUpdate = now.plus({ minutes: SETTINGS.interval_minutes });
 
   const user = await fetchGitHub();
-  const stars = user.repositories.nodes.reduce((a, r) => a + r.stargazerCount, 0);
 
-  // Gera dashboard (SVG)
-  generateDashboard({ stars });
+  // Calcula estrelas e linguagens
+  const stars = user.repositories.nodes.reduce((a, r) => a + r.stargazerCount, 0);
+  const languages = {};
+  user.repositories.nodes.forEach(r => {
+    const lang = r.primaryLanguage?.name;
+    if (!lang) return;
+    languages[lang] = (languages[lang] || 0) + 1;
+  });
+
+  // Prepara dados para o dashboard
+  const repos = user.repositories.nodes.map(r => ({
+    name: r.name,
+    stars: r.stargazerCount,
+    language: r.primaryLanguage?.name || "—"
+  }));
+
+  generateDashboard({
+    stars,
+    totalProjects: repos.length,
+    languages,
+    repos
+  });
 
   // Bloco dinâmico
   const dynamicContent = `
@@ -113,8 +138,8 @@ ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
   console.log("📝 Bloco dinâmico do README atualizado localmente.");
 
   const didCommit = commit();
-  if (didCommit) console.log("✅ README atualizado com sucesso e enviado ao GitHub!");
+  if (didCommit) console.log("✅ README atualizado com sucesso! 🎉");
   else console.log("ℹ️ Nenhuma alteração para enviar, mas o bloco local foi atualizado.");
 }
 
-main();
+main();s
