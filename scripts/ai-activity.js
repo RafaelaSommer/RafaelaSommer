@@ -1,46 +1,68 @@
-const fs = require("fs")
-const path = require("path")
+#!/usr/bin/env node
+const fs = require("fs");
+const path = require("path");
+const { execSync } = require("child_process");
+const { DateTime } = require("luxon");
+const { readCache, writeCache } = require("./cache");
 
-const cacheFile = path.join(__dirname, "..", ".github", "cache.json")
+const ROOT = path.join(__dirname, "..");
+const SETTINGS = JSON.parse(fs.readFileSync(path.join(ROOT, ".github/settings.json"), "utf8"));
+const INTERVAL = SETTINGS.interval_minutes * 60000; // intervalo padrão
+const ACTIVITY_DIR = path.join(ROOT, "activity");
 
-function readCache() {
+// Mensagens aleatórias de AI Activity
+const MESSAGES = [
+  "🤖 IA analisando dados",
+  "💡 Sugestão de melhoria automática",
+  "⚡ Otimização AI executada",
+  "📊 AI atualizou métricas",
+  "🧠 Processamento inteligente concluído",
+  "✨ Novas ideias geradas pelo AI"
+];
+
+// Escolhe mensagem aleatória
+function randomMessage() {
+  return MESSAGES[Math.floor(Math.random() * MESSAGES.length)];
+}
+
+// Cria arquivo de atividade AI
+function createAIActivityFile() {
+  if (!fs.existsSync(ACTIVITY_DIR)) fs.mkdirSync(ACTIVITY_DIR, { recursive: true });
+  const file = path.join(ACTIVITY_DIR, `ai-activity-${Date.now()}.md`);
+  const now = DateTime.now().toISO();
+  fs.writeFileSync(file, `# AI Activity Log\n\nAtividade automática gerada pela IA.\n\nTimestamp: ${now}\n`);
+  return file;
+}
+
+// Commit e push
+function commit(file) {
   try {
-    const data = fs.readFileSync(cacheFile, "utf8")
-    return JSON.parse(data)
+    execSync(`git add ${file}`, { cwd: ROOT });
+    execSync(`git commit -m "${randomMessage()}"`, { cwd: ROOT, stdio: "inherit" });
+    execSync("git push origin HEAD", { cwd: ROOT, stdio: "inherit" });
+    console.log("🚀 Commit AI Activity realizado");
   } catch {
-    return { lastActivity: 0 }
+    console.log("⚠️ Commit AI Activity não realizado");
   }
 }
 
-function writeCache(cache) {
-  fs.writeFileSync(cacheFile, JSON.stringify(cache, null, 2))
-}
+// Controla execução respeitando o intervalo
+function main() {
+  const cache = readCache();
+  const now = Date.now();
+  const lastAI = cache.lastAIActivity || 0;
 
-function shouldGenerateActivity() {
-
-  const cache = readCache()
-
-  const now = Date.now()
-
-  const diff = now - (cache.lastActivity || 0)
-
-  const minInterval = 3 * 60 * 1000
-
-  if (diff < minInterval) {
-    return false
+  if (now - lastAI < INTERVAL) {
+    console.log("⏳ Intervalo mínimo ainda não atingido para AI Activity");
+    return;
   }
 
-  const randomFactor = Math.random()
+  const file = createAIActivityFile();
+  commit(file);
 
-  if (randomFactor > 0.5) {
-
-    cache.lastActivity = now
-    writeCache(cache)
-
-    return true
-  }
-
-  return false
+  // Atualiza cache
+  cache.lastAIActivity = now;
+  writeCache(cache);
 }
 
-module.exports = shouldGenerateActivity
+main();

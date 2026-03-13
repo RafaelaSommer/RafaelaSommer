@@ -34,27 +34,18 @@ async function loop() {
 
   while (true) {
     const now = DateTime.now().setZone(TZ);
-    console.log("⏱", now.toFormat("HH:mm:ss"));
 
-    // Respeita intervalo
+    // Executa update_readme.js apenas se o intervalo passou
     const cache = readCache();
-    const lastUpdate = cache.lastUpdate || 0;
-    const diff = Date.now() - lastUpdate;
-
-    if (diff >= INTERVAL) {
+    if (Date.now() - (cache.lastUpdate || 0) >= INTERVAL) {
       await run("update_readme.js");
-    } else {
-      console.log("⏳ Intervalo mínimo ainda não atingido para update_readme.js");
     }
 
-    const random = Math.random();
-    if (random > 0.6) {
+    // Executa activity.js com chance aleatória, respeitando intervalo
+    if (Math.random() > 0.6) {
       const activityCache = readCache();
-      const lastActivity = activityCache.lastActivity || 0;
-      if (Date.now() - lastActivity >= 3 * 60 * 1000) {
+      if (Date.now() - (activityCache.lastActivity || 0) >= 3 * 60 * 1000) {
         await run("activity.js");
-      } else {
-        console.log("⏳ Intervalo mínimo ainda não atingido para activity.js");
       }
     }
 
