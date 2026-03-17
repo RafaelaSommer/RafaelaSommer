@@ -109,7 +109,7 @@ function generateDashboard(data) {
   </text>
 
   <text x="${cardPadding+420}" y="130"
-  fill="#800080"
+  fill="#BA55D3"
   font-size="16">
 
   👥 ${followers} Seguidores
