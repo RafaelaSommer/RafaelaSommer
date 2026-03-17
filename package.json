@@ -1,28 +1,38 @@
 {
   "name": "rafaelasommer",
   "version": "1.0.0",
-  "main": "scripts/update_readme.js",
+  "description": "Bot automático para atualizar README do GitHub com dashboard e métricas",
+  "main": "scripts/bot.js",
   "type": "commonjs",
   "private": false,
+
   "scripts": {
-    "generate": "node scripts/generate-cron.js",
+    "bot": "node scripts/bot.js",
     "update": "node scripts/update_readme.js",
-    "start": "node scripts/bot-local.js",
+    "cron": "node scripts/generate-cron.js",
+    "generate": "node scripts/generate-cron.js",
+    "start": "node scripts/bot.js",
     "generate:svg": "node scripts/generate-dashboard.js"
   },
+
   "repository": {
     "type": "git",
     "url": "https://github.com/RafaelaSommer/RafaelaSommer.git"
   },
+
   "author": "Rafaela Sommer",
   "license": "MIT",
+
   "bugs": {
     "url": "https://github.com/RafaelaSommer/RafaelaSommer/issues"
   },
+
   "homepage": "https://github.com/RafaelaSommer/RafaelaSommer#readme",
+
   "engines": {
     "node": ">=18"
   },
+
   "dependencies": {
     "axios": "^1.13.6",
     "dotenv": "^16.6.1",
