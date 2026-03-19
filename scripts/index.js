@@ -28,37 +28,49 @@ if(!TOKEN){
 
 async function fetchGitHub(){
 
-  const resUser = await axios.get(
-    `https://api.github.com/users/${USER}`,
-    { headers:{ Authorization:`Bearer ${TOKEN}` } }
+  const query = `
+  query {
+    user(login:"${USER}") {
+      followers { totalCount }
+      repositories(first:100) {
+        nodes {
+          name
+          stargazerCount
+          primaryLanguage { name }
+        }
+      }
+    }
+  }`
+
+  const res = await axios.post(
+    "https://api.github.com/graphql",
+    { query },
+    {
+      headers:{
+        Authorization:`Bearer ${TOKEN}`
+      }
+    }
   )
 
-  const resRepos = await axios.get(
-    `https://api.github.com/users/${USER}/repos?per_page=100`,
-    { headers:{ Authorization:`Bearer ${TOKEN}` } }
-  )
+  const user = res.data.data.user
+  const repos = user.repositories.nodes
 
-  const repos = resRepos.data
-
+  // 🔥 monta linguagens corretamente
   const languages = {}
 
   repos.forEach(repo=>{
-    if(repo.language){
-      languages[repo.language] =
-        (languages[repo.language] || 0) + 1
+    if(repo.primaryLanguage?.name){
+      const lang = repo.primaryLanguage.name
+      languages[lang] = (languages[lang] || 0) + 1
     }
   })
 
   return {
-    followers: resUser.data.followers,
+    followers: user.followers.totalCount,
     totalProjects: repos.length,
-    stars: repos.reduce((a,r)=>a+r.stargazers_count,0),
+    stars: repos.reduce((a,r)=>a+r.stargazerCount,0),
     languages,
-    repos: repos.map(r=>({
-      name: r.name,
-      stars: r.stargazers_count,
-      language: r.language
-    }))
+    repos // 👈 já no formato correto pro dashboard
   }
 }
 
@@ -99,7 +111,7 @@ function commitAndPush(){
     }
 
     execSync(
-      `git commit -m "🤖 auto update ${Date.now()}"`,
+      `git commit -m "🤖 auto update ${DateTime.now().toFormat("HH:mm:ss")}"`,
       {stdio:"inherit"}
     )
 
@@ -125,7 +137,7 @@ async function main(){
 
   const data = await fetchGitHub()
 
-  // 📊 Dashboard
+  // 📊 Dashboard SVG
   generateDashboard(data)
 
   const dynamicContent = `
