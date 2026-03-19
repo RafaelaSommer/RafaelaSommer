@@ -22,25 +22,21 @@ try {
 
 let interval = Number(SETTINGS.interval_minutes) || 20;
 
-/*
-GitHub Actions permite mínimo de 5 minutos
-*/
 if (interval < 5) {
   console.warn("⚠️ Intervalo menor que 5 minutos não é permitido. Ajustado para 5.");
   interval = 5;
 }
 
 const workflow = `
-name: 🤖 Update README
+name: 🤖 Update Profile
 
 on:
   schedule:
     - cron: "*/${interval} * * * *"
   workflow_dispatch:
 
-# 🚀 evita conflito entre execuções simultâneas
 concurrency:
-  group: update-readme
+  group: profile-update
   cancel-in-progress: true
 
 permissions:
@@ -51,8 +47,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout profile repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -77,7 +76,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "🤖 auto update"
+            git commit -m "🤖 profile auto update"
             git push origin main --force
           fi
 `;
@@ -91,5 +90,5 @@ fs.writeFileSync(
   workflow.trim() + "\n"
 );
 
-console.log(`✅ Workflow criado com sucesso.`);
+console.log("✅ Workflow criado para repositório de perfil.");
 console.log(`⏱ Intervalo configurado: ${interval} minutos`);
