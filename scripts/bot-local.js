@@ -44,29 +44,15 @@ async function runAll() {
 
   console.log("🔄 Iniciando ciclo completo...\n")
 
-  // 🔧 Infraestrutura
   await run("generate-cron.js")
-
-  // 🤖 IA (opcional)
   await run("ai-activity.js")
-
-  // 📊 Atividade
   await run("activity.js")
-
-  // 🧠 Cache (se existir como script executável)
   await run("cache.js")
 
-  // 📈 Dados principais + dashboard
+  // 🔥 SCRIPT PRINCIPAL
   await run("index.js")
 
-  // 🖼️ Caso dashboard seja separado
-  await run("generate-dashboard.js")
-
-  // 📝 Atualiza README por último
-  await run("update_readme.js")
-
   console.log("\n✅ Ciclo finalizado\n")
-
 }
 
 async function loop() {

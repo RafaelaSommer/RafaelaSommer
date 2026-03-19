@@ -6,6 +6,7 @@ const fs = require("fs")
 const path = require("path")
 const axios = require("axios")
 const { DateTime } = require("luxon")
+const { execSync } = require("child_process")
 const generateDashboard = require("./generate-dashboard")
 
 const ROOT = path.join(__dirname,"..")
@@ -70,16 +71,51 @@ function updateReadme(dynamicContent){
   const start = "<!--START_SECTION:dynamic-->"
   const end = "<!--END_SECTION:dynamic-->"
 
-  const regex = new RegExp(`${start}[\\s\\S]*${end}`)
+  const regex = /<!--START_SECTION:dynamic-->[\s\S]*<!--END_SECTION:dynamic-->/
 
   const newBlock = `${start}
-${dynamicContent}
+${dynamicContent.trim()}
 ${end}`
 
   const updated = content.replace(regex,newBlock)
 
-  fs.writeFileSync(readmePath,updated)
+  fs.writeFileSync(readmePath,updated,"utf8")
+}
 
+function commitAndPush(){
+
+  const isCI = process.env.GITHUB_ACTIONS === "true"
+
+  try{
+
+    execSync("git add .",{stdio:"inherit"})
+
+    const status =
+      execSync("git status --porcelain").toString()
+
+    if(!status){
+      console.log("📭 Nenhuma mudança")
+      return
+    }
+
+    execSync(
+      `git commit -m "🤖 auto update ${Date.now()}"`,
+      {stdio:"inherit"}
+    )
+
+    if(isCI){
+      execSync(
+        "git push origin main --force",
+        {stdio:"inherit"}
+      )
+      console.log("🚀 Push via GitHub Actions")
+    }else{
+      console.log("💻 Local → push ignorado")
+    }
+
+  }catch(e){
+    console.error("❌ erro git:",e.message)
+  }
 }
 
 async function main(){
@@ -89,7 +125,7 @@ async function main(){
 
   const data = await fetchGitHub()
 
-  // ✅ GERA DASHBOARD
+  // 📊 Dashboard
   generateDashboard(data)
 
   const dynamicContent = `
@@ -110,6 +146,7 @@ ${next.toFormat("dd/MM/yyyy HH:mm:ss")} (Horário de Brasília)
 
   console.log("✅ README atualizado")
 
+  commitAndPush()
 }
 
 main()
