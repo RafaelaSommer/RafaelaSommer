@@ -38,30 +38,48 @@ on:
     - cron: "*/${interval} * * * *"
   workflow_dispatch:
 
+# 🚀 evita conflito entre execuções simultâneas
+concurrency:
+  group: update-readme
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
 
     steps:
-      - name: 📥 Checkout
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: 20
 
-      - name: 📦 Instalar dependências
-        run: npm install axios luxon
+      - name: Install deps
+        run: npm install axios luxon dotenv
 
-      - name: 🔄 Atualizar README
-        run: node scripts/update_readme.js
+      - name: Run updater
+        run: node scripts/index.js
         env:
           GITHUB_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "${SETTINGS.gitUser || "RafaelaSommer"}"
+          git config user.email "${SETTINGS.gitEmail || "camilaerafaelagoncalves@hotmail.com"}"
+
+          git add .
+
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "🤖 auto update"
+            git push origin main --force
+          fi
 `;
 
 const workflowDir = path.join(ROOT, ".github", "workflows");

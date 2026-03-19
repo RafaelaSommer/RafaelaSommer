@@ -1,63 +1,92 @@
-#!/usr/bin/env node
-require("dotenv").config();
+require("dotenv").config()
 
-const { spawn } = require("child_process");
-const { DateTime } = require("luxon");
-const fs = require("fs");
-const path = require("path");
-const { readCache, writeCache } = require("./cache");
+const { spawn } = require("child_process")
+const { DateTime } = require("luxon")
+const fs = require("fs")
+const path = require("path")
 
-const ROOT = path.join(__dirname, "..");
-const SETTINGS = JSON.parse(fs.readFileSync(path.join(ROOT, ".github/settings.json")));
-const INTERVAL = SETTINGS.interval_minutes * 60000;
-const TZ = SETTINGS.timezone;
+const ROOT = path.join(__dirname, "..")
 
-// Função de delay
+const SETTINGS = JSON.parse(
+  fs.readFileSync(path.join(ROOT, ".github/settings.json"), "utf8")
+)
+
+const INTERVAL = SETTINGS.interval_minutes * 60000
+const TZ = SETTINGS.timezone
+
 function sleep(ms) {
-  return new Promise(r => setTimeout(r, ms));
+  return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-// Executa um script Node.js
 function run(script) {
   return new Promise(resolve => {
-    const scriptPath = path.join(ROOT, "scripts", script);
+
+    const scriptPath = path.join(ROOT, "scripts", script)
+
     if (!fs.existsSync(scriptPath)) {
-      console.log(`⚠️ ${script} não encontrado`);
-      return resolve();
+      console.log(`⚠️ ${script} não encontrado`)
+      return resolve()
     }
-    console.log(`🚀 Executando ${script}`);
-    const child = spawn("node", [scriptPath], { stdio: "inherit" });
-    child.on("close", resolve);
-  });
+
+    console.log(`🚀 Executando ${script}`)
+
+    const child = spawn(
+      "node",
+      [scriptPath],
+      { stdio: "inherit" }
+    )
+
+    child.on("close", resolve)
+  })
 }
 
-// Loop principal
+async function runAll() {
+
+  console.log("🔄 Iniciando ciclo completo...\n")
+
+  // 🔧 Infraestrutura
+  await run("generate-cron.js")
+
+  // 🤖 IA (opcional)
+  await run("ai-activity.js")
+
+  // 📊 Atividade
+  await run("activity.js")
+
+  // 🧠 Cache (se existir como script executável)
+  await run("cache.js")
+
+  // 📈 Dados principais + dashboard
+  await run("index.js")
+
+  // 🖼️ Caso dashboard seja separado
+  await run("generate-dashboard.js")
+
+  // 📝 Atualiza README por último
+  await run("update_readme.js")
+
+  console.log("\n✅ Ciclo finalizado\n")
+
+}
+
 async function loop() {
-  console.log("🤖 Bot Local Iniciado");
+
+  console.log("🤖 Bot Local Iniciado")
 
   while (true) {
-    const now = DateTime.now().setZone(TZ);
 
-    // Atualiza README se o intervalo passou
-    const cache = readCache();
-    if (Date.now() - (cache.lastUpdate || 0) >= INTERVAL) {
-      await run("update_readme.js");
-    } else {
-      console.log("⏱ Intervalo mínimo ainda não atingido para update_readme.js");
-    }
+    const now = DateTime.now().setZone(TZ)
 
-    // Executa activity.js com chance aleatória e respeitando intervalo de 3 minutos
-    const activityCache = readCache();
-    const minActivityInterval = 3 * 60 * 1000; // 3 minutos
-    if (Math.random() > 0.6 && (Date.now() - (activityCache.lastActivity || 0) >= minActivityInterval)) {
-      await run("activity.js");
-      // Atualiza cache de atividade
-      activityCache.lastActivity = Date.now();
-      writeCache(activityCache);
-    }
+    console.log("⏱", now.toFormat("dd/MM/yyyy HH:mm:ss"))
 
-    await sleep(INTERVAL); // Espera o intervalo antes da próxima execução
+    await runAll()
+
+    console.log(`⏳ Aguardando ${SETTINGS.interval_minutes} minutos...\n`)
+
+    await sleep(INTERVAL)
+
   }
+
 }
 
-loop();
+loop()
