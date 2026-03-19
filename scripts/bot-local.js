@@ -14,6 +14,8 @@ const SETTINGS = JSON.parse(
 const INTERVAL = SETTINGS.interval_minutes * 60000
 const TZ = SETTINGS.timezone
 
+let isRunning = false // 🚀 evita execução simultânea
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
@@ -33,31 +35,62 @@ function run(script) {
     const child = spawn(
       "node",
       [scriptPath],
-      { stdio: "inherit" }
+      {
+        stdio: "inherit",
+        env: process.env // 🔥 garante token no script
+      }
     )
 
-    child.on("close", resolve)
+    child.on("close", (code) => {
+      if (code !== 0) {
+        console.log(`❌ ${script} finalizou com erro (${code})`)
+      }
+      resolve()
+    })
+
   })
 }
 
 async function runAll() {
 
-  console.log("🔄 Iniciando ciclo completo...\n")
+  if (isRunning) {
+    console.log("⚠️ Já existe um ciclo em execução, pulando...")
+    return
+  }
 
-  await run("generate-cron.js")
-  await run("ai-activity.js")
-  await run("activity.js")
-  await run("cache.js")
+  isRunning = true
 
-  // 🔥 SCRIPT PRINCIPAL
-  await run("index.js")
+  console.log("\n🔄 Iniciando ciclo completo...\n")
 
-  console.log("\n✅ Ciclo finalizado\n")
+  try {
+
+    // 🧠 Infra
+    await run("generate-cron.js")
+
+    // 🤖 IA (opcional)
+    await run("ai-activity.js")
+
+    // 📊 Atividade
+    await run("activity.js")
+
+    // 💾 Cache (se aplicável)
+    await run("cache.js")
+
+    // 🔥 PRINCIPAL (dashboard + readme + git push)
+    await run("index.js")
+
+    console.log("\n✅ Ciclo finalizado com sucesso\n")
+
+  } catch (err) {
+    console.error("❌ Erro no ciclo:", err.message)
+  }
+
+  isRunning = false
 }
 
 async function loop() {
 
-  console.log("🤖 Bot Local Iniciado")
+  console.log("🤖 Bot Local Iniciado\n")
 
   while (true) {
 
