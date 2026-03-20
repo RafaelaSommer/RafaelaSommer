@@ -22,7 +22,7 @@ if (!TOKEN) {
   process.exit(1);
 }
 
-// Configura git
+// 🔧 Configura git
 function configureGit() {
   try {
     execSync(`git config user.name "${SETTINGS.gitUser}"`, { cwd: ROOT });
@@ -35,7 +35,7 @@ function configureGit() {
   }
 }
 
-// Busca dados do GitHub
+// 🌐 Busca dados do GitHub
 async function fetchGitHub() {
   const query = `
     query {
@@ -63,12 +63,13 @@ async function fetchGitHub() {
   return res.data.data.user;
 }
 
-// Commit inteligente
+// 💾 Commit + push FORÇADO
 function commit() {
   try {
     execSync("git add .", { cwd: ROOT });
 
     const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
+
     if (!status.trim()) {
       console.log("ℹ️ Nada mudou.");
       return false;
@@ -78,16 +79,24 @@ function commit() {
     const msg = `🤖 README atualizado ${now.toFormat("HH:mm:ss")}`;
 
     execSync(`git commit -m "${msg}"`, { cwd: ROOT, stdio: "inherit" });
-    execSync("git push origin HEAD", { cwd: ROOT, stdio: "inherit" });
+
+    // 🔥 PUSH SEM ERRO (FORCE + RETRY)
+    try {
+      execSync("git push origin HEAD --force", { cwd: ROOT, stdio: "inherit" });
+    } catch {
+      console.log("⚠️ Falha no push, tentando novamente...");
+      execSync("git push origin HEAD --force", { cwd: ROOT, stdio: "inherit" });
+    }
 
     return true;
+
   } catch (e) {
-    console.error("erro git:", e.message);
+    console.error("❌ erro git:", e.message);
     return false;
   }
 }
 
-// Atualiza README
+// 📝 Atualiza README
 function updateReadme(stars, followers) {
 
   const templatePath = path.join(ROOT, "templates/README.template.md");
@@ -121,7 +130,7 @@ ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
   fs.writeFileSync(path.join(ROOT, "README.md"), updated);
 }
 
-// MAIN
+// 🚀 MAIN
 async function main() {
 
   configureGit();
@@ -154,8 +163,11 @@ async function main() {
 
   const didCommit = commit();
 
-  if (didCommit)
-    console.log("✅ Atualizado!");
+  if (didCommit) {
+    console.log("✅ Atualizado com sucesso!");
+  } else {
+    console.log("ℹ️ Nenhuma alteração.");
+  }
 }
 
 main();
