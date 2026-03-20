@@ -14,7 +14,7 @@ const SETTINGS = JSON.parse(
 const INTERVAL = SETTINGS.interval_minutes * 60000
 const TZ = SETTINGS.timezone
 
-let isRunning = false // 🚀 evita execução simultânea
+let isRunning = false
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms))
@@ -32,18 +32,14 @@ function run(script) {
 
     console.log(`🚀 Executando ${script}`)
 
-    const child = spawn(
-      "node",
-      [scriptPath],
-      {
-        stdio: "inherit",
-        env: process.env // 🔥 garante token no script
-      }
-    )
+    const child = spawn("node", [scriptPath], {
+      stdio: "inherit",
+      env: process.env
+    })
 
     child.on("close", (code) => {
       if (code !== 0) {
-        console.log(`❌ ${script} finalizou com erro (${code})`)
+        console.log(`❌ ${script} erro (${code})`)
       }
       resolve()
     })
@@ -54,32 +50,22 @@ function run(script) {
 async function runAll() {
 
   if (isRunning) {
-    console.log("⚠️ Já existe um ciclo em execução, pulando...")
+    console.log("⚠️ Já existe execução em andamento, pulando...")
     return
   }
 
   isRunning = true
 
-  console.log("\n🔄 Iniciando ciclo completo...\n")
+  console.log("\n🔄 Iniciando ciclo...\n")
 
   try {
-
-    // 🧠 Infra
     await run("generate-cron.js")
-
-    // 🤖 IA (opcional)
     await run("ai-activity.js")
-
-    // 📊 Atividade
     await run("activity.js")
-
-    // 💾 Cache (se aplicável)
     await run("cache.js")
-
-    // 🔥 PRINCIPAL (dashboard + readme + git push)
     await run("index.js")
 
-    console.log("\n✅ Ciclo finalizado com sucesso\n")
+    console.log("\n✅ Ciclo finalizado\n")
 
   } catch (err) {
     console.error("❌ Erro no ciclo:", err.message)
@@ -94,16 +80,18 @@ async function loop() {
 
   while (true) {
 
-    const now = DateTime.now().setZone(TZ)
+    try {
+      const now = DateTime.now().setZone(TZ)
+      console.log("⏱", now.toFormat("dd/MM/yyyy HH:mm:ss"))
 
-    console.log("⏱", now.toFormat("dd/MM/yyyy HH:mm:ss"))
+      await runAll()
 
-    await runAll()
+    } catch (err) {
+      console.error("❌ Erro no loop:", err.message)
+    }
 
     console.log(`⏳ Aguardando ${SETTINGS.interval_minutes} minutos...\n`)
-
     await sleep(INTERVAL)
-
   }
 
 }
