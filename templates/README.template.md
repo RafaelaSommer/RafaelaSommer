@@ -159,59 +159,24 @@ Trabalho sempre priorizando:
 
 <p align="center">
 
-<style>
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 5px rgba(0,0,0,0); }
-  50% { box-shadow: 0 0 20px currentColor; }
-  100% { box-shadow: 0 0 5px rgba(0,0,0,0); }
-}
-
-.badge {
-  border-radius: 12px;
-  animation: float 3s ease-in-out infinite, pulse 2.5s infinite;
-  transition: 0.3s;
-  margin: 5px;
-}
-
-.badge:hover {
-  transform: scale(1.15);
-}
-</style>
-
 <a href="mailto:camilaerafaelagoncalves@hotmail.com">
-<img class="badge"
-src="https://img.shields.io/badge/Email-C77DFF?style=for-the-badge&logo=minutemailer&logoColor=white"
-style="color:#C77DFF;">
+<img src="https://img.shields.io/badge/Email-C77DFF?style=for-the-badge&logo=minutemailer&logoColor=white"/>
 </a>
 
-<a href="https://www.linkedin.com/in/rafaelasommergonçalves16">
-<img class="badge"
-src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"
-style="color:#0A66C2;">
+<a href="https://www.linkedin.com/in/rafaelasommergon%C3%A7alves16">
+<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"/>
 </a>
 
 <a href="https://www.instagram.com/rafaelasommerg_16">
-<img class="badge"
-src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
-style="color:#E4405F;">
+<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"/>
 </a>
 
 <a href="https://wa.me/5519971015465">
-<img class="badge"
-src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"
-style="color:#25D366;">
+<img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/>
 </a>
 
 <a href="https://www.facebook.com/rafaelasommerg.16">
-<img class="badge"
-src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white"
-style="color:#1877F2;">
+<img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white"/>
 </a>
 
 </p>
