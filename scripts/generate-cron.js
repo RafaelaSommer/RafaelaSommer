@@ -70,8 +70,8 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config user.name "${SETTINGS.gitUser || "RafaelaSommer"}"
-          git config user.email "${SETTINGS.gitEmail || "camilaerafaelagoncalves@hotmail.com"}"
+          git config user.name "${SETTINGS.gitUser}"
+          git config user.email "${SETTINGS.gitEmail}"
 
           git add .
 
@@ -92,5 +92,5 @@ fs.writeFileSync(
   workflow.trim() + "\n"
 );
 
-console.log("✅ Workflow do perfil criado.");
+console.log("✅ Workflow do perfil criado com sucesso.");
 console.log(`⏱ Intervalo: ${interval} minutos`);
