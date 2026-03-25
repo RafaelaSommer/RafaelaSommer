@@ -12,15 +12,15 @@
 
 ⚡💻 <b>Desenvolvedora Backend • Estudante de Engenharia da Computação • Arquitetura de Sistemas & Integração de APIs</b> ⚡  
 
+</div>
+
 ---
 
 <p align="center">
   <img 
-    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&center=true&vCenter=true&width=600&lines=Cursando+Engenharia+da+Computação+na+FHO;Transformando+ideias+em+projetos+reais;Localizada+em+Araras+-+SP"
-    style="max-width:100%; height:auto;"
+    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&center=true&vCenter=true&width=700&lines=Cursando+Engenharia+da+Computação+na+FHO;Transformando+ideias+em+projetos+reais;APIs+%7C+Microserviços+%7C+Automação;Araras+-+SP"
   />
 </p>
-
 </div>
 
 ---
@@ -156,10 +156,10 @@ Trabalho sempre priorizando:
 👥 **Seguidores:** 353
 
 🕒 **Última atualização:**  
-25/03/2026 15:26:48
+25/03/2026 15:32:17
 
 ⏭ **Próxima atualização:**  
-25/03/2026 15:31:48
+25/03/2026 15:37:17
 
 <!--END_SECTION:dynamic-->
 
@@ -180,6 +180,13 @@ onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
 <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"
 style="border-radius:12px; transition:0.3s;"
 onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #0A66C2';"
+onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+</a>
+
+<a href="https://github.com/RafaelaSommer">
+<img src="https://img.shields.io/badge/GitHub-RafaelaSommer-181717?style=for-the-badge&logo=github&logoColor=white"
+style="border-radius:12px; transition:0.3s;"
+onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #181717';"
 onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
 </a>
 
