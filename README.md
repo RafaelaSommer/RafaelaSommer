@@ -156,52 +156,72 @@ Trabalho sempre priorizando:
 👥 **Seguidores:** 353
 
 🕒 **Última atualização:**  
-25/03/2026 15:08:31
+25/03/2026 15:15:16
 
 ⏭ **Próxima atualização:**  
-25/03/2026 15:13:31
+25/03/2026 15:20:16
 
 <!--END_SECTION:dynamic-->
 
 ---
 
-# 📬 Contato
+<h2 align="center">📬 Contato</h2>
 
 <p align="center">
 
+<style>
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 5px rgba(0,0,0,0); }
+  50% { box-shadow: 0 0 20px currentColor; }
+  100% { box-shadow: 0 0 5px rgba(0,0,0,0); }
+}
+
+.badge {
+  border-radius: 12px;
+  animation: float 3s ease-in-out infinite, pulse 2.5s infinite;
+  transition: 0.3s;
+  margin: 5px;
+}
+
+.badge:hover {
+  transform: scale(1.15);
+}
+</style>
+
 <a href="mailto:camilaerafaelagoncalves@hotmail.com">
-<img src="https://img.shields.io/badge/Email-C77DFF?style=for-the-badge&logo=minutemailer&logoColor=white"
-style="transition: 0.3s; border-radius: 12px;"
-onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #C77DFF';"
-onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+<img class="badge"
+src="https://img.shields.io/badge/Email-C77DFF?style=for-the-badge&logo=minutemailer&logoColor=white"
+style="color:#C77DFF;">
 </a>
 
 <a href="https://www.linkedin.com/in/rafaelasommergonçalves16">
-<img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"
-style="transition: 0.3s; border-radius: 12px;"
-onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #0A66C2';"
-onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+<img class="badge"
+src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"
+style="color:#0A66C2;">
 </a>
 
 <a href="https://www.instagram.com/rafaelasommerg_16">
-<img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
-style="transition: 0.3s; border-radius: 12px;"
-onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #E4405F';"
-onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+<img class="badge"
+src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
+style="color:#E4405F;">
 </a>
 
 <a href="https://wa.me/5519971015465">
-<img src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"
-style="transition: 0.3s; border-radius: 12px;"
-onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #25D366';"
-onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+<img class="badge"
+src="https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"
+style="color:#25D366;">
 </a>
 
 <a href="https://www.facebook.com/rafaelasommerg.16">
-<img src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white"
-style="transition: 0.3s; border-radius: 12px;"
-onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #1877F2';"
-onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
+<img class="badge"
+src="https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white"
+style="color:#1877F2;">
 </a>
 
 </p>
