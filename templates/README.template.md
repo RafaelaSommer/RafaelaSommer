@@ -173,13 +173,6 @@ onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #
 onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
 </a>
 
-<a href="https://github.com/RafaelaSommer">
-<img src="https://img.shields.io/badge/GitHub-RafaelaSommer-181717?style=for-the-badge&logo=github&logoColor=white"
-style="border-radius:12px; transition:0.3s;"
-onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #181717';"
-onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
-</a>
-
 <a href="https://www.instagram.com/rafaelasommerg_16">
 <img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"
 style="border-radius:12px; transition:0.3s;"

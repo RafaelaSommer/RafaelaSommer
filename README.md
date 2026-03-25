@@ -156,10 +156,10 @@ Trabalho sempre priorizando:
 👥 **Seguidores:** 353
 
 🕒 **Última atualização:**  
-25/03/2026 15:40:27
+25/03/2026 15:41:21
 
 ⏭ **Próxima atualização:**  
-25/03/2026 15:45:27
+25/03/2026 15:46:21
 
 <!--END_SECTION:dynamic-->
 
@@ -180,13 +180,6 @@ onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
 <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white"
 style="border-radius:12px; transition:0.3s;"
 onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #0A66C2';"
-onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
-</a>
-
-<a href="https://github.com/RafaelaSommer">
-<img src="https://img.shields.io/badge/GitHub-RafaelaSommer-181717?style=for-the-badge&logo=github&logoColor=white"
-style="border-radius:12px; transition:0.3s;"
-onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 15px #181717';"
 onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"/>
 </a>
 
