@@ -3,7 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const ROOT = path.join(__dirname, "..");
+const ROOT = process.cwd();
 const SETTINGS_PATH = path.join(ROOT, ".github", "settings.json");
 
 if (!fs.existsSync(SETTINGS_PATH)) {
@@ -54,7 +54,6 @@ jobs:
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
-          ref: main
 
       - name: Setup Node
         uses: actions/setup-node@v5
@@ -80,7 +79,7 @@ jobs:
             echo "No changes"
           else
             git commit -m "🤖 profile auto update"
-            git push origin main --force
+            git push
           fi
 `;
 
@@ -93,5 +92,5 @@ fs.writeFileSync(
   workflow.trim() + "\n"
 );
 
-console.log("✅ Workflow criado para repositório de perfil.");
-console.log(`⏱ Intervalo configurado: ${interval} minutos`);
+console.log("✅ Workflow do perfil criado.");
+console.log(`⏱ Intervalo: ${interval} minutos`);
