@@ -8,6 +8,7 @@
   },
 
   "interval_minutes": 5,
+  "type": "profile",
 
   "gitUser": "RafaelaSommer",
   "gitEmail": "camilaerafaelagoncalves@hotmail.com"
