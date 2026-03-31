@@ -12,15 +12,13 @@ concurrency:
 permissions:
   contents: write
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
-      - name: Checkout profile repo
+      - name: Checkout
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
@@ -29,9 +27,10 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: "npm"
 
       - name: Install deps
-        run: npm install axios luxon dotenv
+        run: npm install
 
       - name: Run updater
         run: node scripts/index.js
@@ -45,9 +44,6 @@ jobs:
 
           git add .
 
-          if git diff --cached --quiet; then
-            echo "No changes"
-          else
-            git commit -m "🤖 profile auto update"
-            git push
-          fi
+          git commit --allow-empty -m "🤖 auto update $(date +'%d/%m %H:%M:%S')"
+
+          git push

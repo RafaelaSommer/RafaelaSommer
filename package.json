@@ -2,15 +2,16 @@
   "name": "rafaelasommer",
   "version": "1.0.0",
   "description": "Bot automático para atualizar README do GitHub com dashboard e métricas",
-  "main": "scripts/bot-local.js",
+  "main": "scripts/update_readme.js",
   "type": "commonjs",
   "private": false,
   "scripts": {
-    "bot": "node scripts/bot.js",
+    "bot": "node scripts/bot-local.js",
     "update": "node scripts/update_readme.js",
     "generate": "node scripts/generate-cron.js",
     "start": "node scripts/bot-local.js",
-    "generate:svg": "node scripts/generate-dashboard.js"
+    "generate:svg": "node scripts/generate-dashboard.js",
+    "index": "node scripts/index.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "axios": "^1.13.6",
+    "axios": "^1.6.0",
     "dotenv": "^16.6.1",
     "luxon": "^3.7.2"
   }
