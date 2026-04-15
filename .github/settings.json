@@ -1,13 +1,7 @@
 {
   "github_user": "RafaelaSommer",
   "timezone": "America/Sao_Paulo",
-
-  "business_hours": {
-    "start": 7,
-    "end": 23
-  },
-
-  "interval_minutes": 5,
+  "interval_minutes": 10,
   "type": "profile",
 
   "gitUser": "RafaelaSommer",
