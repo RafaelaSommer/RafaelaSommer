@@ -11,6 +11,9 @@ node_modules/
 # PM2
 .pm2/
 
-# OS
+# Cache
+.cache/
+
+# Sistema
 .DS_Store
 Thumbs.db

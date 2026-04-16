@@ -9,6 +9,8 @@ const { execSync } = require("child_process");
 const generateDashboard = require("./generate-dashboard");
 
 const ROOT = path.join(__dirname, "..");
+const CACHE_DIR = path.join(ROOT, ".cache");
+const CACHE_FILE = path.join(CACHE_DIR, "github.json");
 
 const SETTINGS = JSON.parse(
   fs.readFileSync(path.join(ROOT, ".github/settings.json"), "utf8")
@@ -17,6 +19,7 @@ const SETTINGS = JSON.parse(
 const USER = SETTINGS.github_user;
 const TIMEZONE = SETTINGS.timezone;
 const TOKEN = process.env.GITHUB_TOKEN;
+const CACHE_MINUTES = SETTINGS.cache_minutes || 10;
 
 if (!TOKEN) {
   console.error("❌ GITHUB_TOKEN não encontrado");
@@ -36,8 +39,55 @@ function configureGit() {
   }
 }
 
-// 🌐 Busca dados do GitHub
+// 📦 Lê cache
+function readCache() {
+  try {
+    if (!fs.existsSync(CACHE_FILE)) return null;
+
+    const raw = fs.readFileSync(CACHE_FILE, "utf8");
+    const data = JSON.parse(raw);
+
+    const now = DateTime.now();
+    const saved = DateTime.fromISO(data.timestamp);
+
+    const diff = now.diff(saved, "minutes").minutes;
+
+    if (diff < CACHE_MINUTES) {
+      console.log("⚡ Usando cache...");
+      return data.payload;
+    }
+
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+// 💾 Salva cache
+function writeCache(payload) {
+  try {
+    if (!fs.existsSync(CACHE_DIR)) {
+      fs.mkdirSync(CACHE_DIR);
+    }
+
+    const data = {
+      timestamp: DateTime.now().toISO(),
+      payload
+    };
+
+    fs.writeFileSync(CACHE_FILE, JSON.stringify(data, null, 2));
+  } catch (e) {
+    console.log("erro ao salvar cache:", e.message);
+  }
+}
+
+// 🌐 Busca dados do GitHub (com cache)
 async function fetchGitHub() {
+  const cached = readCache();
+  if (cached) return cached;
+
+  console.log("🌐 Buscando dados do GitHub...");
+
   const query = `
     query {
       user(login:"${USER}") {
@@ -61,7 +111,11 @@ async function fetchGitHub() {
     { headers: { Authorization: `Bearer ${TOKEN}` } }
   );
 
-  return res.data.data.user;
+  const data = res.data.data.user;
+
+  writeCache(data);
+
+  return data;
 }
 
 // 📝 Atualiza README
@@ -85,8 +139,6 @@ ${now.toFormat("dd/MM/yyyy HH:mm:ss")}
 
 ⏭ **Próxima atualização:**  
 ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
-
-🔁 **ID da atualização:** ${Date.now()}
 `;
 
   const newBlock = `${start}\n${dynamicContent}\n${end}`;
@@ -99,7 +151,7 @@ ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
   fs.writeFileSync(path.join(ROOT, "README.md"), updated);
 }
 
-// 🚀 Commit (FORÇA commit sempre)
+// 🚀 Commit
 function commit() {
   try {
     execSync("git add .", { cwd: ROOT });
