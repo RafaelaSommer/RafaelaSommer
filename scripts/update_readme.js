@@ -154,7 +154,7 @@ async function main() {
   const didCommit = commit();
 
   if (didCommit)
-    console.log("✅ ]README atualizado com sucesso!");
+    console.log("✅ README atualizado com sucesso!");
   else
     console.log("ℹ️ Falha ao atualizar.");
 }
