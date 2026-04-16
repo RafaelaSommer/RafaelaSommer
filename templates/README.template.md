@@ -18,7 +18,7 @@
 
 <p align="center">
   <img 
-    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=1000&color=C77DFF&center=true&vCenter=true&width=700&lines=Cursando+Engenharia+da+Computação+na+FHO;Transformando+ideias+em+projetos+reais;APIs+%7C+Microserviços+%7C+Automação;Araras+-+SP"
+    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=900&color=C77DFF&center=true&vCenter=true&width=750&lines=👩‍💻+Cursando+Engenharia+da+Computação+na+FHO;🚀+Transformando+ideias+em+código;⚡+Sempre+aprendendo+e+evoluindo;📍+Localizada+em+Araras+-+SP"
   />
 </p>
 </div>
