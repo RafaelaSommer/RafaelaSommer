@@ -10,47 +10,52 @@
 
 <div align="center">
 
-⚡💻 <b>Desenvolvedora Backend • Estudante de Engenharia da Computação • Arquitetura de Sistemas & Integração de APIs</b> ⚡  
+⚡💻 <b>Backend Developer • Engenharia da Computação • APIs • Sistemas Escaláveis</b>  
+
+🚀 Construindo soluções eficientes, escaláveis e prontas para produção  
 
 </div>
 
 ---
 
-<p align="center">
-  <img 
-    src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=900&color=C77DFF&center=true&vCenter=true&width=750&lines=👩‍💻+Cursando+Engenharia+da+Computação+na+FHO;🚀+Transformando+ideias+em+projetos+reais;⚡+Sempre+aprendendo+e+evoluindo;📍+Localizada+em+Araras+-+SP"
-  />
-</p>
+<p align="center"> <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=20&pause=900&color=C77DFF&center=true&vCenter=true&width=750&lines=👩‍💻+Cursando+Engenharia+da+Computação+na+FHO;🚀+Transformando+ideias+em+projetos+reais;⚡+Sempre+aprendendo+e+evoluindo;📍+Localizada+em+Araras+-+SP" /> 
+</p> 
 </div>
 
 ---
 
-# ✨ Sobre mim
+# 💼 Sobre mim
 
-Sou **Rafaela Sommer**, estudante de **Engenharia da Computação (5º semestre)** e **Desenvolvedora Backend** focada em criar **soluções inteligentes, escaláveis e bem arquitetadas**.
+Sou estudante de **Engenharia da Computação (5º semestre)** com foco em **Desenvolvimento Backend** e **Arquitetura de Sistemas**.
 
-Tenho paixão por **automação, integrações entre sistemas e eficiência**, transformando processos complexos em **sistemas simples, rápidos e confiáveis**.
+Tenho experiência prática na criação de:
 
-Trabalho sempre priorizando:
+- APIs robustas e escaláveis  
+- Sistemas integrados entre múltiplas plataformas  
+- Automação de processos que reduzem esforço manual  
+- Estruturas de código organizadas e de fácil manutenção  
 
-- **código limpo**
-- **boas práticas de arquitetura**
-- **alta performance**
-- **manutenção e escalabilidade**
-
-🎯 **Atualmente estou em busca de oportunidades de estágio ou projetos em Backend e Engenharia de Software.**
+💡 Meu foco é transformar problemas complexos em soluções simples, eficientes e prontas para escalar.
 
 ---
 
-# 🚀 O que eu faço
+# 🎯 Objetivo
 
-- Desenvolvimento de **APIs REST**
-- Criação de **microserviços escaláveis**
-- **Automação de processos**
-- **Integrações entre sistemas**
-- Desenvolvimento de aplicações **seguras e performáticas**
+🚀 Buscando oportunidade de **estágio ou projetos em Backend / Engenharia de Software**, onde eu possa:
 
-💡 *Código limpo, arquitetura sólida e soluções que funcionam de verdade.*
+- Aplicar boas práticas reais de mercado  
+- Evoluir tecnicamente com desafios reais  
+- Contribuir com soluções eficientes desde o início  
+
+---
+
+# 🚀 O que eu entrego
+
+✔ APIs REST bem estruturadas  
+✔ Integração entre sistemas e serviços  
+✔ Automação de rotinas e processos  
+✔ Código limpo e organizado  
+✔ Foco em performance e escalabilidade 
 
 ---
 
