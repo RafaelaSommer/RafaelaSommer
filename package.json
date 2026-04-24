@@ -6,7 +6,7 @@
   "type": "commonjs",
   "private": false,
   "scripts": {
-    "setup": "npm install && npm run generate && npm run start",
+    "setup": "npm install && npm run generate:svg && npm run update && npm run start",
     "bot": "node scripts/bot-local.js",
     "update": "node scripts/update_readme.js",
     "generate": "node scripts/generate-cron.js",
