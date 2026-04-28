@@ -1,9 +1,9 @@
 
-<svg width="1000" height="850" xmlns="http://www.w3.org/2000/svg">
+<svg width="1000" height="918" xmlns="http://www.w3.org/2000/svg">
 
   <rect width="100%" height="100%" fill="#0D1117"/>
 
-  <rect x="20" y="20" width="960" height="810" rx="25"
+  <rect x="20" y="20" width="960" height="878" rx="25"
   fill="#161B22" stroke="#30363D"/>
 
   <text x="60" y="80"
@@ -19,7 +19,7 @@
   fill="#E6EDF3"
   font-size="16">
 
-  📦 10 Repositórios
+  📦 11 Repositórios
 
   </text>
 
@@ -51,98 +51,109 @@
       <text x="60" y="220" fill="#E6EDF3" font-size="14">C#</text>
       <rect x="260" y="206" rx="10" width="450" height="16" fill="#21262D"/>
       <rect x="260" y="206" rx="10" width="0" height="16" fill="#FF6B6B">
-        <animate attributeName="width" from="0" to="200" dur="1.2s" fill="freeze"/>
+        <animate attributeName="width" from="0" to="182" dur="1.2s" fill="freeze"/>
       </rect>
-      <text x="730" y="220" fill="#8B949E" font-size="12">40.0%</text>
+      <text x="730" y="220" fill="#8B949E" font-size="12">36.4%</text>
     
       <text x="60" y="260" fill="#E6EDF3" font-size="14">JavaScript</text>
       <rect x="260" y="246" rx="10" width="450" height="16" fill="#21262D"/>
       <rect x="260" y="246" rx="10" width="0" height="16" fill="#6BCB77">
-        <animate attributeName="width" from="0" to="150" dur="1.2s" fill="freeze"/>
+        <animate attributeName="width" from="0" to="136.5" dur="1.2s" fill="freeze"/>
       </rect>
-      <text x="730" y="260" fill="#8B949E" font-size="12">30.0%</text>
+      <text x="730" y="260" fill="#8B949E" font-size="12">27.3%</text>
     
       <text x="60" y="300" fill="#E6EDF3" font-size="14">Jupyter Notebook</text>
       <rect x="260" y="286" rx="10" width="450" height="16" fill="#21262D"/>
       <rect x="260" y="286" rx="10" width="0" height="16" fill="#4D96FF">
-        <animate attributeName="width" from="0" to="50" dur="1.2s" fill="freeze"/>
+        <animate attributeName="width" from="0" to="45.5" dur="1.2s" fill="freeze"/>
       </rect>
-      <text x="730" y="300" fill="#8B949E" font-size="12">10.0%</text>
+      <text x="730" y="300" fill="#8B949E" font-size="12">9.1%</text>
     
       <text x="60" y="340" fill="#E6EDF3" font-size="14">Python</text>
       <rect x="260" y="326" rx="10" width="450" height="16" fill="#21262D"/>
       <rect x="260" y="326" rx="10" width="0" height="16" fill="#FFD93D">
-        <animate attributeName="width" from="0" to="50" dur="1.2s" fill="freeze"/>
+        <animate attributeName="width" from="0" to="45.5" dur="1.2s" fill="freeze"/>
       </rect>
-      <text x="730" y="340" fill="#8B949E" font-size="12">10.0%</text>
+      <text x="730" y="340" fill="#8B949E" font-size="12">9.1%</text>
     
       <text x="60" y="380" fill="#E6EDF3" font-size="14">TSQL</text>
       <rect x="260" y="366" rx="10" width="450" height="16" fill="#21262D"/>
       <rect x="260" y="366" rx="10" width="0" height="16" fill="#845EC2">
-        <animate attributeName="width" from="0" to="50" dur="1.2s" fill="freeze"/>
+        <animate attributeName="width" from="0" to="45.5" dur="1.2s" fill="freeze"/>
       </rect>
-      <text x="730" y="380" fill="#8B949E" font-size="12">10.0%</text>
+      <text x="730" y="380" fill="#8B949E" font-size="12">9.1%</text>
+    
+      <text x="60" y="420" fill="#E6EDF3" font-size="14">CSS</text>
+      <rect x="260" y="406" rx="10" width="450" height="16" fill="#21262D"/>
+      <rect x="260" y="406" rx="10" width="0" height="16" fill="#FF9671">
+        <animate attributeName="width" from="0" to="45.5" dur="1.2s" fill="freeze"/>
+      </rect>
+      <text x="730" y="420" fill="#8B949E" font-size="12">9.1%</text>
     
 
   <line
     x1="60"
-    y1="440"
+    y1="480"
     x2="940"
-    y2="440"
+    y2="480"
     stroke="#30363D"
   />
 
   <text
     x="60"
-    y="460"
+    y="500"
     fill="#8B949E"
     font-size="18"
     font-weight="bold">
 
-    📂 Todos os Repositórios (10)
+    📂 Todos os Repositórios (11)
 
   </text>
 
   
-        <text x="60" y="490" fill="#58A6FF" font-size="14">📦 Gerador-de-pastas-e-Excel</text>
-        <text x="410" y="490" fill="#FFD93D" font-size="14">⭐ 5</text>
-        <text x="510" y="490" fill="#8B949E" font-size="12">Python</text>
+        <text x="60" y="530" fill="#58A6FF" font-size="14">📦 Gerador-de-pastas-e-Excel</text>
+        <text x="410" y="530" fill="#FFD93D" font-size="14">⭐ 5</text>
+        <text x="510" y="530" fill="#8B949E" font-size="12">Python</text>
       
-        <text x="60" y="518" fill="#58A6FF" font-size="14">📦 dio-lab-open-source</text>
-        <text x="410" y="518" fill="#FFD93D" font-size="14">⭐ 3</text>
-        <text x="510" y="518" fill="#8B949E" font-size="12">Jupyter Notebook</text>
+        <text x="60" y="558" fill="#58A6FF" font-size="14">📦 dio-lab-open-source</text>
+        <text x="410" y="558" fill="#FFD93D" font-size="14">⭐ 3</text>
+        <text x="510" y="558" fill="#8B949E" font-size="12">Jupyter Notebook</text>
       
-        <text x="60" y="546" fill="#58A6FF" font-size="14">📦 RafaelaSommer</text>
-        <text x="410" y="546" fill="#FFD93D" font-size="14">⭐ 2</text>
-        <text x="510" y="546" fill="#8B949E" font-size="12">JavaScript</text>
+        <text x="60" y="586" fill="#58A6FF" font-size="14">📦 RafaelaSommer</text>
+        <text x="410" y="586" fill="#FFD93D" font-size="14">⭐ 2</text>
+        <text x="510" y="586" fill="#8B949E" font-size="12">JavaScript</text>
       
-        <text x="60" y="574" fill="#58A6FF" font-size="14">📦 GitHub-Profile-Auto-Updater</text>
-        <text x="410" y="574" fill="#FFD93D" font-size="14">⭐ 1</text>
-        <text x="510" y="574" fill="#8B949E" font-size="12">JavaScript</text>
+        <text x="60" y="614" fill="#58A6FF" font-size="14">📦 GitHub-Profile-Auto-Updater</text>
+        <text x="410" y="614" fill="#FFD93D" font-size="14">⭐ 1</text>
+        <text x="510" y="614" fill="#8B949E" font-size="12">JavaScript</text>
       
-        <text x="60" y="602" fill="#58A6FF" font-size="14">📦 trilha-net-fundamentos-desafio</text>
-        <text x="410" y="602" fill="#FFD93D" font-size="14">⭐ 0</text>
-        <text x="510" y="602" fill="#8B949E" font-size="12">C#</text>
+        <text x="60" y="642" fill="#58A6FF" font-size="14">📦 trilha-net-fundamentos-desafio</text>
+        <text x="410" y="642" fill="#FFD93D" font-size="14">⭐ 0</text>
+        <text x="510" y="642" fill="#8B949E" font-size="12">C#</text>
       
-        <text x="60" y="630" fill="#58A6FF" font-size="14">📦 github-readme-stats</text>
-        <text x="410" y="630" fill="#FFD93D" font-size="14">⭐ 0</text>
-        <text x="510" y="630" fill="#8B949E" font-size="12">JavaScript</text>
+        <text x="60" y="670" fill="#58A6FF" font-size="14">📦 github-readme-stats</text>
+        <text x="410" y="670" fill="#FFD93D" font-size="14">⭐ 0</text>
+        <text x="510" y="670" fill="#8B949E" font-size="12">JavaScript</text>
       
-        <text x="60" y="658" fill="#58A6FF" font-size="14">📦 trilha-net-explorando-desafio</text>
-        <text x="410" y="658" fill="#FFD93D" font-size="14">⭐ 0</text>
-        <text x="510" y="658" fill="#8B949E" font-size="12">C#</text>
+        <text x="60" y="698" fill="#58A6FF" font-size="14">📦 trilha-net-explorando-desafio</text>
+        <text x="410" y="698" fill="#FFD93D" font-size="14">⭐ 0</text>
+        <text x="510" y="698" fill="#8B949E" font-size="12">C#</text>
       
-        <text x="60" y="686" fill="#58A6FF" font-size="14">📦 trilha-net-poo-desafio</text>
-        <text x="410" y="686" fill="#FFD93D" font-size="14">⭐ 0</text>
-        <text x="510" y="686" fill="#8B949E" font-size="12">C#</text>
+        <text x="60" y="726" fill="#58A6FF" font-size="14">📦 trilha-net-poo-desafio</text>
+        <text x="410" y="726" fill="#FFD93D" font-size="14">⭐ 0</text>
+        <text x="510" y="726" fill="#8B949E" font-size="12">C#</text>
       
-        <text x="60" y="714" fill="#58A6FF" font-size="14">📦 trilha-net-banco-de-dados-desafio</text>
-        <text x="410" y="714" fill="#FFD93D" font-size="14">⭐ 0</text>
-        <text x="510" y="714" fill="#8B949E" font-size="12">TSQL</text>
+        <text x="60" y="754" fill="#58A6FF" font-size="14">📦 trilha-net-banco-de-dados-desafio</text>
+        <text x="410" y="754" fill="#FFD93D" font-size="14">⭐ 0</text>
+        <text x="510" y="754" fill="#8B949E" font-size="12">TSQL</text>
       
-        <text x="60" y="742" fill="#58A6FF" font-size="14">📦 trilha-net-api-desafio</text>
-        <text x="410" y="742" fill="#FFD93D" font-size="14">⭐ 0</text>
-        <text x="510" y="742" fill="#8B949E" font-size="12">C#</text>
+        <text x="60" y="782" fill="#58A6FF" font-size="14">📦 trilha-net-api-desafio</text>
+        <text x="410" y="782" fill="#FFD93D" font-size="14">⭐ 0</text>
+        <text x="510" y="782" fill="#8B949E" font-size="12">C#</text>
+      
+        <text x="60" y="810" fill="#58A6FF" font-size="14">📦 Agendamento-de-Tarefas</text>
+        <text x="410" y="810" fill="#FFD93D" font-size="14">⭐ 0</text>
+        <text x="510" y="810" fill="#8B949E" font-size="12">CSS</text>
       
 
 </svg>
