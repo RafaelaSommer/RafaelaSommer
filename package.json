@@ -6,15 +6,15 @@
   "type": "commonjs",
   "private": false,
   "scripts": {
-  "setup": "npm install && npm run generate:svg && npm run generate:cron && npm run update && npm run start",
-  "bot": "node scripts/bot-local.js",
-  "update": "node scripts/update_readme.js",
-  "generate": "node scripts/generate-cron.js",
-  "generate:cron": "node scripts/generate-cron.js",
-  "start": "node scripts/bot-local.js",
-  "generate:svg": "node scripts/generate-dashboard.js",
-  "index": "node scripts/index.js",
-  "dev": "node scripts/index.js"
+    "setup": "npm install && npm run generate:svg && npm run generate:cron && npm run update && npm run start",
+    "bot": "node scripts/bot-local.js",
+    "update": "node scripts/update_readme.js",
+    "generate": "node scripts/generate-cron.js",
+    "generate:cron": "node scripts/generate-cron.js",
+    "start": "node scripts/bot-local.js",
+    "generate:svg": "node scripts/generate-dashboard.js",
+    "index": "node scripts/index.js",
+    "dev": "node scripts/index.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
   "dependencies": {
     "axios": "^1.6.0",
     "dotenv": "^16.6.1",
+    "framer-motion": "^12.38.0",
     "luxon": "^3.7.2"
   }
 }
