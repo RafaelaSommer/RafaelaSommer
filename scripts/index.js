@@ -6,9 +6,9 @@ const path = require("path");
 const axios = require("axios");
 const { DateTime } = require("luxon");
 const { execSync } = require("child_process");
-const generateDashboard = require("./generate-dashboard");
 
 const ROOT = path.join(__dirname, "..");
+
 const SETTINGS = JSON.parse(
   fs.readFileSync(path.join(ROOT, ".github/settings.json"), "utf8")
 );
@@ -22,7 +22,7 @@ if (!TOKEN) {
   process.exit(1);
 }
 
-// 🔧 Configura git
+// 🔧 Configura Git
 function configureGit() {
   try {
     execSync(`git config user.name "${SETTINGS.gitUser}"`, { cwd: ROOT });
@@ -30,6 +30,7 @@ function configureGit() {
 
     const repo = `https://${TOKEN}@github.com/${USER}/${USER}.git`;
     execSync(`git remote set-url origin ${repo}`, { cwd: ROOT });
+
   } catch {
     console.log("git já configurado");
   }
@@ -57,48 +58,18 @@ async function fetchGitHub() {
   const res = await axios.post(
     "https://api.github.com/graphql",
     { query },
-    { headers: { Authorization: `Bearer ${TOKEN}` } }
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`,
+      },
+    }
   );
 
   return res.data.data.user;
 }
 
-// 💾 Commit + push FORÇADO
-function commit() {
-  try {
-    execSync("git add .", { cwd: ROOT });
-
-    const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
-
-    if (!status.trim()) {
-      console.log("ℹ️ Nada mudou.");
-      return false;
-    }
-
-    const now = DateTime.now().setZone(TIMEZONE);
-    const msg = `🤖 README atualizado ${now.toFormat("HH:mm:ss")}`;
-
-    execSync(`git commit -m "${msg}"`, { cwd: ROOT, stdio: "inherit" });
-
-    // 🔥 PUSH SEM ERRO (FORCE + RETRY)
-    try {
-      execSync("git push origin HEAD --force", { cwd: ROOT, stdio: "inherit" });
-    } catch {
-      console.log("⚠️ Falha no push, tentando novamente...");
-      execSync("git push origin HEAD --force", { cwd: ROOT, stdio: "inherit" });
-    }
-
-    return true;
-
-  } catch (e) {
-    console.error("❌ erro git:", e.message);
-    return false;
-  }
-}
-
 // 📝 Atualiza README
 function updateReadme(stars, followers) {
-
   const templatePath = path.join(ROOT, "templates/README.template.md");
   const template = fs.readFileSync(templatePath, "utf8");
 
@@ -106,21 +77,16 @@ function updateReadme(stars, followers) {
   const end = "<!--END_SECTION:dynamic-->";
 
   const now = DateTime.now().setZone(TIMEZONE);
-  const nextUpdate = now.plus({ minutes: SETTINGS.interval_minutes });
 
-  const dynamicContent = `
+  const content = `
 ⭐ **Total de Estrelas:** ${stars}
 
 👥 **Seguidores:** ${followers}
 
-🕒 **Última atualização:**  
-${now.toFormat("dd/MM/yyyy HH:mm:ss")}
-
-⏭ **Próxima atualização:**  
-${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
+🕒 ${now.toFormat("dd/MM/yyyy HH:mm:ss")}
 `;
 
-  const newBlock = `${start}\n${dynamicContent}\n${end}`;
+  const newBlock = `${start}\n${content}\n${end}`;
 
   const updated = template.replace(
     new RegExp(`${start}[\\s\\S]*${end}`),
@@ -130,9 +96,28 @@ ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
   fs.writeFileSync(path.join(ROOT, "README.md"), updated);
 }
 
-// 🚀 MAIN
-async function main() {
+// 🚀 Commit
+function commit() {
+  try {
+    execSync("git add .", { cwd: ROOT });
 
+    const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
+
+    if (!status.trim()) {
+      console.log("ℹ️ Nada mudou.");
+      return;
+    }
+
+    execSync(`git commit -m "🤖 update"`, { cwd: ROOT });
+    execSync("git push", { cwd: ROOT });
+
+  } catch (e) {
+    console.error("❌ erro git:", e.message);
+  }
+}
+
+// 🧠 MAIN
+async function main() {
   configureGit();
 
   const user = await fetchGitHub();
@@ -142,32 +127,10 @@ async function main() {
 
   const stars = repos.reduce((a, r) => a + r.stargazerCount, 0);
 
-  const languages = {};
-
-  repos.forEach(r => {
-    const lang = r.primaryLanguage?.name;
-    if (!lang) return;
-    if (!languages[lang]) languages[lang] = 0;
-    languages[lang]++;
-  });
-
-  generateDashboard({
-    stars,
-    followers,
-    totalProjects: repos.length,
-    languages,
-    repos
-  });
-
   updateReadme(stars, followers);
+  commit();
 
-  const didCommit = commit();
-
-  if (didCommit) {
-    console.log("✅ Atualizado com sucesso!");
-  } else {
-    console.log("ℹ️ Nenhuma alteração.");
-  }
+  console.log("✅ Finalizado com sucesso!");
 }
 
 main();

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/Banner.jpeg" width="100%" alt="Banner - Rafaela Sommer" />
+  <img src="./assets/Banner.jpg" width="100%" alt="Banner - Rafaela Sommer" />
 </p>
 
 <h1 align="center">🌟 Rafaela Sommer Gonçalves 🌟</h1>
@@ -160,11 +160,11 @@ Tenho experiência prática na criação de:
 
 👥 **Seguidores:** 344
 
-🕒 **Última atualização:**  
-28/04/2026 16:13:48
+🕒 **Última atualização (Horário de Brasília):**  
+29/04/2026 16:13:19
 
 ⏭ **Próxima atualização:**  
-28/04/2026 16:23:48
+29/04/2026 16:23:19
 
 <!--END_SECTION:dynamic-->
 
