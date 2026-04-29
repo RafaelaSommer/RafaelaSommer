@@ -32,7 +32,7 @@ function configureGit() {
     execSync(`git config user.name "${SETTINGS.gitUser}"`, { cwd: ROOT });
     execSync(`git config user.email "${SETTINGS.gitEmail}"`, { cwd: ROOT });
 
-    const repo = `https://${TOKEN}@github.com/${USER}/${USER}.git`;
+    const repo = `https://${GITHUB_TOKEN}@github.com/${USER}/${USER}.git`;
     execSync(`git remote set-url origin ${repo}`, { cwd: ROOT });
   } catch {
     console.log("git já configurado");
@@ -108,7 +108,7 @@ async function fetchGitHub() {
   const res = await axios.post(
     "https://api.github.com/graphql",
     { query },
-    { headers: { Authorization: `Bearer ${TOKEN}` } }
+    { headers: { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } }
   );
 
   const data = res.data.data.user;

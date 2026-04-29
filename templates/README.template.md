@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/Banner.jpeg" width="100%" alt="Banner - Rafaela Sommer" />
+  <img src="./assets/Banner.jpg" width="100%" alt="Banner - Rafaela Sommer" />
 </p>
 
 <h1 align="center">🌟 Rafaela Sommer Gonçalves 🌟</h1>
