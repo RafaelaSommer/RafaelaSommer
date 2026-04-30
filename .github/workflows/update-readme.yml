@@ -42,8 +42,12 @@ jobs:
           git config user.name "RafaelaSommer"
           git config user.email "camilaerafaelagoncalves@hotmail.com"
 
+          # 🔥 sincroniza antes de commitar
+          git pull origin main --rebase --autostash || echo "Pull falhou, continuando..."
+
           git add .
 
+          # 🔥 commit sempre
           git commit --allow-empty -m "🤖 auto update $(date +'%d/%m %H:%M:%S')"
 
-          git push
+          git push origin main

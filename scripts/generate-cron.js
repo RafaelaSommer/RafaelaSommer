@@ -13,7 +13,7 @@ let SETTINGS = {
   gitUser: "RafaelaSommer",
   gitEmail: "camilaerafaelagoncalves@hotmail.com",
   interval_minutes: 20,
-  type: null // "profile" | "engine"
+  type: null
 };
 
 // =====================
@@ -125,11 +125,15 @@ jobs:
           git config user.name "${SETTINGS.gitUser}"
           git config user.email "${SETTINGS.gitEmail}"
 
+          # 🔥 sincroniza antes de commitar
+          git pull origin main --rebase --autostash || echo "Pull falhou, continuando..."
+
           git add .
 
+          # 🔥 commit sempre
           git commit --allow-empty -m "🤖 auto update $(date +'%d/%m %H:%M:%S')"
 
-          git push
+          git push origin main
 `;
 }
 
