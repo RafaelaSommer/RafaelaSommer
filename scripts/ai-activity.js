@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-// Estrutura igual ao activity.js, mas você pode adicionar mensagens geradas por AI
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
@@ -20,17 +18,34 @@ function randomAIMessage() {
 
 function createAIFile() {
   if (!fs.existsSync(aiDir)) fs.mkdirSync(aiDir, { recursive: true });
+
   const file = path.join(aiDir, `ai-${Date.now()}.md`);
   const now = DateTime.now().toISO();
+
   fs.writeFileSync(file, `# AI Activity Log\n\n${randomAIMessage()}\nTimestamp: ${now}\n`);
   return file;
 }
 
+function run(cmd) {
+  execSync(cmd, { cwd: ROOT, stdio: "inherit" });
+}
+
+function syncRepo() {
+  try {
+    run("git pull origin main --rebase");
+  } catch {
+    console.log("⚠️ Pull falhou");
+  }
+}
+
 function commit(file) {
   try {
-    execSync(`git add ${file}`, { cwd: ROOT });
-    execSync(`git commit -m "${randomAIMessage()}"`, { cwd: ROOT, stdio: "inherit" });
-    execSync("git push origin HEAD", { cwd: ROOT, stdio: "inherit" });
+    syncRepo();
+
+    run(`git add "${file}"`);
+    run(`git commit --allow-empty -m "${randomAIMessage()}"`);
+    run("git push origin main");
+
     console.log("✅ AI Activity commit realizado!");
   } catch {
     console.log("⚠️ Commit AI não realizado");
@@ -40,10 +55,14 @@ function commit(file) {
 function main() {
   const cache = readCache();
   const now = Date.now();
-  if (now - (cache.lastAI || 0) < 5 * 60 * 1000) return; // 5 min mínimo
+
+  if (now - (cache.lastAI || 0) < 5 * 60 * 1000) return;
+
   const file = createAIFile();
+
   cache.lastAI = now;
   writeCache(cache);
+
   commit(file);
 }
 

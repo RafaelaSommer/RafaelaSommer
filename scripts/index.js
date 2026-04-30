@@ -36,6 +36,18 @@ function configureGit() {
   }
 }
 
+// 🔄 Sincroniza antes do push (evita non-fast-forward)
+function syncRepo() {
+  try {
+    execSync("git pull origin main --rebase", {
+      cwd: ROOT,
+      stdio: "inherit"
+    });
+  } catch {
+    console.log("⚠️ Erro no pull (ignorando)");
+  }
+}
+
 // 🌐 Busca dados do GitHub
 async function fetchGitHub() {
   const query = `
@@ -46,9 +58,7 @@ async function fetchGitHub() {
         }
         repositories(first:100) {
           nodes {
-            name
             stargazerCount
-            primaryLanguage { name }
           }
         }
       }
@@ -96,20 +106,25 @@ function updateReadme(stars, followers) {
   fs.writeFileSync(path.join(ROOT, "README.md"), updated);
 }
 
-// 🚀 Commit
+// 🚀 Commit (sempre executa, mesmo sem mudanças)
 function commit() {
   try {
+    syncRepo();
+
     execSync("git add .", { cwd: ROOT });
 
-    const status = execSync("git status --porcelain", { cwd: ROOT }).toString();
+    // 🔥 força commit sempre
+    execSync(`git commit --allow-empty -m "🤖 update ${Date.now()}"`, {
+      cwd: ROOT,
+      stdio: "inherit"
+    });
 
-    if (!status.trim()) {
-      console.log("ℹ️ Nada mudou.");
-      return;
-    }
+    execSync("git push origin main", {
+      cwd: ROOT,
+      stdio: "inherit"
+    });
 
-    execSync(`git commit -m "🤖 update"`, { cwd: ROOT });
-    execSync("git push", { cwd: ROOT });
+    console.log("🚀 Commit realizado com sucesso!");
 
   } catch (e) {
     console.error("❌ erro git:", e.message);
