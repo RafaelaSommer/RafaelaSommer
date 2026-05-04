@@ -1,0 +1,53 @@
+name: 🤖 Update Profile
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: profile-update
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: "npm"
+
+      - name: Install deps
+        run: npm install
+
+      - name: Run updater
+        run: node scripts/index.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push
+        run: |
+          git config user.name "RafaelaSommer"
+          git config user.email "camilaerafaelagoncalves@hotmail.com"
+
+          # 🔥 sincroniza antes de commitar
+          git pull origin main --rebase --autostash || echo "Pull falhou, continuando..."
+
+          git add .
+
+          # 🔥 commit sempre
+          git commit --allow-empty -m "🤖 auto update $(date +'%d/%m %H:%M:%S')"
+
+          git push origin main
