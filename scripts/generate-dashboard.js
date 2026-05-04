@@ -5,9 +5,11 @@ const path = require("path");
 const { DateTime } = require("luxon");
 
 const ROOT = path.join(__dirname, "..");
-const DATA_DIR = path.join(ROOT, "data");
-const OUTPUT_MD = path.join(DATA_DIR, "dashboard.md");
-const OUTPUT_JSON = path.join(DATA_DIR, "dashboard.json");
+const ASSETS_DIR = path.join(ROOT, "assets");
+
+const OUTPUT_MD = path.join(ASSETS_DIR, "dashboard.md");
+const OUTPUT_JSON = path.join(ASSETS_DIR, "dashboard.json");
+const OUTPUT_SVG = path.join(ASSETS_DIR, "dashboard.svg");
 
 // 🎨 Barra visual
 function bar(percent) {
@@ -64,10 +66,39 @@ function generateExtras(repos) {
   };
 }
 
+// 🎨 SVG
+function generateSVG(data, extras, now) {
+  return `
+<svg width="600" height="350" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font: bold 20px sans-serif; fill: #333 }
+    .text { font: 14px sans-serif; fill: #555 }
+  </style>
+
+  <text x="20" y="40" class="title">🚀 Dashboard</text>
+
+  <text x="20" y="80" class="text">⭐ Estrelas: ${data.stars}</text>
+  <text x="20" y="110" class="text">👥 Seguidores: ${data.followers}</text>
+  <text x="20" y="140" class="text">📦 Projetos: ${data.totalProjects}</text>
+
+  <text x="20" y="190" class="text">🏆 Top: ${extras.mostStarred}</text>
+  <text x="20" y="220" class="text">📈 Média estrelas: ${extras.avgStars}</text>
+
+  <text x="20" y="280" class="text">🕒 Atualizado: ${now}</text>
+</svg>
+`;
+}
+
 // 🚀 Geração principal
 function generateDashboard(data) {
   if (!data) {
     console.log("❌ Sem dados para gerar dashboard");
+    return;
+  }
+
+  // ❌ NÃO cria pasta automaticamente
+  if (!fs.existsSync(ASSETS_DIR)) {
+    console.log("❌ Pasta 'assets' não existe. Crie manualmente.");
     return;
   }
 
@@ -104,15 +135,10 @@ ${generateTopRepos(data.repos)}
 🕒 Atualizado em: ${now}
 `;
 
-  // 📁 garante pasta
-  if (!fs.existsSync(DATA_DIR)) {
-    fs.mkdirSync(DATA_DIR);
-  }
-
-  // 💾 salva markdown
+  // 💾 salvar markdown
   fs.writeFileSync(OUTPUT_MD, content.trim());
 
-  // 💾 salva JSON (útil pra outros scripts)
+  // 💾 salvar JSON
   fs.writeFileSync(
     OUTPUT_JSON,
     JSON.stringify(
@@ -125,7 +151,13 @@ ${generateTopRepos(data.repos)}
     )
   );
 
-  console.log("📊 Dashboard avançado gerado!");
+  // 🎨 gerar SVG
+  const svgContent = generateSVG(data, extras, now);
+
+  // 💾 salvar SVG
+  fs.writeFileSync(OUTPUT_SVG, svgContent.trim());
+
+  console.log("📊 Dashboard completo gerado em /assets!");
 }
 
 module.exports = generateDashboard;
