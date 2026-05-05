@@ -1,17 +1,18 @@
-<svg width="600" height="350" xmlns="http://www.w3.org/2000/svg">
+<svg width="600" height="320" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .title { font: bold 20px sans-serif; fill: #333 }
-    .text { font: 14px sans-serif; fill: #555 }
+    .title { font: bold 20px sans-serif; fill: #58A6FF }
+    .text { font: 14px sans-serif; fill: #C9D1D9 }
   </style>
+
+  <rect width="100%" height="100%" fill="#0D1117"/>
 
   <text x="20" y="40" class="title">🚀 Dashboard</text>
 
   <text x="20" y="80" class="text">⭐ Estrelas: 11</text>
-  <text x="20" y="110" class="text">👥 Seguidores: 350</text>
+  <text x="20" y="110" class="text">👥 Seguidores: 349</text>
   <text x="20" y="140" class="text">📦 Projetos: 11</text>
 
-  <text x="20" y="190" class="text">🏆 Top: Gerador-de-pastas-e-Excel (5⭐)</text>
-  <text x="20" y="220" class="text">📈 Média estrelas: 1.0</text>
+  <text x="20" y="190" class="text">📊 Engajamento: 0.03</text>
 
-  <text x="20" y="280" class="text">🕒 Atualizado: 04/05/2026 16:22:11</text>
+  <text x="20" y="260" class="text">🕒 Atualizado: 05/05/2026 16:16:29</text>
 </svg>

@@ -33,47 +33,25 @@ function generateLanguages(languages) {
     .join("\n");
 }
 
-// 🏆 Top repositórios
-function generateTopRepos(repos) {
-  if (!repos || repos.length === 0) return "Sem repositórios";
-
-  return repos
-    .sort((a, b) => b.stargazerCount - a.stargazerCount)
-    .slice(0, 5)
-    .map(r => `⭐ ${r.stargazerCount} • ${r.name}`)
-    .join("\n");
-}
-
-// 📊 Estatísticas extras
-function generateExtras(repos) {
-  if (!repos || repos.length === 0) {
-    return {
-      mostStarred: "N/A",
-      avgStars: 0
-    };
-  }
-
-  const mostStarred = repos.reduce((a, b) =>
-    a.stargazerCount > b.stargazerCount ? a : b
-  );
-
-  const totalStars = repos.reduce((sum, r) => sum + r.stargazerCount, 0);
-  const avgStars = (totalStars / repos.length).toFixed(1);
-
+// 📊 Insights simples (sem repos)
+function generateInsights(data) {
   return {
-    mostStarred: `${mostStarred.name} (${mostStarred.stargazerCount}⭐)`,
-    avgStars
+    engagement: data.followers > 0
+      ? (data.stars / data.followers).toFixed(2)
+      : 0
   };
 }
 
 // 🎨 SVG
-function generateSVG(data, extras, now) {
+function generateSVG(data, insights, now) {
   return `
-<svg width="600" height="350" xmlns="http://www.w3.org/2000/svg">
+<svg width="600" height="320" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .title { font: bold 20px sans-serif; fill: #333 }
-    .text { font: 14px sans-serif; fill: #555 }
+    .title { font: bold 20px sans-serif; fill: #58A6FF }
+    .text { font: 14px sans-serif; fill: #C9D1D9 }
   </style>
+
+  <rect width="100%" height="100%" fill="#0D1117"/>
 
   <text x="20" y="40" class="title">🚀 Dashboard</text>
 
@@ -81,10 +59,9 @@ function generateSVG(data, extras, now) {
   <text x="20" y="110" class="text">👥 Seguidores: ${data.followers}</text>
   <text x="20" y="140" class="text">📦 Projetos: ${data.totalProjects}</text>
 
-  <text x="20" y="190" class="text">🏆 Top: ${extras.mostStarred}</text>
-  <text x="20" y="220" class="text">📈 Média estrelas: ${extras.avgStars}</text>
+  <text x="20" y="190" class="text">📊 Engajamento: ${insights.engagement}</text>
 
-  <text x="20" y="280" class="text">🕒 Atualizado: ${now}</text>
+  <text x="20" y="260" class="text">🕒 Atualizado: ${now}</text>
 </svg>
 `;
 }
@@ -96,7 +73,6 @@ function generateDashboard(data) {
     return;
   }
 
-  // ❌ NÃO cria pasta automaticamente
   if (!fs.existsSync(ASSETS_DIR)) {
     console.log("❌ Pasta 'assets' não existe. Crie manualmente.");
     return;
@@ -104,7 +80,7 @@ function generateDashboard(data) {
 
   const now = DateTime.now().toFormat("dd/MM/yyyy HH:mm:ss");
 
-  const extras = generateExtras(data.repos);
+  const insights = generateInsights(data);
 
   const content = `
 ## 🚀 Dashboard Automático
@@ -121,14 +97,8 @@ ${generateLanguages(data.languages)}
 
 ---
 
-### 🏆 Top Repositórios
-${generateTopRepos(data.repos)}
-
----
-
 ### 📊 Insights
-- 🚀 Projeto mais popular: **${extras.mostStarred}**
-- 📈 Média de estrelas: **${extras.avgStars}**
+- 📈 Engajamento (stars/seguidores): **${insights.engagement}**
 
 ---
 
@@ -151,13 +121,13 @@ ${generateTopRepos(data.repos)}
     )
   );
 
-  // 🎨 gerar SVG
-  const svgContent = generateSVG(data, extras, now);
+  // 🎨 SVG
+  const svgContent = generateSVG(data, insights, now);
 
   // 💾 salvar SVG
   fs.writeFileSync(OUTPUT_SVG, svgContent.trim());
 
-  console.log("📊 Dashboard completo gerado em /assets!");
+  console.log("📊 Dashboard sem repositórios gerado com sucesso!");
 }
 
 module.exports = generateDashboard;
