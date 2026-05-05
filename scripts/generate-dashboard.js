@@ -1,133 +1,161 @@
-#!/usr/bin/env node
-
 const fs = require("fs");
 const path = require("path");
-const { DateTime } = require("luxon");
 
-const ROOT = path.join(__dirname, "..");
-const ASSETS_DIR = path.join(ROOT, "assets");
+const COLORS = [
+  "#FF6B6B","#6BCB77","#4D96FF","#FFD93D",
+  "#845EC2","#FF9671","#00C9A7","#C34A36"
+];
 
-const OUTPUT_MD = path.join(ASSETS_DIR, "dashboard.md");
-const OUTPUT_JSON = path.join(ASSETS_DIR, "dashboard.json");
-const OUTPUT_SVG = path.join(ASSETS_DIR, "dashboard.svg");
+function generateDashboard(data) {
 
-// 🎨 Barra visual
-function bar(percent) {
-  const total = 20;
-  const filled = Math.round((percent / 100) * total);
-  return "█".repeat(filled) + "░".repeat(total - filled);
-}
+  const {
+    stars = 0,
+    followers = 0,
+    totalProjects = 0,
+    languages = {},
+    repos = []
+  } = data;
 
-// 🧠 Linguagens
-function generateLanguages(languages) {
-  const total = Object.values(languages).reduce((a, b) => a + b, 0);
+  const width = 1000;
+  const cardPadding = 60;
 
-  if (total === 0) return "Sem dados";
+  let y = 220;
 
-  return Object.entries(languages)
-    .sort((a, b) => b[1] - a[1])
-    .map(([lang, count]) => {
-      const percent = ((count / total) * 100).toFixed(1);
-      return `- **${lang}** ${bar(percent)} ${percent}%`;
-    })
-    .join("\n");
-}
+  let langBars = "";
+  let i = 0;
 
-// 📊 Insights simples (sem repos)
-function generateInsights(data) {
-  return {
-    engagement: data.followers > 0
-      ? (data.stars / data.followers).toFixed(2)
-      : 0
-  };
-}
+  const totalLang = Object.values(languages).reduce((a,b)=>a+b,0);
 
-// 🎨 SVG
-function generateSVG(data, insights, now) {
-  return `
-<svg width="600" height="320" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .title { font: bold 20px sans-serif; fill: #58A6FF }
-    .text { font: 14px sans-serif; fill: #C9D1D9 }
-  </style>
+  const sortedLang =
+    Object.entries(languages)
+    .sort((a,b)=>b[1]-a[1])
+    .slice(0,6);
+
+  sortedLang.forEach(([lang,val])=>{
+
+    const percent =
+      totalLang ? ((val/totalLang)*100).toFixed(1) : 0;
+
+    const barWidth = percent * 5;
+
+    const color = COLORS[i % COLORS.length];
+
+    langBars += `
+      <text x="${cardPadding}" y="${y}" fill="#E6EDF3" font-size="14">${lang}</text>
+      <rect x="260" y="${y-14}" rx="10" width="450" height="16" fill="#21262D"/>
+      <rect x="260" y="${y-14}" rx="10" width="0" height="16" fill="${color}">
+        <animate attributeName="width" from="0" to="${barWidth}" dur="1.2s" fill="freeze"/>
+      </rect>
+      <text x="730" y="${y}" fill="#8B949E" font-size="12">${percent}%</text>
+    `;
+
+    y += 40;
+    i++;
+
+  });
+
+  const reposTitleY = y + 40;
+
+  let repoList = "";
+  let repoY = reposTitleY + 30;
+
+  repos
+    .sort((a,b)=>(b.stargazerCount || 0) - (a.stargazerCount || 0))
+    .forEach(r=>{
+
+      const repoLang = r.primaryLanguage?.name || "—";
+
+      repoList += `
+        <text x="${cardPadding}" y="${repoY}" fill="#58A6FF" font-size="14">
+          📦 ${r.name}
+        </text>
+
+        <text x="${cardPadding + 350}" y="${repoY}" fill="#FFD93D" font-size="14">
+          ⭐ ${r.stargazerCount}
+        </text>
+
+        <text x="${cardPadding + 450}" y="${repoY}" fill="#8B949E" font-size="12">
+          ${repoLang}
+        </text>
+      `;
+
+      repoY += 28;
+
+    });
+
+  const height = repoY + 80;
+
+  const svg = `
+<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
 
   <rect width="100%" height="100%" fill="#0D1117"/>
 
-  <text x="20" y="40" class="title">🚀 Dashboard</text>
+  <rect x="20" y="20" width="${width-40}" height="${height-40}" rx="25"
+  fill="#161B22" stroke="#30363D"/>
 
-  <text x="20" y="80" class="text">⭐ Estrelas: ${data.stars}</text>
-  <text x="20" y="110" class="text">👥 Seguidores: ${data.followers}</text>
-  <text x="20" y="140" class="text">📦 Projetos: ${data.totalProjects}</text>
+  <text x="${cardPadding}" y="80"
+  fill="#58A6FF"
+  font-size="28"
+  font-weight="bold">
+  📊 Dashboard de Repositórios
+  </text>
 
-  <text x="20" y="190" class="text">📊 Engajamento: ${insights.engagement}</text>
+  <text x="${cardPadding}" y="130"
+  fill="#E6EDF3"
+  font-size="16">
+  📦 ${totalProjects} Repositórios
+  </text>
 
-  <text x="20" y="260" class="text">🕒 Atualizado: ${now}</text>
+  <text x="${cardPadding+250}" y="130"
+  fill="#FFD93D"
+  font-size="16">
+  ⭐ ${stars} Stars
+  </text>
+
+  <text x="${cardPadding+420}" y="130"
+  fill="#DA70D6"
+  font-size="16">
+  👥 ${followers} Seguidores
+  </text>
+
+  <text x="${cardPadding}" y="180"
+  fill="#8B949E"
+  font-size="16">
+  Linguagens Mais Utilizadas
+  </text>
+
+  ${langBars}
+
+  <line
+    x1="${cardPadding}"
+    y1="${reposTitleY-20}"
+    x2="${width-cardPadding}"
+    y2="${reposTitleY-20}"
+    stroke="#30363D"
+  />
+
+  <text
+    x="${cardPadding}"
+    y="${reposTitleY}"
+    fill="#8B949E"
+    font-size="18"
+    font-weight="bold">
+    📂 Todos os Repositórios (${repos.length})
+  </text>
+
+  ${repoList}
+
 </svg>
 `;
-}
 
-// 🚀 Geração principal
-function generateDashboard(data) {
-  if (!data) {
-    console.log("❌ Sem dados para gerar dashboard");
-    return;
-  }
+  const outputPath =
+    path.join(__dirname,"..","assets","dashboard.svg");
 
-  if (!fs.existsSync(ASSETS_DIR)) {
-    console.log("❌ Pasta 'assets' não existe. Crie manualmente.");
-    return;
-  }
+  fs.mkdirSync(path.dirname(outputPath), {recursive:true});
+  fs.writeFileSync(outputPath,svg);
 
-  const now = DateTime.now().toFormat("dd/MM/yyyy HH:mm:ss");
+  console.log("✅ Dashboard gerado com sucesso.");
 
-  const insights = generateInsights(data);
-
-  const content = `
-## 🚀 Dashboard Automático
-
-### ⭐ Estatísticas
-- ⭐ **Estrelas totais:** ${data.stars}
-- 👥 **Seguidores:** ${data.followers}
-- 📦 **Projetos:** ${data.totalProjects}
-
----
-
-### 🧠 Linguagens mais usadas
-${generateLanguages(data.languages)}
-
----
-
-### 📊 Insights
-- 📈 Engajamento (stars/seguidores): **${insights.engagement}**
-
----
-
-🕒 Atualizado em: ${now}
-`;
-
-  // 💾 salvar markdown
-  fs.writeFileSync(OUTPUT_MD, content.trim());
-
-  // 💾 salvar JSON
-  fs.writeFileSync(
-    OUTPUT_JSON,
-    JSON.stringify(
-      {
-        ...data,
-        generatedAt: now
-      },
-      null,
-      2
-    )
-  );
-
-  // 🎨 SVG
-  const svgContent = generateSVG(data, insights, now);
-
-  // 💾 salvar SVG
-  fs.writeFileSync(OUTPUT_SVG, svgContent.trim());
-
-  console.log("📊 Dashboard sem repositórios gerado com sucesso!");
 }
 
 module.exports = generateDashboard;
