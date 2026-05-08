@@ -1,234 +1,838 @@
 
-<svg width="1000" height="918" xmlns="http://www.w3.org/2000/svg">
+<svg
+  width="1100"
+  height="1170"
+  xmlns="http://www.w3.org/2000/svg">
 
-  <rect width="100%" height="100%" fill="#0D1117"/>
+  <defs>
 
-  <rect x="20" y="20" width="960" height="878" rx="25"
-  fill="#161B22" stroke="#30363D"/>
+    <linearGradient
+      id="bgGradient"
+      x1="0%"
+      y1="0%"
+      x2="100%"
+      y2="100%">
 
-  <text x="60" y="80"
-  fill="#58A6FF"
-  font-size="28"
-  font-weight="bold">
-  📊 Dashboard de Repositórios
+      <stop offset="0%" stop-color="#0D1117"/>
+      <stop offset="100%" stop-color="#111827"/>
+
+    </linearGradient>
+
+  </defs>
+
+  <rect
+    width="100%"
+    height="100%"
+    fill="url(#bgGradient)"
+  />
+
+  <rect
+    x="20"
+    y="20"
+    width="1060"
+    height="1130"
+    rx="25"
+    fill="#161B22"
+    stroke="#30363D"
+  />
+
+  <!-- TÍTULO -->
+
+  <text
+    x="60"
+    y="85"
+    fill="#58A6FF"
+    font-size="30"
+    font-weight="bold">
+
+    🚀 GitHub Dashboard
+
   </text>
 
-  <text x="60" y="130"
-  fill="#E6EDF3"
-  font-size="16">
-  📦 11 Repositórios
+  <!-- STATS -->
+
+  <rect
+    x="60"
+    y="120"
+    rx="18"
+    width="220"
+    height="70"
+    fill="#1C2128"
+    stroke="#30363D"
+  />
+
+  <text
+    x="80"
+    y="150"
+    fill="#FFD93D"
+    font-size="16">
+
+    ⭐ Stars
+
   </text>
 
-  <text x="310" y="130"
-  fill="#FFD93D"
-  font-size="16">
-  ⭐ 11 Stars
+  <text
+    x="80"
+    y="178"
+    fill="#FFFFFF"
+    font-size="26"
+    font-weight="bold">
+
+    11
+
   </text>
 
-  <text x="480" y="130"
-  fill="#DA70D6"
-  font-size="16">
-  👥 349 Seguidores
+  <rect
+    x="320"
+    y="120"
+    rx="18"
+    width="220"
+    height="70"
+    fill="#1C2128"
+    stroke="#30363D"
+  />
+
+  <text
+    x="340"
+    y="150"
+    fill="#DA70D6"
+    font-size="16">
+
+    👥 Seguidores
+
   </text>
 
-  <text x="60" y="180"
-  fill="#8B949E"
-  font-size="16">
-  Linguagens Mais Utilizadas
+  <text
+    x="340"
+    y="178"
+    fill="#FFFFFF"
+    font-size="26"
+    font-weight="bold">
+
+    348
+
+  </text>
+
+  <rect
+    x="580"
+    y="120"
+    rx="18"
+    width="220"
+    height="70"
+    fill="#1C2128"
+    stroke="#30363D"
+  />
+
+  <text
+    x="600"
+    y="150"
+    fill="#00C9A7"
+    font-size="16">
+
+    📂 Repositórios
+
+  </text>
+
+  <text
+    x="600"
+    y="178"
+    fill="#FFFFFF"
+    font-size="26"
+    font-weight="bold">
+
+    11
+
+  </text>
+
+  <!-- LINGUAGENS -->
+
+  <text
+    x="60"
+    y="220"
+    fill="#8B949E"
+    font-size="18"
+    font-weight="bold">
+
+    💻 Linguagens Mais Utilizadas
+
   </text>
 
   
-      <text x="60" y="220" fill="#E6EDF3" font-size="14">C#</text>
-      <rect x="260" y="206" rx="10" width="450" height="16" fill="#21262D"/>
-      <rect x="260" y="206" rx="10" width="0" height="16" fill="#FF6B6B">
-        <animate attributeName="width" from="0" to="182" dur="1.2s" fill="freeze"/>
+      <text x="60" y="240"
+        fill="#E6EDF3"
+        font-size="14">
+        C#
+      </text>
+
+      <rect
+        x="260"
+        y="226"
+        rx="10"
+        width="500"
+        height="16"
+        fill="#21262D"
+      />
+
+      <rect
+        x="260"
+        y="226"
+        rx="10"
+        width="0"
+        height="16"
+        fill="#FF6B6B">
+        <animate
+          attributeName="width"
+          from="0"
+          to="182"
+          dur="1.2s"
+          fill="freeze"/>
       </rect>
-      <text x="730" y="220" fill="#8B949E" font-size="12">36.4%</text>
+
+      <text
+        x="780"
+        y="240"
+        fill="#8B949E"
+        font-size="12">
+        36.4%
+      </text>
     
-      <text x="60" y="260" fill="#E6EDF3" font-size="14">JavaScript</text>
-      <rect x="260" y="246" rx="10" width="450" height="16" fill="#21262D"/>
-      <rect x="260" y="246" rx="10" width="0" height="16" fill="#6BCB77">
-        <animate attributeName="width" from="0" to="136.5" dur="1.2s" fill="freeze"/>
+      <text x="60" y="282"
+        fill="#E6EDF3"
+        font-size="14">
+        JavaScript
+      </text>
+
+      <rect
+        x="260"
+        y="268"
+        rx="10"
+        width="500"
+        height="16"
+        fill="#21262D"
+      />
+
+      <rect
+        x="260"
+        y="268"
+        rx="10"
+        width="0"
+        height="16"
+        fill="#6BCB77">
+        <animate
+          attributeName="width"
+          from="0"
+          to="182"
+          dur="1.2s"
+          fill="freeze"/>
       </rect>
-      <text x="730" y="260" fill="#8B949E" font-size="12">27.3%</text>
+
+      <text
+        x="780"
+        y="282"
+        fill="#8B949E"
+        font-size="12">
+        36.4%
+      </text>
     
-      <text x="60" y="300" fill="#E6EDF3" font-size="14">Jupyter Notebook</text>
-      <rect x="260" y="286" rx="10" width="450" height="16" fill="#21262D"/>
-      <rect x="260" y="286" rx="10" width="0" height="16" fill="#4D96FF">
-        <animate attributeName="width" from="0" to="45.5" dur="1.2s" fill="freeze"/>
+      <text x="60" y="324"
+        fill="#E6EDF3"
+        font-size="14">
+        Jupyter Notebook
+      </text>
+
+      <rect
+        x="260"
+        y="310"
+        rx="10"
+        width="500"
+        height="16"
+        fill="#21262D"
+      />
+
+      <rect
+        x="260"
+        y="310"
+        rx="10"
+        width="0"
+        height="16"
+        fill="#4D96FF">
+        <animate
+          attributeName="width"
+          from="0"
+          to="45.5"
+          dur="1.2s"
+          fill="freeze"/>
       </rect>
-      <text x="730" y="300" fill="#8B949E" font-size="12">9.1%</text>
+
+      <text
+        x="780"
+        y="324"
+        fill="#8B949E"
+        font-size="12">
+        9.1%
+      </text>
     
-      <text x="60" y="340" fill="#E6EDF3" font-size="14">Python</text>
-      <rect x="260" y="326" rx="10" width="450" height="16" fill="#21262D"/>
-      <rect x="260" y="326" rx="10" width="0" height="16" fill="#FFD93D">
-        <animate attributeName="width" from="0" to="45.5" dur="1.2s" fill="freeze"/>
+      <text x="60" y="366"
+        fill="#E6EDF3"
+        font-size="14">
+        Python
+      </text>
+
+      <rect
+        x="260"
+        y="352"
+        rx="10"
+        width="500"
+        height="16"
+        fill="#21262D"
+      />
+
+      <rect
+        x="260"
+        y="352"
+        rx="10"
+        width="0"
+        height="16"
+        fill="#FFD93D">
+        <animate
+          attributeName="width"
+          from="0"
+          to="45.5"
+          dur="1.2s"
+          fill="freeze"/>
       </rect>
-      <text x="730" y="340" fill="#8B949E" font-size="12">9.1%</text>
+
+      <text
+        x="780"
+        y="366"
+        fill="#8B949E"
+        font-size="12">
+        9.1%
+      </text>
     
-      <text x="60" y="380" fill="#E6EDF3" font-size="14">TSQL</text>
-      <rect x="260" y="366" rx="10" width="450" height="16" fill="#21262D"/>
-      <rect x="260" y="366" rx="10" width="0" height="16" fill="#845EC2">
-        <animate attributeName="width" from="0" to="45.5" dur="1.2s" fill="freeze"/>
+      <text x="60" y="408"
+        fill="#E6EDF3"
+        font-size="14">
+        TSQL
+      </text>
+
+      <rect
+        x="260"
+        y="394"
+        rx="10"
+        width="500"
+        height="16"
+        fill="#21262D"
+      />
+
+      <rect
+        x="260"
+        y="394"
+        rx="10"
+        width="0"
+        height="16"
+        fill="#845EC2">
+        <animate
+          attributeName="width"
+          from="0"
+          to="45.5"
+          dur="1.2s"
+          fill="freeze"/>
       </rect>
-      <text x="730" y="380" fill="#8B949E" font-size="12">9.1%</text>
+
+      <text
+        x="780"
+        y="408"
+        fill="#8B949E"
+        font-size="12">
+        9.1%
+      </text>
     
-      <text x="60" y="420" fill="#E6EDF3" font-size="14">CSS</text>
-      <rect x="260" y="406" rx="10" width="450" height="16" fill="#21262D"/>
-      <rect x="260" y="406" rx="10" width="0" height="16" fill="#FF9671">
-        <animate attributeName="width" from="0" to="45.5" dur="1.2s" fill="freeze"/>
-      </rect>
-      <text x="730" y="420" fill="#8B949E" font-size="12">9.1%</text>
-    
+
+  <!-- DIVISÃO -->
 
   <line
     x1="60"
-    y1="480"
-    x2="940"
-    y2="480"
+    y1="475"
+    x2="1040"
+    y2="475"
     stroke="#30363D"
   />
+
+  <!-- REPOSITÓRIOS -->
 
   <text
     x="60"
     y="500"
     fill="#8B949E"
-    font-size="18"
+    font-size="20"
     font-weight="bold">
-    📂 Todos os Repositórios (11)
+
+    📦 Repositórios Populares
+
   </text>
 
   
-        <text x="60" y="530" fill="#58A6FF" font-size="14">
-          📦 Gerador-de-pastas-e-Excel
+        <rect
+          x="60"
+          y="520"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="537"
+          r="6"
+          fill="#FF6B6B"
+        />
+
+        <text
+          x="95"
+          y="540"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          Gerador-de-pastas-e-Excel
         </text>
 
-        <text x="410" y="530" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="540"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 5
         </text>
 
-        <text x="510" y="530" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="540"
+          fill="#8B949E"
+          font-size="13">
           Python
         </text>
       
-        <text x="60" y="558" fill="#58A6FF" font-size="14">
-          📦 dio-lab-open-source
+        <rect
+          x="60"
+          y="570"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="587"
+          r="6"
+          fill="#6BCB77"
+        />
+
+        <text
+          x="95"
+          y="590"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          dio-lab-open-source
         </text>
 
-        <text x="410" y="558" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="590"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 3
         </text>
 
-        <text x="510" y="558" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="590"
+          fill="#8B949E"
+          font-size="13">
           Jupyter Notebook
         </text>
       
-        <text x="60" y="586" fill="#58A6FF" font-size="14">
-          📦 RafaelaSommer
+        <rect
+          x="60"
+          y="620"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="637"
+          r="6"
+          fill="#4D96FF"
+        />
+
+        <text
+          x="95"
+          y="640"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          RafaelaSommer
         </text>
 
-        <text x="410" y="586" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="640"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 2
         </text>
 
-        <text x="510" y="586" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="640"
+          fill="#8B949E"
+          font-size="13">
           JavaScript
         </text>
       
-        <text x="60" y="614" fill="#58A6FF" font-size="14">
-          📦 GitHub-Profile-Auto-Updater
+        <rect
+          x="60"
+          y="670"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="687"
+          r="6"
+          fill="#FFD93D"
+        />
+
+        <text
+          x="95"
+          y="690"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          GitHub-Profile-Auto-Updater
         </text>
 
-        <text x="410" y="614" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="690"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 1
         </text>
 
-        <text x="510" y="614" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="690"
+          fill="#8B949E"
+          font-size="13">
           JavaScript
         </text>
       
-        <text x="60" y="642" fill="#58A6FF" font-size="14">
-          📦 trilha-net-fundamentos-desafio
+        <rect
+          x="60"
+          y="720"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="737"
+          r="6"
+          fill="#845EC2"
+        />
+
+        <text
+          x="95"
+          y="740"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          trilha-net-fundamentos-desafio
         </text>
 
-        <text x="410" y="642" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="740"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 0
         </text>
 
-        <text x="510" y="642" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="740"
+          fill="#8B949E"
+          font-size="13">
           C#
         </text>
       
-        <text x="60" y="670" fill="#58A6FF" font-size="14">
-          📦 github-readme-stats
+        <rect
+          x="60"
+          y="770"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="787"
+          r="6"
+          fill="#FF9671"
+        />
+
+        <text
+          x="95"
+          y="790"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          github-readme-stats
         </text>
 
-        <text x="410" y="670" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="790"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 0
         </text>
 
-        <text x="510" y="670" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="790"
+          fill="#8B949E"
+          font-size="13">
           JavaScript
         </text>
       
-        <text x="60" y="698" fill="#58A6FF" font-size="14">
-          📦 trilha-net-explorando-desafio
+        <rect
+          x="60"
+          y="820"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="837"
+          r="6"
+          fill="#00C9A7"
+        />
+
+        <text
+          x="95"
+          y="840"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          trilha-net-explorando-desafio
         </text>
 
-        <text x="410" y="698" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="840"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 0
         </text>
 
-        <text x="510" y="698" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="840"
+          fill="#8B949E"
+          font-size="13">
           C#
         </text>
       
-        <text x="60" y="726" fill="#58A6FF" font-size="14">
-          📦 trilha-net-poo-desafio
+        <rect
+          x="60"
+          y="870"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="887"
+          r="6"
+          fill="#C34A36"
+        />
+
+        <text
+          x="95"
+          y="890"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          trilha-net-poo-desafio
         </text>
 
-        <text x="410" y="726" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="890"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 0
         </text>
 
-        <text x="510" y="726" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="890"
+          fill="#8B949E"
+          font-size="13">
           C#
         </text>
       
-        <text x="60" y="754" fill="#58A6FF" font-size="14">
-          📦 trilha-net-banco-de-dados-desafio
+        <rect
+          x="60"
+          y="920"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="937"
+          r="6"
+          fill="#FF6B6B"
+        />
+
+        <text
+          x="95"
+          y="940"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          trilha-net-banco-de-dados-desafio
         </text>
 
-        <text x="410" y="754" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="940"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 0
         </text>
 
-        <text x="510" y="754" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="940"
+          fill="#8B949E"
+          font-size="13">
           TSQL
         </text>
       
-        <text x="60" y="782" fill="#58A6FF" font-size="14">
-          📦 trilha-net-api-desafio
+        <rect
+          x="60"
+          y="970"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="987"
+          r="6"
+          fill="#6BCB77"
+        />
+
+        <text
+          x="95"
+          y="990"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          trilha-net-api-desafio
         </text>
 
-        <text x="410" y="782" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="990"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 0
         </text>
 
-        <text x="510" y="782" fill="#8B949E" font-size="12">
+        <text
+          x="710"
+          y="990"
+          fill="#8B949E"
+          font-size="13">
           C#
         </text>
       
-        <text x="60" y="810" fill="#58A6FF" font-size="14">
-          📦 Agendamento-de-Tarefas
+        <rect
+          x="60"
+          y="1020"
+          rx="12"
+          width="930"
+          height="38"
+          fill="#1C2128"
+          stroke="#30363D"
+        />
+
+        <circle
+          cx="78"
+          cy="1037"
+          r="6"
+          fill="#4D96FF"
+        />
+
+        <text
+          x="95"
+          y="1040"
+          fill="#58A6FF"
+          font-size="14"
+          font-weight="bold">
+          Agendamento-de-Tarefas
         </text>
 
-        <text x="410" y="810" fill="#FFD93D" font-size="14">
+        <text
+          x="580"
+          y="1040"
+          fill="#FFD93D"
+          font-size="13">
           ⭐ 0
         </text>
 
-        <text x="510" y="810" fill="#8B949E" font-size="12">
-          CSS
+        <text
+          x="710"
+          y="1040"
+          fill="#8B949E"
+          font-size="13">
+          JavaScript
         </text>
       
 
