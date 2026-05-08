@@ -160,11 +160,7 @@ Tenho experiência prática na criação de:
 
 👥 **Seguidores:** 348
 
-<<<<<<< HEAD
-🕒 08/05/2026 15:33:01
-=======
-🕒 08/05/2026 15:20:30
->>>>>>> c4177d5ec233da676cf2ad43e48c8e32b69aa3c2
+🕒 08/05/2026 15:43:31
 
 <!--END_SECTION:dynamic-->
 
