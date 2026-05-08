@@ -1,81 +1,109 @@
 
 <svg
-  width="1100"
-  height="1170"
+  width="1000"
+  height="620"
+  viewBox="0 0 1000 620"
+  preserveAspectRatio="xMidYMid meet"
   xmlns="http://www.w3.org/2000/svg">
 
   <defs>
 
     <linearGradient
-      id="bgGradient"
+      id="bg"
       x1="0%"
       y1="0%"
       x2="100%"
       y2="100%">
 
       <stop offset="0%" stop-color="#0D1117"/>
-      <stop offset="100%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#161B22"/>
 
     </linearGradient>
 
+    <filter id="shadow">
+
+      <feDropShadow
+        dx="0"
+        dy="0"
+        stdDeviation="12"
+        flood-color="#00000055"/>
+
+    </filter>
+
   </defs>
+
+  <!-- Background -->
 
   <rect
     width="100%"
     height="100%"
-    fill="url(#bgGradient)"
+    rx="30"
+    fill="url(#bg)"
   />
+
+  <!-- Main Card -->
 
   <rect
     x="20"
     y="20"
-    width="1060"
-    height="1130"
-    rx="25"
+    width="960"
+    height="580"
+    rx="28"
     fill="#161B22"
     stroke="#30363D"
   />
 
-  <!-- TÍTULO -->
+  <!-- Header -->
 
   <text
     x="60"
-    y="85"
+    y="90"
     fill="#58A6FF"
-    font-size="30"
+    font-size="34"
     font-weight="bold">
 
     🚀 GitHub Dashboard
 
   </text>
 
-  <!-- STATS -->
+  <text
+    x="60"
+    y="125"
+    fill="#8B949E"
+    font-size="16">
+
+    Estatísticas e Linguagens Mais Utilizadas
+
+  </text>
+
+  <!-- Stats Cards -->
 
   <rect
     x="60"
-    y="120"
-    rx="18"
-    width="220"
-    height="70"
-    fill="#1C2128"
+    y="170"
+    width="240"
+    height="110"
+    rx="22"
+    fill="#0D1117"
     stroke="#30363D"
+    filter="url(#shadow)"
   />
 
   <text
-    x="80"
-    y="150"
-    fill="#FFD93D"
-    font-size="16">
+    x="90"
+    y="215"
+    fill="#F2CC60"
+    font-size="18">
 
     ⭐ Stars
 
   </text>
 
   <text
-    x="80"
-    y="178"
+    x="90"
+    y="255"
     fill="#FFFFFF"
-    font-size="26"
+    font-size="34"
     font-weight="bold">
 
     11
@@ -83,30 +111,31 @@
   </text>
 
   <rect
-    x="320"
-    y="120"
-    rx="18"
-    width="220"
-    height="70"
-    fill="#1C2128"
+    x="380"
+    y="170"
+    width="240"
+    height="110"
+    rx="22"
+    fill="#0D1117"
     stroke="#30363D"
+    filter="url(#shadow)"
   />
 
   <text
-    x="340"
-    y="150"
-    fill="#DA70D6"
-    font-size="16">
+    x="410"
+    y="215"
+    fill="#D2A8FF"
+    font-size="18">
 
     👥 Seguidores
 
   </text>
 
   <text
-    x="340"
-    y="178"
+    x="410"
+    y="255"
     fill="#FFFFFF"
-    font-size="26"
+    font-size="34"
     font-weight="bold">
 
     348
@@ -114,43 +143,44 @@
   </text>
 
   <rect
-    x="580"
-    y="120"
-    rx="18"
+    x="700"
+    y="170"
     width="220"
-    height="70"
-    fill="#1C2128"
+    height="110"
+    rx="22"
+    fill="#0D1117"
     stroke="#30363D"
+    filter="url(#shadow)"
   />
 
   <text
-    x="600"
-    y="150"
-    fill="#00C9A7"
-    font-size="16">
+    x="730"
+    y="215"
+    fill="#7EE787"
+    font-size="18">
 
-    📂 Repositórios
+    📦 Repositórios
 
   </text>
 
   <text
-    x="600"
-    y="178"
+    x="730"
+    y="255"
     fill="#FFFFFF"
-    font-size="26"
+    font-size="34"
     font-weight="bold">
 
     11
 
   </text>
 
-  <!-- LINGUAGENS -->
+  <!-- Languages Title -->
 
   <text
     x="60"
-    y="220"
-    fill="#8B949E"
-    font-size="18"
+    y="315"
+    fill="#C9D1D9"
+    font-size="22"
     font-weight="bold">
 
     💻 Linguagens Mais Utilizadas
@@ -158,682 +188,319 @@
   </text>
 
   
-      <text x="60" y="240"
+
+      <text
+        x="80"
+        y="340"
         fill="#E6EDF3"
-        font-size="14">
+        font-size="15"
+        font-weight="600">
         C#
       </text>
 
       <rect
-        x="260"
-        y="226"
+        x="220"
+        y="326"
+        width="520"
+        height="18"
         rx="10"
-        width="500"
-        height="16"
         fill="#21262D"
       />
 
       <rect
-        x="260"
-        y="226"
-        rx="10"
+        x="220"
+        y="326"
         width="0"
-        height="16"
-        fill="#FF6B6B">
+        height="18"
+        rx="10"
+        fill="#58A6FF">
+
         <animate
           attributeName="width"
           from="0"
-          to="182"
-          dur="1.2s"
+          to="189.28"
+          dur="1.5s"
           fill="freeze"/>
+
       </rect>
 
       <text
-        x="780"
-        y="240"
+        x="760"
+        y="340"
         fill="#8B949E"
-        font-size="12">
+        font-size="13">
         36.4%
       </text>
+
     
-      <text x="60" y="282"
+
+      <text
+        x="80"
+        y="385"
         fill="#E6EDF3"
-        font-size="14">
+        font-size="15"
+        font-weight="600">
         JavaScript
       </text>
 
       <rect
-        x="260"
-        y="268"
+        x="220"
+        y="371"
+        width="520"
+        height="18"
         rx="10"
-        width="500"
-        height="16"
         fill="#21262D"
       />
 
       <rect
-        x="260"
-        y="268"
-        rx="10"
+        x="220"
+        y="371"
         width="0"
-        height="16"
-        fill="#6BCB77">
+        height="18"
+        rx="10"
+        fill="#7EE787">
+
         <animate
           attributeName="width"
           from="0"
-          to="182"
-          dur="1.2s"
+          to="189.28"
+          dur="1.5s"
           fill="freeze"/>
+
       </rect>
 
       <text
-        x="780"
-        y="282"
+        x="760"
+        y="385"
         fill="#8B949E"
-        font-size="12">
+        font-size="13">
         36.4%
       </text>
+
     
-      <text x="60" y="324"
+
+      <text
+        x="80"
+        y="430"
         fill="#E6EDF3"
-        font-size="14">
+        font-size="15"
+        font-weight="600">
         Jupyter Notebook
       </text>
 
       <rect
-        x="260"
-        y="310"
+        x="220"
+        y="416"
+        width="520"
+        height="18"
         rx="10"
-        width="500"
-        height="16"
         fill="#21262D"
       />
 
       <rect
-        x="260"
-        y="310"
-        rx="10"
+        x="220"
+        y="416"
         width="0"
-        height="16"
-        fill="#4D96FF">
+        height="18"
+        rx="10"
+        fill="#F2CC60">
+
         <animate
           attributeName="width"
           from="0"
-          to="45.5"
-          dur="1.2s"
+          to="47.32"
+          dur="1.5s"
           fill="freeze"/>
+
       </rect>
 
       <text
-        x="780"
-        y="324"
+        x="760"
+        y="430"
         fill="#8B949E"
-        font-size="12">
+        font-size="13">
         9.1%
       </text>
+
     
-      <text x="60" y="366"
+
+      <text
+        x="80"
+        y="475"
         fill="#E6EDF3"
-        font-size="14">
+        font-size="15"
+        font-weight="600">
         Python
       </text>
 
       <rect
-        x="260"
-        y="352"
+        x="220"
+        y="461"
+        width="520"
+        height="18"
         rx="10"
-        width="500"
-        height="16"
         fill="#21262D"
       />
 
       <rect
-        x="260"
-        y="352"
-        rx="10"
+        x="220"
+        y="461"
         width="0"
-        height="16"
-        fill="#FFD93D">
+        height="18"
+        rx="10"
+        fill="#FF7B72">
+
         <animate
           attributeName="width"
           from="0"
-          to="45.5"
-          dur="1.2s"
+          to="47.32"
+          dur="1.5s"
           fill="freeze"/>
+
       </rect>
 
       <text
-        x="780"
-        y="366"
+        x="760"
+        y="475"
         fill="#8B949E"
-        font-size="12">
+        font-size="13">
         9.1%
       </text>
+
     
-      <text x="60" y="408"
+
+      <text
+        x="80"
+        y="520"
         fill="#E6EDF3"
-        font-size="14">
+        font-size="15"
+        font-weight="600">
         TSQL
       </text>
 
       <rect
-        x="260"
-        y="394"
+        x="220"
+        y="506"
+        width="520"
+        height="18"
         rx="10"
-        width="500"
-        height="16"
         fill="#21262D"
       />
 
       <rect
-        x="260"
-        y="394"
-        rx="10"
+        x="220"
+        y="506"
         width="0"
-        height="16"
-        fill="#845EC2">
+        height="18"
+        rx="10"
+        fill="#D2A8FF">
+
         <animate
           attributeName="width"
           from="0"
-          to="45.5"
-          dur="1.2s"
+          to="47.32"
+          dur="1.5s"
           fill="freeze"/>
+
       </rect>
 
       <text
-        x="780"
-        y="408"
+        x="760"
+        y="520"
         fill="#8B949E"
-        font-size="12">
+        font-size="13">
         9.1%
       </text>
+
     
 
-  <!-- DIVISÃO -->
-
-  <line
-    x1="60"
-    y1="475"
-    x2="1040"
-    y2="475"
-    stroke="#30363D"
-  />
-
-  <!-- REPOSITÓRIOS -->
-
-  <text
-    x="60"
-    y="500"
-    fill="#8B949E"
-    font-size="20"
-    font-weight="bold">
-
-    📦 Repositórios Populares
-
-  </text>
+  <!-- Legend -->
 
   
-        <rect
-          x="60"
-          y="520"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
 
-        <circle
-          cx="78"
-          cy="537"
-          r="6"
-          fill="#FF6B6B"
-        />
+      <circle
+        cx="820"
+        cy="335"
+        r="7"
+        fill="#58A6FF"
+      />
 
-        <text
-          x="95"
-          y="540"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          Gerador-de-pastas-e-Excel
-        </text>
+      <text
+        x="840"
+        y="340"
+        fill="#C9D1D9"
+        font-size="14">
+        C#
+      </text>
 
-        <text
-          x="580"
-          y="540"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 5
-        </text>
+    
 
-        <text
-          x="710"
-          y="540"
-          fill="#8B949E"
-          font-size="13">
-          Python
-        </text>
-      
-        <rect
-          x="60"
-          y="570"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
+      <circle
+        cx="820"
+        cy="370"
+        r="7"
+        fill="#7EE787"
+      />
 
-        <circle
-          cx="78"
-          cy="587"
-          r="6"
-          fill="#6BCB77"
-        />
+      <text
+        x="840"
+        y="375"
+        fill="#C9D1D9"
+        font-size="14">
+        JavaScript
+      </text>
 
-        <text
-          x="95"
-          y="590"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          dio-lab-open-source
-        </text>
+    
 
-        <text
-          x="580"
-          y="590"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 3
-        </text>
+      <circle
+        cx="820"
+        cy="405"
+        r="7"
+        fill="#F2CC60"
+      />
 
-        <text
-          x="710"
-          y="590"
-          fill="#8B949E"
-          font-size="13">
-          Jupyter Notebook
-        </text>
-      
-        <rect
-          x="60"
-          y="620"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
+      <text
+        x="840"
+        y="410"
+        fill="#C9D1D9"
+        font-size="14">
+        Jupyter Notebook
+      </text>
 
-        <circle
-          cx="78"
-          cy="637"
-          r="6"
-          fill="#4D96FF"
-        />
+    
 
-        <text
-          x="95"
-          y="640"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          RafaelaSommer
-        </text>
+      <circle
+        cx="820"
+        cy="440"
+        r="7"
+        fill="#FF7B72"
+      />
 
-        <text
-          x="580"
-          y="640"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 2
-        </text>
+      <text
+        x="840"
+        y="445"
+        fill="#C9D1D9"
+        font-size="14">
+        Python
+      </text>
 
-        <text
-          x="710"
-          y="640"
-          fill="#8B949E"
-          font-size="13">
-          JavaScript
-        </text>
-      
-        <rect
-          x="60"
-          y="670"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
+    
 
-        <circle
-          cx="78"
-          cy="687"
-          r="6"
-          fill="#FFD93D"
-        />
+      <circle
+        cx="820"
+        cy="475"
+        r="7"
+        fill="#D2A8FF"
+      />
 
-        <text
-          x="95"
-          y="690"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          GitHub-Profile-Auto-Updater
-        </text>
+      <text
+        x="840"
+        y="480"
+        fill="#C9D1D9"
+        font-size="14">
+        TSQL
+      </text>
 
-        <text
-          x="580"
-          y="690"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 1
-        </text>
-
-        <text
-          x="710"
-          y="690"
-          fill="#8B949E"
-          font-size="13">
-          JavaScript
-        </text>
-      
-        <rect
-          x="60"
-          y="720"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
-
-        <circle
-          cx="78"
-          cy="737"
-          r="6"
-          fill="#845EC2"
-        />
-
-        <text
-          x="95"
-          y="740"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          trilha-net-fundamentos-desafio
-        </text>
-
-        <text
-          x="580"
-          y="740"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 0
-        </text>
-
-        <text
-          x="710"
-          y="740"
-          fill="#8B949E"
-          font-size="13">
-          C#
-        </text>
-      
-        <rect
-          x="60"
-          y="770"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
-
-        <circle
-          cx="78"
-          cy="787"
-          r="6"
-          fill="#FF9671"
-        />
-
-        <text
-          x="95"
-          y="790"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          github-readme-stats
-        </text>
-
-        <text
-          x="580"
-          y="790"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 0
-        </text>
-
-        <text
-          x="710"
-          y="790"
-          fill="#8B949E"
-          font-size="13">
-          JavaScript
-        </text>
-      
-        <rect
-          x="60"
-          y="820"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
-
-        <circle
-          cx="78"
-          cy="837"
-          r="6"
-          fill="#00C9A7"
-        />
-
-        <text
-          x="95"
-          y="840"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          trilha-net-explorando-desafio
-        </text>
-
-        <text
-          x="580"
-          y="840"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 0
-        </text>
-
-        <text
-          x="710"
-          y="840"
-          fill="#8B949E"
-          font-size="13">
-          C#
-        </text>
-      
-        <rect
-          x="60"
-          y="870"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
-
-        <circle
-          cx="78"
-          cy="887"
-          r="6"
-          fill="#C34A36"
-        />
-
-        <text
-          x="95"
-          y="890"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          trilha-net-poo-desafio
-        </text>
-
-        <text
-          x="580"
-          y="890"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 0
-        </text>
-
-        <text
-          x="710"
-          y="890"
-          fill="#8B949E"
-          font-size="13">
-          C#
-        </text>
-      
-        <rect
-          x="60"
-          y="920"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
-
-        <circle
-          cx="78"
-          cy="937"
-          r="6"
-          fill="#FF6B6B"
-        />
-
-        <text
-          x="95"
-          y="940"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          trilha-net-banco-de-dados-desafio
-        </text>
-
-        <text
-          x="580"
-          y="940"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 0
-        </text>
-
-        <text
-          x="710"
-          y="940"
-          fill="#8B949E"
-          font-size="13">
-          TSQL
-        </text>
-      
-        <rect
-          x="60"
-          y="970"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
-
-        <circle
-          cx="78"
-          cy="987"
-          r="6"
-          fill="#6BCB77"
-        />
-
-        <text
-          x="95"
-          y="990"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          trilha-net-api-desafio
-        </text>
-
-        <text
-          x="580"
-          y="990"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 0
-        </text>
-
-        <text
-          x="710"
-          y="990"
-          fill="#8B949E"
-          font-size="13">
-          C#
-        </text>
-      
-        <rect
-          x="60"
-          y="1020"
-          rx="12"
-          width="930"
-          height="38"
-          fill="#1C2128"
-          stroke="#30363D"
-        />
-
-        <circle
-          cx="78"
-          cy="1037"
-          r="6"
-          fill="#4D96FF"
-        />
-
-        <text
-          x="95"
-          y="1040"
-          fill="#58A6FF"
-          font-size="14"
-          font-weight="bold">
-          Agendamento-de-Tarefas
-        </text>
-
-        <text
-          x="580"
-          y="1040"
-          fill="#FFD93D"
-          font-size="13">
-          ⭐ 0
-        </text>
-
-        <text
-          x="710"
-          y="1040"
-          fill="#8B949E"
-          font-size="13">
-          JavaScript
-        </text>
-      
+    
 
 </svg>
