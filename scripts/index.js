@@ -43,7 +43,7 @@ function shouldRun() {
 
   const now = Date.now();
 
-  // minutos -> ms
+  // minutos → ms
   const interval =
     (SETTINGS.interval_minutes || 30)
     * 60
@@ -68,18 +68,22 @@ function shouldRun() {
   }
 
   const data = JSON.parse(
-    fs.readFileSync(file, "utf8")
+    fs.readFileSync(
+      file,
+      "utf8"
+    )
   );
 
   const diff =
     now - data.lastUpdate;
 
-  // ainda não chegou no intervalo
+  // ainda não chegou no tempo
   if (diff < interval) {
 
     const remaining =
       Math.ceil(
-        (interval - diff) / 60000
+        (interval - diff)
+        / 60000
       );
 
     console.log(
@@ -92,7 +96,9 @@ function shouldRun() {
 
   // atualiza timestamp
   fs.writeFileSync(
+
     file,
+
     JSON.stringify(
       {
         lastUpdate: now
@@ -100,6 +106,7 @@ function shouldRun() {
       null,
       2
     )
+
   );
 
   return true;
@@ -324,28 +331,9 @@ function commit() {
       }
     );
 
-    // ✅ verifica alterações
-    const status =
-      execSync(
-        "git status --porcelain",
-        {
-          cwd: ROOT
-        }
-      )
-      .toString();
-
-    if (!status.trim()) {
-
-      console.log(
-        "🟡 Nenhuma alteração"
-      );
-
-      return;
-
-    }
-
+    // ✅ commit mesmo sem mudanças
     execSync(
-      `git commit -m "🤖 update ${Date.now()}"`,
+      `git commit --allow-empty -m "🤖 update ${Date.now()}"`,
       {
         cwd: ROOT,
         stdio: "inherit"
