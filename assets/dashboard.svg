@@ -1,9 +1,8 @@
 
 <svg
   width="1000"
-  height="700"
-  viewBox="0 0 1000 700"
-  preserveAspectRatio="xMidYMid meet"
+  height="610"
+  viewBox="0 0 1000 610"
   xmlns="http://www.w3.org/2000/svg">
 
   <defs>
@@ -20,16 +19,6 @@
 
     </linearGradient>
 
-    <filter id="shadow">
-
-      <feDropShadow
-        dx="0"
-        dy="0"
-        stdDeviation="12"
-        flood-color="#00000055"/>
-
-    </filter>
-
   </defs>
 
   <!-- Background -->
@@ -37,18 +26,18 @@
   <rect
     width="100%"
     height="100%"
-    rx="30"
+    rx="24"
     fill="url(#bg)"
   />
 
-  <!-- Main Card -->
+  <!-- Card -->
 
   <rect
     x="20"
     y="20"
     width="960"
-    height="660"
-    rx="28"
+    height="570"
+    rx="24"
     fill="#161B22"
     stroke="#30363D"
   />
@@ -56,54 +45,57 @@
   <!-- Header -->
 
   <text
-    x="60"
-    y="90"
+    x="50"
+    y="70"
     fill="#58A6FF"
-    font-size="34"
+    font-size="30"
+    font-family="Arial"
     font-weight="bold">
 
-    🚀 GitHub Dashboard
+    GitHub Dashboard
 
   </text>
 
   <text
-    x="60"
-    y="125"
+    x="50"
+    y="105"
     fill="#8B949E"
-    font-size="16">
+    font-size="15"
+    font-family="Arial">
 
     Estatísticas e Linguagens Mais Utilizadas
 
   </text>
 
-  <!-- Stats Cards -->
+  <!-- Stats -->
 
   <rect
-    x="60"
-    y="170"
-    width="240"
-    height="110"
-    rx="22"
+    x="50"
+    y="140"
+    width="250"
+    height="90"
+    rx="18"
     fill="#0D1117"
     stroke="#30363D"
-    filter="url(#shadow)"
   />
 
   <text
-    x="90"
-    y="215"
+    x="75"
+    y="178"
     fill="#F2CC60"
-    font-size="18">
+    font-size="16"
+    font-family="Arial">
 
-    ⭐ Stars
+    Stars
 
   </text>
 
   <text
-    x="90"
-    y="255"
+    x="75"
+    y="210"
     fill="#FFFFFF"
-    font-size="34"
+    font-size="28"
+    font-family="Arial"
     font-weight="bold">
 
     11
@@ -111,31 +103,32 @@
   </text>
 
   <rect
-    x="380"
-    y="170"
-    width="240"
-    height="110"
-    rx="22"
+    x="370"
+    y="140"
+    width="250"
+    height="90"
+    rx="18"
     fill="#0D1117"
     stroke="#30363D"
-    filter="url(#shadow)"
   />
 
   <text
-    x="410"
-    y="215"
+    x="395"
+    y="178"
     fill="#D2A8FF"
-    font-size="18">
+    font-size="16"
+    font-family="Arial">
 
-    👥 Seguidores
+    Seguidores
 
   </text>
 
   <text
-    x="410"
-    y="255"
+    x="395"
+    y="210"
     fill="#FFFFFF"
-    font-size="34"
+    font-size="28"
+    font-family="Arial"
     font-weight="bold">
 
     357
@@ -143,362 +136,265 @@
   </text>
 
   <rect
-    x="700"
-    y="170"
-    width="220"
-    height="110"
-    rx="22"
+    x="690"
+    y="140"
+    width="250"
+    height="90"
+    rx="18"
     fill="#0D1117"
     stroke="#30363D"
-    filter="url(#shadow)"
   />
 
   <text
-    x="730"
-    y="215"
+    x="715"
+    y="178"
     fill="#7EE787"
-    font-size="18">
+    font-size="16"
+    font-family="Arial">
 
-    📦 Repositórios
+    Repositórios
 
   </text>
 
   <text
-    x="730"
-    y="255"
+    x="715"
+    y="210"
     fill="#FFFFFF"
-    font-size="34"
+    font-size="28"
+    font-family="Arial"
     font-weight="bold">
 
     11
 
   </text>
 
-  <!-- Languages Title -->
+  <!-- Languages -->
 
   <text
-    x="60"
-    y="315"
+    x="50"
+    y="275"
     fill="#C9D1D9"
     font-size="22"
+    font-family="Arial"
     font-weight="bold">
 
-    💻 Linguagens Mais Utilizadas
+    Linguagens Utilizadas
 
   </text>
 
   
 
       <text
-        x="80"
-        y="340"
+        x="60"
+        y="310"
         fill="#E6EDF3"
-        font-size="15"
+        font-size="14"
+        font-family="Arial"
         font-weight="600">
+
         C#
+
       </text>
 
       <rect
-        x="220"
-        y="326"
+        x="200"
+        y="298"
         width="520"
-        height="18"
-        rx="10"
+        height="14"
+        rx="7"
         fill="#21262D"
       />
 
       <rect
-        x="220"
-        y="326"
-        width="0"
-        height="18"
-        rx="10"
-        fill="#400800">
-
-        <animate
-          attributeName="width"
-          from="0"
-          to="189.28"
-          dur="1.5s"
-          fill="freeze"/>
-
-      </rect>
-
-      <text
-        x="760"
-        y="340"
-        fill="#8B949E"
-        font-size="13">
-        36.4%
-      </text>
-
-    
-
-      <text
-        x="80"
-        y="385"
-        fill="#E6EDF3"
-        font-size="15"
-        font-weight="600">
-        JavaScript
-      </text>
-
-      <rect
-        x="220"
-        y="371"
-        width="520"
-        height="18"
-        rx="10"
-        fill="#21262D"
-      />
-
-      <rect
-        x="220"
-        y="371"
-        width="0"
-        height="18"
-        rx="10"
-        fill="#ada17a">
-
-        <animate
-          attributeName="width"
-          from="0"
-          to="189.28"
-          dur="1.5s"
-          fill="freeze"/>
-
-      </rect>
-
-      <text
-        x="760"
-        y="385"
-        fill="#8B949E"
-        font-size="13">
-        36.4%
-      </text>
-
-    
-
-      <text
-        x="80"
-        y="430"
-        fill="#E6EDF3"
-        font-size="15"
-        font-weight="600">
-        Jupyter Notebook
-      </text>
-
-      <rect
-        x="220"
-        y="416"
-        width="520"
-        height="18"
-        rx="10"
-        fill="#21262D"
-      />
-
-      <rect
-        x="220"
-        y="416"
-        width="0"
-        height="18"
-        rx="10"
-        fill="#ceb582">
-
-        <animate
-          attributeName="width"
-          from="0"
-          to="47.32"
-          dur="1.5s"
-          fill="freeze"/>
-
-      </rect>
-
-      <text
-        x="760"
-        y="430"
-        fill="#8B949E"
-        font-size="13">
-        9.1%
-      </text>
-
-    
-
-      <text
-        x="80"
-        y="475"
-        fill="#E6EDF3"
-        font-size="15"
-        font-weight="600">
-        Python
-      </text>
-
-      <rect
-        x="220"
-        y="461"
-        width="520"
-        height="18"
-        rx="10"
-        fill="#21262D"
-      />
-
-      <rect
-        x="220"
-        y="461"
-        width="0"
-        height="18"
-        rx="10"
-        fill="#fc1c63">
-
-        <animate
-          attributeName="width"
-          from="0"
-          to="47.32"
-          dur="1.5s"
-          fill="freeze"/>
-
-      </rect>
-
-      <text
-        x="760"
-        y="475"
-        fill="#8B949E"
-        font-size="13">
-        9.1%
-      </text>
-
-    
-
-      <text
-        x="80"
-        y="520"
-        fill="#E6EDF3"
-        font-size="15"
-        font-weight="600">
-        TSQL
-      </text>
-
-      <rect
-        x="220"
-        y="506"
-        width="520"
-        height="18"
-        rx="10"
-        fill="#21262D"
-      />
-
-      <rect
-        x="220"
-        y="506"
-        width="0"
-        height="18"
-        rx="10"
-        fill="#da7027">
-
-        <animate
-          attributeName="width"
-          from="0"
-          to="47.32"
-          dur="1.5s"
-          fill="freeze"/>
-
-      </rect>
-
-      <text
-        x="760"
-        y="520"
-        fill="#8B949E"
-        font-size="13">
-        9.1%
-      </text>
-
-    
-
-  <!-- Legend -->
-
-  
-
-      <circle
-        cx="820"
-        cy="335"
-        r="7"
+        x="200"
+        y="298"
+        width="189.28"
+        height="14"
+        rx="7"
         fill="#400800"
       />
 
       <text
-        x="840"
-        y="340"
-        fill="#C9D1D9"
-        font-size="14">
-        C#
+        x="740"
+        y="310"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        36.4%
+
       </text>
 
     
 
-      <circle
-        cx="820"
-        cy="370"
-        r="7"
+      <text
+        x="60"
+        y="345"
+        fill="#E6EDF3"
+        font-size="14"
+        font-family="Arial"
+        font-weight="600">
+
+        JavaScript
+
+      </text>
+
+      <rect
+        x="200"
+        y="333"
+        width="520"
+        height="14"
+        rx="7"
+        fill="#21262D"
+      />
+
+      <rect
+        x="200"
+        y="333"
+        width="189.28"
+        height="14"
+        rx="7"
         fill="#ada17a"
       />
 
       <text
-        x="840"
-        y="375"
-        fill="#C9D1D9"
-        font-size="14">
-        JavaScript
+        x="740"
+        y="345"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        36.4%
+
       </text>
 
     
 
-      <circle
-        cx="820"
-        cy="405"
-        r="7"
+      <text
+        x="60"
+        y="380"
+        fill="#E6EDF3"
+        font-size="14"
+        font-family="Arial"
+        font-weight="600">
+
+        Jupyter Notebook
+
+      </text>
+
+      <rect
+        x="200"
+        y="368"
+        width="520"
+        height="14"
+        rx="7"
+        fill="#21262D"
+      />
+
+      <rect
+        x="200"
+        y="368"
+        width="47.32"
+        height="14"
+        rx="7"
         fill="#ceb582"
       />
 
       <text
-        x="840"
-        y="410"
-        fill="#C9D1D9"
-        font-size="14">
-        Jupyter Notebook
+        x="740"
+        y="380"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        9.1%
+
       </text>
 
     
 
-      <circle
-        cx="820"
-        cy="440"
-        r="7"
+      <text
+        x="60"
+        y="415"
+        fill="#E6EDF3"
+        font-size="14"
+        font-family="Arial"
+        font-weight="600">
+
+        Python
+
+      </text>
+
+      <rect
+        x="200"
+        y="403"
+        width="520"
+        height="14"
+        rx="7"
+        fill="#21262D"
+      />
+
+      <rect
+        x="200"
+        y="403"
+        width="47.32"
+        height="14"
+        rx="7"
         fill="#fc1c63"
       />
 
       <text
-        x="840"
-        y="445"
-        fill="#C9D1D9"
-        font-size="14">
-        Python
+        x="740"
+        y="415"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        9.1%
+
       </text>
 
     
 
-      <circle
-        cx="820"
-        cy="475"
-        r="7"
+      <text
+        x="60"
+        y="450"
+        fill="#E6EDF3"
+        font-size="14"
+        font-family="Arial"
+        font-weight="600">
+
+        TSQL
+
+      </text>
+
+      <rect
+        x="200"
+        y="438"
+        width="520"
+        height="14"
+        rx="7"
+        fill="#21262D"
+      />
+
+      <rect
+        x="200"
+        y="438"
+        width="47.32"
+        height="14"
+        rx="7"
         fill="#da7027"
       />
 
       <text
-        x="840"
-        y="480"
-        fill="#C9D1D9"
-        font-size="14">
-        TSQL
+        x="740"
+        y="450"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        9.1%
+
       </text>
 
     

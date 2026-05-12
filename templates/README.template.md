@@ -149,7 +149,10 @@ Tenho experiência prática na criação de:
 # 📊 Dashboard
 
 <!-- Dashboard gerado automaticamente -->
-![Dashboard](./assets/dashboard.svg)
+<img
+  src="./assets/dashboard.svg"
+  width="100%" 
+/>
 
 ---
 

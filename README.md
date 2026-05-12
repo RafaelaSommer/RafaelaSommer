@@ -149,16 +149,17 @@ Tenho experiência prática na criação de:
 # 📊 Dashboard
 
 <!-- Dashboard gerado automaticamente -->
-![Dashboard](./assets/dashboard.svg)
+<img
+  src="./assets/dashboard.svg"
+  width="100%" 
+/>
 
 ---
 
 ## 🤖 Atualização Automática do Perfil
 <!--START_SECTION:dynamic-->
 
-🕒 Última atualização: 12/05/2026 15:23:38
-
-⏭ Próxima atualização: 12/05/2026 15:53:38
+🕒 Última atualização: 12/05/2026 15:39:14
 
 <!--END_SECTION:dynamic-->
 

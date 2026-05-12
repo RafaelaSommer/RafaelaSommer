@@ -17,7 +17,6 @@ function getLanguageColor(language) {
 
 }
 
-// Gera cor automática caso a linguagem não exista
 function generateColorFromString(str) {
 
   let hash = 0;
@@ -58,9 +57,16 @@ function generateDashboard(data) {
 
   const width = 1000;
 
-  // ALTURA DINÂMICA
+  // LIMITA ALTURA PARA O GITHUB NÃO QUEBRAR
+  const maxLanguages = 12;
+
+  const sortedLang =
+    Object.entries(languages)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, maxLanguages);
+
   const height =
-    450 + (Object.keys(languages).length * 50);
+    420 + (sortedLang.length * 38);
 
   const totalRepos = repos.length;
 
@@ -68,16 +74,9 @@ function generateDashboard(data) {
     Object.values(languages)
       .reduce((a, b) => a + b, 0);
 
-  // TODAS AS LINGUAGENS
-  const sortedLang =
-    Object.entries(languages)
-      .sort((a, b) => b[1] - a[1]);
-
   let progressBars = "";
-  let legend = "";
 
-  let y = 340;
-  let legendY = 340;
+  let y = 310;
 
   sortedLang.forEach(([lang, value]) => {
 
@@ -95,71 +94,49 @@ function generateDashboard(data) {
     progressBars += `
 
       <text
-        x="80"
+        x="60"
         y="${y}"
         fill="#E6EDF3"
-        font-size="15"
+        font-size="14"
+        font-family="Arial"
         font-weight="600">
+
         ${lang}
+
       </text>
 
       <rect
-        x="220"
-        y="${y - 14}"
+        x="200"
+        y="${y - 12}"
         width="520"
-        height="18"
-        rx="10"
+        height="14"
+        rx="7"
         fill="#21262D"
       />
 
       <rect
-        x="220"
-        y="${y - 14}"
-        width="0"
-        height="18"
-        rx="10"
-        fill="${color}">
-
-        <animate
-          attributeName="width"
-          from="0"
-          to="${barWidth}"
-          dur="1.5s"
-          fill="freeze"/>
-
-      </rect>
-
-      <text
-        x="760"
-        y="${y}"
-        fill="#8B949E"
-        font-size="13">
-        ${percent}%
-      </text>
-
-    `;
-
-    legend += `
-
-      <circle
-        cx="820"
-        cy="${legendY - 5}"
-        r="7"
+        x="200"
+        y="${y - 12}"
+        width="${barWidth}"
+        height="14"
+        rx="7"
         fill="${color}"
       />
 
       <text
-        x="840"
-        y="${legendY}"
-        fill="#C9D1D9"
-        font-size="14">
-        ${lang}
+        x="740"
+        y="${y}"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        ${percent}%
+
       </text>
 
     `;
 
-    y += 45;
-    legendY += 35;
+    y += 35;
 
   });
 
@@ -168,7 +145,6 @@ function generateDashboard(data) {
   width="${width}"
   height="${height}"
   viewBox="0 0 ${width} ${height}"
-  preserveAspectRatio="xMidYMid meet"
   xmlns="http://www.w3.org/2000/svg">
 
   <defs>
@@ -185,16 +161,6 @@ function generateDashboard(data) {
 
     </linearGradient>
 
-    <filter id="shadow">
-
-      <feDropShadow
-        dx="0"
-        dy="0"
-        stdDeviation="12"
-        flood-color="#00000055"/>
-
-    </filter>
-
   </defs>
 
   <!-- Background -->
@@ -202,18 +168,18 @@ function generateDashboard(data) {
   <rect
     width="100%"
     height="100%"
-    rx="30"
+    rx="24"
     fill="url(#bg)"
   />
 
-  <!-- Main Card -->
+  <!-- Card -->
 
   <rect
     x="20"
     y="20"
     width="960"
     height="${height - 40}"
-    rx="28"
+    rx="24"
     fill="#161B22"
     stroke="#30363D"
   />
@@ -221,54 +187,57 @@ function generateDashboard(data) {
   <!-- Header -->
 
   <text
-    x="60"
-    y="90"
+    x="50"
+    y="70"
     fill="#58A6FF"
-    font-size="34"
+    font-size="30"
+    font-family="Arial"
     font-weight="bold">
 
-    🚀 GitHub Dashboard
+    GitHub Dashboard
 
   </text>
 
   <text
-    x="60"
-    y="125"
+    x="50"
+    y="105"
     fill="#8B949E"
-    font-size="16">
+    font-size="15"
+    font-family="Arial">
 
     Estatísticas e Linguagens Mais Utilizadas
 
   </text>
 
-  <!-- Stats Cards -->
+  <!-- Stats -->
 
   <rect
-    x="60"
-    y="170"
-    width="240"
-    height="110"
-    rx="22"
+    x="50"
+    y="140"
+    width="250"
+    height="90"
+    rx="18"
     fill="#0D1117"
     stroke="#30363D"
-    filter="url(#shadow)"
   />
 
   <text
-    x="90"
-    y="215"
+    x="75"
+    y="178"
     fill="#F2CC60"
-    font-size="18">
+    font-size="16"
+    font-family="Arial">
 
-    ⭐ Stars
+    Stars
 
   </text>
 
   <text
-    x="90"
-    y="255"
+    x="75"
+    y="210"
     fill="#FFFFFF"
-    font-size="34"
+    font-size="28"
+    font-family="Arial"
     font-weight="bold">
 
     ${stars}
@@ -276,31 +245,32 @@ function generateDashboard(data) {
   </text>
 
   <rect
-    x="380"
-    y="170"
-    width="240"
-    height="110"
-    rx="22"
+    x="370"
+    y="140"
+    width="250"
+    height="90"
+    rx="18"
     fill="#0D1117"
     stroke="#30363D"
-    filter="url(#shadow)"
   />
 
   <text
-    x="410"
-    y="215"
+    x="395"
+    y="178"
     fill="#D2A8FF"
-    font-size="18">
+    font-size="16"
+    font-family="Arial">
 
-    👥 Seguidores
+    Seguidores
 
   </text>
 
   <text
-    x="410"
-    y="255"
+    x="395"
+    y="210"
     fill="#FFFFFF"
-    font-size="34"
+    font-size="28"
+    font-family="Arial"
     font-weight="bold">
 
     ${followers}
@@ -308,55 +278,53 @@ function generateDashboard(data) {
   </text>
 
   <rect
-    x="700"
-    y="170"
-    width="220"
-    height="110"
-    rx="22"
+    x="690"
+    y="140"
+    width="250"
+    height="90"
+    rx="18"
     fill="#0D1117"
     stroke="#30363D"
-    filter="url(#shadow)"
   />
 
   <text
-    x="730"
-    y="215"
+    x="715"
+    y="178"
     fill="#7EE787"
-    font-size="18">
+    font-size="16"
+    font-family="Arial">
 
-    📦 Repositórios
+    Repositórios
 
   </text>
 
   <text
-    x="730"
-    y="255"
+    x="715"
+    y="210"
     fill="#FFFFFF"
-    font-size="34"
+    font-size="28"
+    font-family="Arial"
     font-weight="bold">
 
     ${totalRepos}
 
   </text>
 
-  <!-- Languages Title -->
+  <!-- Languages -->
 
   <text
-    x="60"
-    y="315"
+    x="50"
+    y="275"
     fill="#C9D1D9"
     font-size="22"
+    font-family="Arial"
     font-weight="bold">
 
-    💻 Linguagens Mais Utilizadas
+    Linguagens Utilizadas
 
   </text>
 
   ${progressBars}
-
-  <!-- Legend -->
-
-  ${legend}
 
 </svg>
 `;
