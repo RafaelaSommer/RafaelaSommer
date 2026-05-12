@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 require("dotenv").config();
 
 const fs = require("fs");
@@ -22,8 +23,87 @@ const TIMEZONE = SETTINGS.timezone;
 const TOKEN = process.env.GITHUB_TOKEN;
 
 if (!TOKEN) {
-  console.error("❌ GITHUB_TOKEN não encontrado");
+
+  console.error(
+    "❌ GITHUB_TOKEN não encontrado"
+  );
+
   process.exit(1);
+
+}
+
+// ⏱ Controle de intervalo
+function shouldRun() {
+
+  const file =
+    path.join(
+      ROOT,
+      ".github/last-update.json"
+    );
+
+  const now = Date.now();
+
+  // minutos -> ms
+  const interval =
+    (SETTINGS.interval_minutes || 30)
+    * 60
+    * 1000;
+
+  // arquivo não existe
+  if (!fs.existsSync(file)) {
+
+    fs.writeFileSync(
+      file,
+      JSON.stringify(
+        {
+          lastUpdate: now
+        },
+        null,
+        2
+      )
+    );
+
+    return true;
+
+  }
+
+  const data = JSON.parse(
+    fs.readFileSync(file, "utf8")
+  );
+
+  const diff =
+    now - data.lastUpdate;
+
+  // ainda não chegou no intervalo
+  if (diff < interval) {
+
+    const remaining =
+      Math.ceil(
+        (interval - diff) / 60000
+      );
+
+    console.log(
+      `⏳ Aguarde ${remaining} minuto(s)`
+    );
+
+    return false;
+
+  }
+
+  // atualiza timestamp
+  fs.writeFileSync(
+    file,
+    JSON.stringify(
+      {
+        lastUpdate: now
+      },
+      null,
+      2
+    )
+  );
+
+  return true;
+
 }
 
 // 🔧 Configura Git
@@ -33,25 +113,35 @@ function configureGit() {
 
     execSync(
       `git config user.name "${SETTINGS.gitUser}"`,
-      { cwd: ROOT }
+      {
+        cwd: ROOT
+      }
     );
 
     execSync(
       `git config user.email "${SETTINGS.gitEmail}"`,
-      { cwd: ROOT }
+      {
+        cwd: ROOT
+      }
     );
 
+    // ✅ sem token na URL
     const repo =
-      `https://${TOKEN}@github.com/${USER}/${USER}.git`;
+      `https://github.com/${USER}/${USER}.git`;
 
     execSync(
       `git remote set-url origin ${repo}`,
-      { cwd: ROOT }
+      {
+        cwd: ROOT
+      }
     );
 
-  } catch {
+  } catch (err) {
 
-    console.log("git já configurado");
+    console.error(
+      "❌ erro ao configurar git:",
+      err.message
+    );
 
   }
 
@@ -70,7 +160,7 @@ function syncRepo() {
       }
     );
 
-  } catch {
+  } catch (err) {
 
     console.log(
       "⚠️ erro no pull (ignorado)"
@@ -101,6 +191,7 @@ async function fetchGitHub() {
           nodes {
 
             name
+
             stargazerCount
 
             primaryLanguage {
@@ -130,7 +221,30 @@ async function fetchGitHub() {
 
   );
 
+  // ✅ valida erros da API
+  if (res.data.errors) {
+
+    throw new Error(
+      JSON.stringify(
+        res.data.errors,
+        null,
+        2
+      )
+    );
+
+  }
+
   return res.data.data.user;
+
+}
+
+// 🔐 Escapa regex
+function escapeRegex(str) {
+
+  return str.replace(
+    /[.*+?^${}()|[\]\\]/g,
+    "\\$&"
+  );
 
 }
 
@@ -159,7 +273,7 @@ function updateReadme() {
     DateTime.now()
       .setZone(TIMEZONE);
 
-  // ⏭ Próxima atualização
+  // ⏭ próxima atualização
   const nextUpdate =
     now.plus({
       minutes:
@@ -179,7 +293,7 @@ function updateReadme() {
     template.replace(
 
       new RegExp(
-        `${start}[\\s\\S]*${end}`
+        `${escapeRegex(start)}[\\s\\S]*${escapeRegex(end)}`
       ),
 
       newBlock
@@ -187,8 +301,11 @@ function updateReadme() {
     );
 
   fs.writeFileSync(
+
     path.join(ROOT, "README.md"),
+
     updated
+
   );
 
 }
@@ -202,11 +319,33 @@ function commit() {
 
     execSync(
       "git add .",
-      { cwd: ROOT }
+      {
+        cwd: ROOT
+      }
     );
 
+    // ✅ verifica alterações
+    const status =
+      execSync(
+        "git status --porcelain",
+        {
+          cwd: ROOT
+        }
+      )
+      .toString();
+
+    if (!status.trim()) {
+
+      console.log(
+        "🟡 Nenhuma alteração"
+      );
+
+      return;
+
+    }
+
     execSync(
-      `git commit --allow-empty -m "🤖 update ${Date.now()}"`,
+      `git commit -m "🤖 update ${Date.now()}"`,
       {
         cwd: ROOT,
         stdio: "inherit"
@@ -239,6 +378,11 @@ function commit() {
 // 🧠 MAIN
 async function main() {
 
+  // ⏱ respeita interval_minutes
+  if (!shouldRun()) {
+    return;
+  }
+
   configureGit();
 
   const user =
@@ -252,9 +396,12 @@ async function main() {
 
   const stars =
     repos.reduce(
+
       (a, r) =>
         a + r.stargazerCount,
+
       0
+
     );
 
   // 💻 Linguagens
@@ -300,4 +447,11 @@ async function main() {
 
 }
 
-main();
+main().catch(err => {
+
+  console.error(
+    "❌ erro fatal:",
+    err.message
+  );
+
+});
