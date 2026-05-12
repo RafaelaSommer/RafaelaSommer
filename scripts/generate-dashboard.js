@@ -1,14 +1,15 @@
 const fs = require("fs");
 const path = require("path");
+const langColors = require("github-lang-colors");
 
-const COLORS = [
-  "#58A6FF",
-  "#7EE787",
-  "#F2CC60",
-  "#FF7B72",
-  "#D2A8FF",
-  "#FFA657"
-];
+function getLanguageColor(language) {
+
+  return (
+    langColors[language]?.color ||
+    "#8B949E"
+  );
+
+}
 
 function generateDashboard(data) {
 
@@ -20,7 +21,7 @@ function generateDashboard(data) {
   } = data;
 
   const width = 1000;
-  const height = 620;
+  const height = 700;
 
   const totalRepos = repos.length;
 
@@ -28,10 +29,10 @@ function generateDashboard(data) {
     Object.values(languages)
       .reduce((a, b) => a + b, 0);
 
+  // REMOVE O LIMITE DE 6
   const sortedLang =
     Object.entries(languages)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, 6);
+      .sort((a, b) => b[1] - a[1]);
 
   let progressBars = "";
   let legend = "";
@@ -47,7 +48,7 @@ function generateDashboard(data) {
         : 0;
 
     const color =
-      COLORS[index % COLORS.length];
+      getLanguageColor(lang);
 
     const barWidth =
       (percent / 100) * 520;
@@ -123,11 +124,15 @@ function generateDashboard(data) {
 
   });
 
+  // ALTURA DINÂMICA
+  const dynamicHeight =
+    Math.max(620, 380 + sortedLang.length * 50);
+
   const svg = `
 <svg
   width="${width}"
-  height="${height}"
-  viewBox="0 0 ${width} ${height}"
+  height="${dynamicHeight}"
+  viewBox="0 0 ${width} ${dynamicHeight}"
   preserveAspectRatio="xMidYMid meet"
   xmlns="http://www.w3.org/2000/svg">
 
@@ -157,8 +162,6 @@ function generateDashboard(data) {
 
   </defs>
 
-  <!-- Background -->
-
   <rect
     width="100%"
     height="100%"
@@ -166,19 +169,15 @@ function generateDashboard(data) {
     fill="url(#bg)"
   />
 
-  <!-- Main Card -->
-
   <rect
     x="20"
     y="20"
     width="960"
-    height="580"
+    height="${dynamicHeight - 40}"
     rx="28"
     fill="#161B22"
     stroke="#30363D"
   />
-
-  <!-- Header -->
 
   <text
     x="60"
@@ -201,7 +200,7 @@ function generateDashboard(data) {
 
   </text>
 
-  <!-- Stats Cards -->
+  <!-- Stats -->
 
   <rect
     x="60"
@@ -211,7 +210,6 @@ function generateDashboard(data) {
     rx="22"
     fill="#0D1117"
     stroke="#30363D"
-    filter="url(#shadow)"
   />
 
   <text
@@ -219,9 +217,7 @@ function generateDashboard(data) {
     y="215"
     fill="#F2CC60"
     font-size="18">
-
     ⭐ Stars
-
   </text>
 
   <text
@@ -230,9 +226,7 @@ function generateDashboard(data) {
     fill="#FFFFFF"
     font-size="34"
     font-weight="bold">
-
     ${stars}
-
   </text>
 
   <rect
@@ -243,7 +237,6 @@ function generateDashboard(data) {
     rx="22"
     fill="#0D1117"
     stroke="#30363D"
-    filter="url(#shadow)"
   />
 
   <text
@@ -251,9 +244,7 @@ function generateDashboard(data) {
     y="215"
     fill="#D2A8FF"
     font-size="18">
-
     👥 Seguidores
-
   </text>
 
   <text
@@ -262,9 +253,7 @@ function generateDashboard(data) {
     fill="#FFFFFF"
     font-size="34"
     font-weight="bold">
-
     ${followers}
-
   </text>
 
   <rect
@@ -275,7 +264,6 @@ function generateDashboard(data) {
     rx="22"
     fill="#0D1117"
     stroke="#30363D"
-    filter="url(#shadow)"
   />
 
   <text
@@ -283,9 +271,7 @@ function generateDashboard(data) {
     y="215"
     fill="#7EE787"
     font-size="18">
-
     📦 Repositórios
-
   </text>
 
   <text
@@ -294,12 +280,8 @@ function generateDashboard(data) {
     fill="#FFFFFF"
     font-size="34"
     font-weight="bold">
-
     ${totalRepos}
-
   </text>
-
-  <!-- Languages Title -->
 
   <text
     x="60"
@@ -313,8 +295,6 @@ function generateDashboard(data) {
   </text>
 
   ${progressBars}
-
-  <!-- Legend -->
 
   ${legend}
 
