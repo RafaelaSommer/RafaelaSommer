@@ -1,60 +1,115 @@
 #!/usr/bin/env node
 
-require("dotenv").config()
+require("dotenv").config();
 
-const fs = require("fs")
-const path = require("path")
-const axios = require("axios")
-const { DateTime } = require("luxon")
-const { execSync } = require("child_process")
-const generateDashboard = require("./generate-dashboard")
+const fs = require("fs");
+const path = require("path");
+const axios = require("axios");
+const { DateTime } = require("luxon");
+const { execSync } = require("child_process");
+const generateDashboard = require("./generate-dashboard");
 
-const ROOT =
-  path.join(__dirname, "..")
-
-const CACHE_DIR =
-  path.join(ROOT, ".cache")
-
-const CACHE_FILE =
-  path.join(
-    CACHE_DIR,
-    "github.json"
-  )
+const ROOT = path.join(__dirname, "..");
 
 const SETTINGS = JSON.parse(
-
   fs.readFileSync(
-
-    path.join(
-      ROOT,
-      ".github/settings.json"
-    ),
-
+    path.join(ROOT, ".github/settings.json"),
     "utf8"
-
   )
+);
 
-)
-
-const USER =
-  SETTINGS.github_user
-
-const TIMEZONE =
-  SETTINGS.timezone
-
-const TOKEN =
-  process.env.GITHUB_TOKEN
-
-const CACHE_MINUTES =
-  SETTINGS.cache_minutes || 10
+const USER = SETTINGS.github_user;
+const TIMEZONE = SETTINGS.timezone;
+const TOKEN = process.env.GITHUB_TOKEN;
 
 if (!TOKEN) {
 
   console.error(
     "❌ GITHUB_TOKEN não encontrado"
-  )
+  );
 
-  process.exit(1)
+  process.exit(1);
+
+}
+
+// ⏱ Controle de intervalo
+function shouldRun() {
+
+  const file =
+    path.join(
+      ROOT,
+      ".github/last-update.json"
+    );
+
+  const now = Date.now();
+
+  // minutos → ms
+  const interval =
+    (SETTINGS.interval_minutes || 30)
+    * 60
+    * 1000;
+
+  // arquivo não existe
+  if (!fs.existsSync(file)) {
+
+    fs.writeFileSync(
+      file,
+      JSON.stringify(
+        {
+          lastUpdate: now
+        },
+        null,
+        2
+      )
+    );
+
+    return true;
+
+  }
+
+  const data = JSON.parse(
+    fs.readFileSync(
+      file,
+      "utf8"
+    )
+  );
+
+  const diff =
+    now - data.lastUpdate;
+
+  // ainda não chegou no tempo
+  if (diff < interval) {
+
+    const remaining =
+      Math.ceil(
+        (interval - diff)
+        / 60000
+      );
+
+    console.log(
+      `⏳ Aguarde ${remaining} minuto(s)`
+    );
+
+    return false;
+
+  }
+
+  // atualiza timestamp
+  fs.writeFileSync(
+
+    file,
+
+    JSON.stringify(
+      {
+        lastUpdate: now
+      },
+      null,
+      2
+    )
+
+  );
+
+  return true;
 
 }
 
@@ -68,144 +123,66 @@ function configureGit() {
       {
         cwd: ROOT
       }
-    )
+    );
 
     execSync(
       `git config user.email "${SETTINGS.gitEmail}"`,
       {
         cwd: ROOT
       }
-    )
+    );
 
-    // sem token na URL
+    // ✅ sem token na URL
     const repo =
-      `https://github.com/${USER}/${USER}.git`
+      `https://github.com/${USER}/${USER}.git`;
 
     execSync(
       `git remote set-url origin ${repo}`,
       {
         cwd: ROOT
       }
-    )
+    );
+
+  } catch (err) {
+
+    console.error(
+      "❌ erro ao configurar git:",
+      err.message
+    );
+
+  }
+
+}
+
+// 🔄 Sincroniza repositório
+function syncRepo() {
+
+  try {
+
+    execSync(
+      "git pull origin main --rebase",
+      {
+        cwd: ROOT,
+        stdio: "inherit"
+      }
+    );
 
   } catch (err) {
 
     console.log(
-      "⚠️ git já configurado"
-    )
+      "⚠️ erro no pull (ignorado)"
+    );
 
   }
 
 }
 
-// 📦 Lê cache
-function readCache() {
-
-  try {
-
-    if (!fs.existsSync(CACHE_FILE))
-      return null
-
-    const raw =
-      fs.readFileSync(
-        CACHE_FILE,
-        "utf8"
-      )
-
-    const data =
-      JSON.parse(raw)
-
-    const now =
-      DateTime.now()
-
-    const saved =
-      DateTime.fromISO(
-        data.timestamp
-      )
-
-    const diff =
-      now.diff(
-        saved,
-        "minutes"
-      ).minutes
-
-    if (diff < CACHE_MINUTES) {
-
-      console.log(
-        "⚡ Usando cache..."
-      )
-
-      return data.payload
-
-    }
-
-    return null
-
-  } catch {
-
-    return null
-
-  }
-
-}
-
-// 💾 Salva cache
-function writeCache(payload) {
-
-  try {
-
-    if (!fs.existsSync(CACHE_DIR)) {
-
-      fs.mkdirSync(
-        CACHE_DIR
-      )
-
-    }
-
-    const data = {
-
-      timestamp:
-        DateTime.now().toISO(),
-
-      payload
-
-    }
-
-    fs.writeFileSync(
-
-      CACHE_FILE,
-
-      JSON.stringify(
-        data,
-        null,
-        2
-      )
-
-    )
-
-  } catch (e) {
-
-    console.log(
-      "erro ao salvar cache:",
-      e.message
-    )
-
-  }
-
-}
-
-// 🌐 Busca GitHub
+// 🌐 Busca dados GitHub
 async function fetchGitHub() {
-
-  const cached =
-    readCache()
-
-  if (cached)
-    return cached
 
   console.log(
     "🌐 Buscando dados do GitHub..."
-  )
+  );
 
   const query = `
     query {
@@ -235,25 +212,23 @@ async function fetchGitHub() {
       }
 
     }
-  `
+  `;
 
-  const res =
-    await axios.post(
+  const res = await axios.post(
 
-      "https://api.github.com/graphql",
+    "https://api.github.com/graphql",
 
-      { query },
+    { query },
 
-      {
-        headers: {
-          Authorization:
-            `Bearer ${TOKEN}`
-        }
+    {
+      headers: {
+        Authorization: `Bearer ${TOKEN}`
       }
+    }
 
-    )
+  );
 
-  // valida erro GraphQL
+  // ✅ valida erros da API
   if (res.data.errors) {
 
     throw new Error(
@@ -262,16 +237,11 @@ async function fetchGitHub() {
         null,
         2
       )
-    )
+    );
 
   }
 
-  const data =
-    res.data.data.user
-
-  writeCache(data)
-
-  return data
+  return res.data.data.user;
 
 }
 
@@ -281,7 +251,7 @@ function escapeRegex(str) {
   return str.replace(
     /[.*+?^${}()|[\]\\]/g,
     "\\$&"
-  )
+  );
 
 }
 
@@ -292,38 +262,39 @@ function updateReadme() {
     path.join(
       ROOT,
       "templates/README.template.md"
-    )
+    );
 
   const template =
     fs.readFileSync(
       templatePath,
       "utf8"
-    )
+    );
 
   const start =
-    "<!--START_SECTION:dynamic-->"
+    "<!--START_SECTION:dynamic-->";
 
   const end =
-    "<!--END_SECTION:dynamic-->"
+    "<!--END_SECTION:dynamic-->";
 
   const now =
     DateTime.now()
-      .setZone(TIMEZONE)
+      .setZone(TIMEZONE);
 
+  // ⏭ próxima atualização
   const nextUpdate =
     now.plus({
       minutes:
-        SETTINGS.interval_minutes
-    })
+        SETTINGS.interval_minutes || 30
+    });
 
-  const dynamicContent = `
+  const content = `
 🕒 Última atualização: ${now.toFormat("dd/MM/yyyy HH:mm:ss")}
 
 ⏭ Próxima atualização: ${nextUpdate.toFormat("dd/MM/yyyy HH:mm:ss")}
-`
+`;
 
   const newBlock =
-    `${start}\n${dynamicContent}\n${end}`
+    `${start}\n${content}\n${end}`;
 
   const updated =
     template.replace(
@@ -334,7 +305,7 @@ function updateReadme() {
 
       newBlock
 
-    )
+    );
 
   fs.writeFileSync(
 
@@ -342,30 +313,7 @@ function updateReadme() {
 
     updated
 
-  )
-
-}
-
-// 🔄 Sincroniza repo
-function syncRepo() {
-
-  try {
-
-    execSync(
-      "git pull origin main --rebase",
-      {
-        cwd: ROOT,
-        stdio: "inherit"
-      }
-    )
-
-  } catch {
-
-    console.log(
-      "⚠️ erro no pull ignorado"
-    )
-
-  }
+  );
 
 }
 
@@ -374,32 +322,23 @@ function commit() {
 
   try {
 
-    syncRepo()
+    syncRepo();
 
     execSync(
       "git add .",
       {
         cwd: ROOT
       }
-    )
+    );
 
-    const now =
-      DateTime.now()
-        .setZone(TIMEZONE)
-
-    const msg =
-      `🤖 update ${now.toFormat("HH:mm:ss")}`
-
+    // ✅ commit mesmo sem mudanças
     execSync(
-
-      `git commit --allow-empty -m "${msg}"`,
-
+      `git commit --allow-empty -m "🤖 update ${Date.now()}"`,
       {
         cwd: ROOT,
         stdio: "inherit"
       }
-
-    )
+    );
 
     execSync(
       "git push origin main",
@@ -407,22 +346,18 @@ function commit() {
         cwd: ROOT,
         stdio: "inherit"
       }
-    )
+    );
 
     console.log(
       "🚀 Commit realizado com sucesso!"
-    )
-
-    return true
+    );
 
   } catch (e) {
 
     console.error(
       "❌ erro git:",
       e.message
-    )
-
-    return false
+    );
 
   }
 
@@ -431,16 +366,21 @@ function commit() {
 // 🧠 MAIN
 async function main() {
 
-  configureGit()
+  // ⏱ respeita interval_minutes
+  if (!shouldRun()) {
+    return;
+  }
+
+  configureGit();
 
   const user =
-    await fetchGitHub()
+    await fetchGitHub();
 
   const repos =
-    user.repositories.nodes
+    user.repositories.nodes;
 
   const followers =
-    user.followers.totalCount
+    user.followers.totalCount;
 
   const stars =
     repos.reduce(
@@ -450,30 +390,30 @@ async function main() {
 
       0
 
-    )
+    );
 
   // 💻 Linguagens
-  const languages = {}
+  const languages = {};
 
   repos.forEach(r => {
 
     const lang =
-      r.primaryLanguage?.name
+      r.primaryLanguage?.name;
 
     if (!lang)
-      return
+      return;
 
     if (!languages[lang]) {
 
-      languages[lang] = 0
+      languages[lang] = 0;
 
     }
 
-    languages[lang]++
+    languages[lang]++;
 
-  })
+  });
 
-  // 📊 Dashboard
+  // 📊 Dashboard SVG
   generateDashboard({
 
     stars,
@@ -481,28 +421,17 @@ async function main() {
     languages,
     repos
 
-  })
+  });
 
-  // 📝 README
-  updateReadme()
+  // 📝 Atualiza README
+  updateReadme();
 
-  // 🚀 Commit
-  const didCommit =
-    commit()
+  // 🚀 Push automático
+  commit();
 
-  if (didCommit) {
-
-    console.log(
-      "✅ README atualizado com sucesso!"
-    )
-
-  } else {
-
-    console.log(
-      "ℹ️ Falha ao atualizar."
-    )
-
-  }
+  console.log(
+    "✅ Finalizado com sucesso!"
+  );
 
 }
 
@@ -511,6 +440,6 @@ main().catch(err => {
   console.error(
     "❌ erro fatal:",
     err.message
-  )
+  );
 
-})
+});
