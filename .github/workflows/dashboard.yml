@@ -19,7 +19,7 @@ jobs:
 
       - run: npm install
 
-      - run: node scripts/index.js
+      - run: node scripts/generate-dahsboard.js
 
       - run: |
           git config user.name RafaelaSommer
