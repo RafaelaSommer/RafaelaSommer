@@ -164,7 +164,7 @@
     font-family="Arial"
     font-weight="bold">
 
-    4
+    5
 
   </text>
 
@@ -208,7 +208,7 @@
       <rect
         x="200"
         y="298"
-        width="390"
+        width="416"
         height="14"
         rx="7"
         fill="#ada17a"
@@ -221,7 +221,7 @@
         font-size="12"
         font-family="Arial">
 
-        75.0%
+        80.0%
 
       </text>
 
@@ -251,7 +251,7 @@
       <rect
         x="200"
         y="333"
-        width="130"
+        width="104"
         height="14"
         rx="7"
         fill="#fc1c63"
@@ -264,7 +264,7 @@
         font-size="12"
         font-family="Arial">
 
-        25.0%
+        20.0%
 
       </text>
 
