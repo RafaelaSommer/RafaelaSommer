@@ -3,6 +3,7 @@
 require("dotenv").config()
 
 const { spawn } = require("child_process")
+const { execSync } = require("child_process")
 const { DateTime } = require("luxon")
 const fs = require("fs")
 const path = require("path")
@@ -65,7 +66,8 @@ function run(script) {
 
       {
         stdio: "inherit",
-        env: process.env
+        env: process.env,
+        shell: true
       }
 
     )
@@ -88,6 +90,70 @@ function run(script) {
 
 }
 
+function git(command) {
+
+  return execSync(
+    `git ${command}`,
+    {
+      cwd: ROOT,
+      stdio: "pipe"
+    }
+  ).toString()
+
+}
+
+async function pushChanges() {
+
+  try {
+
+    console.log("📦 Verificando alterações...")
+
+    git("add .")
+
+    const status =
+      git("status --porcelain")
+
+    if (!status.trim()) {
+
+      console.log(
+        "✅ Nenhuma alteração para commit"
+      )
+
+      return
+
+    }
+
+    const now =
+      DateTime.now()
+        .setZone(TZ)
+        .toFormat("dd/MM/yyyy HH:mm:ss")
+
+    const message =
+      `🤖 Auto Update ${now}`
+
+    console.log("📝 Criando commit...")
+
+    git(`commit -m "${message}"`)
+
+    console.log("🚀 Enviando para GitHub...")
+
+    git("push origin main")
+
+    console.log(
+      "✅ Repositório atualizado com sucesso"
+    )
+
+  } catch (err) {
+
+    console.error(
+      "❌ Erro Git:",
+      err.message
+    )
+
+  }
+
+}
+
 async function runAll() {
 
   if (isRunning) {
@@ -107,12 +173,16 @@ async function runAll() {
   )
 
   try {
-    await run ("generate-dashboard.js")
+
+    await run("generate-dashboard.js")
     await run("generate-cron.js")
     await run("ai-activity.js")
     await run("activity.js")
     await run("cache.js")
     await run("index.js")
+
+    // NOVO:
+    await pushChanges()
 
     console.log(
       "\n✅ Ciclo finalizado\n"
@@ -139,7 +209,6 @@ async function loop() {
 
   while (true) {
 
-    // início do ciclo
     const start = Date.now()
 
     try {
@@ -166,11 +235,9 @@ async function loop() {
 
     }
 
-    // tempo gasto
     const elapsed =
       Date.now() - start
 
-    // restante até completar intervalo
     const remaining =
       INTERVAL - elapsed
 
