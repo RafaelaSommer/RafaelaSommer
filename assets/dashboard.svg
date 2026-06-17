@@ -131,7 +131,7 @@
     font-family="Arial"
     font-weight="bold">
 
-    406
+    407
 
   </text>
 
@@ -278,7 +278,7 @@
         font-family="Arial"
         font-weight="600">
 
-        HTML
+        CSS
 
       </text>
 
@@ -297,7 +297,7 @@
         width="86.83999999999999"
         height="14"
         rx="7"
-        fill="#abff21"
+        fill="#e30501"
       />
 
       <text
