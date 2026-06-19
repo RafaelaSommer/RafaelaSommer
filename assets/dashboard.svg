@@ -1,8 +1,8 @@
 
 <svg
   width="1000"
-  height="496"
-  viewBox="0 0 1000 496"
+  height="534"
+  viewBox="0 0 1000 534"
   xmlns="http://www.w3.org/2000/svg">
 
   <defs>
@@ -36,7 +36,7 @@
     x="20"
     y="20"
     width="960"
-    height="456"
+    height="494"
     rx="24"
     fill="#161B22"
     stroke="#30363D"
@@ -208,7 +208,7 @@
       <rect
         x="200"
         y="298"
-        width="433.15999999999997"
+        width="346.84000000000003"
         height="14"
         rx="7"
         fill="#ada17a"
@@ -221,7 +221,7 @@
         font-size="12"
         font-family="Arial">
 
-        83.3%
+        66.7%
 
       </text>
 
@@ -260,6 +260,49 @@
       <text
         x="740"
         y="345"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        16.7%
+
+      </text>
+
+    
+
+      <text
+        x="60"
+        y="380"
+        fill="#E6EDF3"
+        font-size="14"
+        font-family="Arial"
+        font-weight="600">
+
+        CSS
+
+      </text>
+
+      <rect
+        x="200"
+        y="368"
+        width="520"
+        height="14"
+        rx="7"
+        fill="#21262D"
+      />
+
+      <rect
+        x="200"
+        y="368"
+        width="86.83999999999999"
+        height="14"
+        rx="7"
+        fill="#e30501"
+      />
+
+      <text
+        x="740"
+        y="380"
         fill="#8B949E"
         font-size="12"
         font-family="Arial">
