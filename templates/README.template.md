@@ -26,7 +26,7 @@
 
 # 💼 Sobre mim
 
-Sou estudante de **Engenharia da Computação (5º semestre)** com foco em **Desenvolvimento Backend** e **Arquitetura de Sistemas**.
+Sou estudante de **Engenharia da Computação (6º semestre)** com foco em **Desenvolvimento Backend** e **Arquitetura de Sistemas**.
 
 Tenho experiência prática na criação de:
 
