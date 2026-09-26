@@ -164,7 +164,7 @@
     font-family="Arial"
     font-weight="bold">
 
-    7
+    8
 
   </text>
 
@@ -208,7 +208,7 @@
       <rect
         x="200"
         y="298"
-        width="296.92"
+        width="260"
         height="14"
         rx="7"
         fill="#ada17a"
@@ -221,7 +221,7 @@
         font-size="12"
         font-family="Arial">
 
-        57.1%
+        50.0%
 
       </text>
 
@@ -230,92 +230,6 @@
       <text
         x="60"
         y="345"
-        fill="#E6EDF3"
-        font-size="14"
-        font-family="Arial"
-        font-weight="600">
-
-        Python
-
-      </text>
-
-      <rect
-        x="200"
-        y="333"
-        width="520"
-        height="14"
-        rx="7"
-        fill="#21262D"
-      />
-
-      <rect
-        x="200"
-        y="333"
-        width="74.36000000000001"
-        height="14"
-        rx="7"
-        fill="#fc1c63"
-      />
-
-      <text
-        x="740"
-        y="345"
-        fill="#8B949E"
-        font-size="12"
-        font-family="Arial">
-
-        14.3%
-
-      </text>
-
-    
-
-      <text
-        x="60"
-        y="380"
-        fill="#E6EDF3"
-        font-size="14"
-        font-family="Arial"
-        font-weight="600">
-
-        TypeScript
-
-      </text>
-
-      <rect
-        x="200"
-        y="368"
-        width="520"
-        height="14"
-        rx="7"
-        fill="#21262D"
-      />
-
-      <rect
-        x="200"
-        y="368"
-        width="74.36000000000001"
-        height="14"
-        rx="7"
-        fill="#c55415"
-      />
-
-      <text
-        x="740"
-        y="380"
-        fill="#8B949E"
-        font-size="12"
-        font-family="Arial">
-
-        14.3%
-
-      </text>
-
-    
-
-      <text
-        x="60"
-        y="415"
         fill="#E6EDF3"
         font-size="14"
         font-family="Arial"
@@ -327,6 +241,92 @@
 
       <rect
         x="200"
+        y="333"
+        width="520"
+        height="14"
+        rx="7"
+        fill="#21262D"
+      />
+
+      <rect
+        x="200"
+        y="333"
+        width="130"
+        height="14"
+        rx="7"
+        fill="#abff21"
+      />
+
+      <text
+        x="740"
+        y="345"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        25.0%
+
+      </text>
+
+    
+
+      <text
+        x="60"
+        y="380"
+        fill="#E6EDF3"
+        font-size="14"
+        font-family="Arial"
+        font-weight="600">
+
+        Python
+
+      </text>
+
+      <rect
+        x="200"
+        y="368"
+        width="520"
+        height="14"
+        rx="7"
+        fill="#21262D"
+      />
+
+      <rect
+        x="200"
+        y="368"
+        width="65"
+        height="14"
+        rx="7"
+        fill="#fc1c63"
+      />
+
+      <text
+        x="740"
+        y="380"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        12.5%
+
+      </text>
+
+    
+
+      <text
+        x="60"
+        y="415"
+        fill="#E6EDF3"
+        font-size="14"
+        font-family="Arial"
+        font-weight="600">
+
+        TypeScript
+
+      </text>
+
+      <rect
+        x="200"
         y="403"
         width="520"
         height="14"
@@ -337,10 +337,10 @@
       <rect
         x="200"
         y="403"
-        width="74.36000000000001"
+        width="65"
         height="14"
         rx="7"
-        fill="#abff21"
+        fill="#c55415"
       />
 
       <text
@@ -350,7 +350,7 @@
         font-size="12"
         font-family="Arial">
 
-        14.3%
+        12.5%
 
       </text>
 
