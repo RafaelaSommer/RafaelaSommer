@@ -164,7 +164,7 @@
     font-family="Arial"
     font-weight="bold">
 
-    9
+    10
 
   </text>
 
@@ -208,7 +208,7 @@
       <rect
         x="200"
         y="298"
-        width="260"
+        width="230.88"
         height="14"
         rx="7"
         fill="#ada17a"
@@ -221,7 +221,7 @@
         font-size="12"
         font-family="Arial">
 
-        50.0%
+        44.4%
 
       </text>
 
@@ -230,49 +230,6 @@
       <text
         x="60"
         y="345"
-        fill="#E6EDF3"
-        font-size="14"
-        font-family="Arial"
-        font-weight="600">
-
-        HTML
-
-      </text>
-
-      <rect
-        x="200"
-        y="333"
-        width="520"
-        height="14"
-        rx="7"
-        fill="#21262D"
-      />
-
-      <rect
-        x="200"
-        y="333"
-        width="130"
-        height="14"
-        rx="7"
-        fill="#abff21"
-      />
-
-      <text
-        x="740"
-        y="345"
-        fill="#8B949E"
-        font-size="12"
-        font-family="Arial">
-
-        25.0%
-
-      </text>
-
-    
-
-      <text
-        x="60"
-        y="380"
         fill="#E6EDF3"
         font-size="14"
         font-family="Arial"
@@ -284,6 +241,49 @@
 
       <rect
         x="200"
+        y="333"
+        width="520"
+        height="14"
+        rx="7"
+        fill="#21262D"
+      />
+
+      <rect
+        x="200"
+        y="333"
+        width="115.44"
+        height="14"
+        rx="7"
+        fill="#fc1c63"
+      />
+
+      <text
+        x="740"
+        y="345"
+        fill="#8B949E"
+        font-size="12"
+        font-family="Arial">
+
+        22.2%
+
+      </text>
+
+    
+
+      <text
+        x="60"
+        y="380"
+        fill="#E6EDF3"
+        font-size="14"
+        font-family="Arial"
+        font-weight="600">
+
+        HTML
+
+      </text>
+
+      <rect
+        x="200"
         y="368"
         width="520"
         height="14"
@@ -294,10 +294,10 @@
       <rect
         x="200"
         y="368"
-        width="65"
+        width="115.44"
         height="14"
         rx="7"
-        fill="#fc1c63"
+        fill="#abff21"
       />
 
       <text
@@ -307,7 +307,7 @@
         font-size="12"
         font-family="Arial">
 
-        12.5%
+        22.2%
 
       </text>
 
@@ -337,7 +337,7 @@
       <rect
         x="200"
         y="403"
-        width="65"
+        width="57.72"
         height="14"
         rx="7"
         fill="#c55415"
@@ -350,7 +350,7 @@
         font-size="12"
         font-family="Arial">
 
-        12.5%
+        11.1%
 
       </text>
 
