@@ -164,7 +164,7 @@
     font-family="Arial"
     font-weight="bold">
 
-    10
+    11
 
   </text>
 
@@ -208,7 +208,7 @@
       <rect
         x="200"
         y="298"
-        width="230.88"
+        width="208"
         height="14"
         rx="7"
         fill="#ada17a"
@@ -221,7 +221,7 @@
         font-size="12"
         font-family="Arial">
 
-        44.4%
+        40.0%
 
       </text>
 
@@ -251,7 +251,7 @@
       <rect
         x="200"
         y="333"
-        width="115.44"
+        width="156"
         height="14"
         rx="7"
         fill="#fc1c63"
@@ -264,7 +264,7 @@
         font-size="12"
         font-family="Arial">
 
-        22.2%
+        30.0%
 
       </text>
 
@@ -294,7 +294,7 @@
       <rect
         x="200"
         y="368"
-        width="115.44"
+        width="104"
         height="14"
         rx="7"
         fill="#abff21"
@@ -307,7 +307,7 @@
         font-size="12"
         font-family="Arial">
 
-        22.2%
+        20.0%
 
       </text>
 
@@ -337,7 +337,7 @@
       <rect
         x="200"
         y="403"
-        width="57.72"
+        width="52"
         height="14"
         rx="7"
         fill="#c55415"
@@ -350,7 +350,7 @@
         font-size="12"
         font-family="Arial">
 
-        11.1%
+        10.0%
 
       </text>
 
